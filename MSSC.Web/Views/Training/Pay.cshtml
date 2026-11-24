@@ -1,0 +1,317 @@
+@{
+    var registrationId = ViewBag.RegistrationId as string;
+}
+
+<section class="page-hero register-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>@Lang.T("Complete Your Payment", "أكمل الدفع")</h1>
+            <p class="lead">@Lang.T("Secure payment for your training registration", "دفع آمن لتسجيلك في التدريب")</p>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7" data-aos="fade-up">
+                <div class="registration-form-card">
+                    <div id="payLoading" class="text-center py-5">
+                        <i class="fas fa-spinner fa-spin" style="font-size:2.2rem;color:var(--primary)"></i>
+                        <p class="mt-3 text-muted">@Lang.T("Preparing your payment...", "جارٍ تجهيز الدفع...")</p>
+                    </div>
+                    <div id="payError" class="alert alert-danger" style="display:none"></div>
+                    <div id="paySuccess" style="display:none"></div>
+                    <div id="payPanel" style="display:none">
+                        <h2>@Lang.T("Secure Payment", "دفع آمن")</h2>
+                        <p class="payment-amount-line" id="payAmountLine"></p>
+
+                        <div class="pay-method-options" id="payMethodOptions">
+                            <label class="pay-method-card">
+                                <input type="radio" name="payMethod" value="card" checked>
+                                <span class="pay-method-body">
+                                    <span class="pay-method-title">@Lang.T("Card / mada", "بطاقة / مدى")</span>
+                                    <span class="pay-method-logos">
+                                        <img src="~/images/payment/mada.svg" asp-append-version="true" alt="mada" height="20">
+                                        <img src="~/images/payment/visa.svg" asp-append-version="true" alt="Visa" height="20">
+                                        <img src="~/images/payment/mastercard.svg" asp-append-version="true" alt="Mastercard" height="20">
+                                        <img src="~/images/payment/applepay.svg" asp-append-version="true" alt="Apple Pay" height="20">
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="pay-method-card">
+                                <input type="radio" name="payMethod" value="tamara">
+                                <span class="pay-method-body">
+                                    <span class="pay-method-title">@Lang.T("Split with Tamara", "قسّمها مع تمارا")</span>
+                                    <span class="pay-method-logos">
+                                        <img src="~/images/payment/tamara.svg" asp-append-version="true" alt="Tamara" height="22">
+                                    </span>
+                                    <span class="pay-method-desc">@Lang.T("Pay in instalments, Sharia-compliant, no interest.", "قسّط على دفعات، متوافق مع الشريعة، بدون فوائد.")</span>
+                                </span>
+                            </label>
+                            <label class="pay-method-card">
+                                <input type="radio" name="payMethod" value="tabby">
+                                <span class="pay-method-body">
+                                    <span class="pay-method-title">@Lang.T("Split with Tabby", "قسّمها مع تابي")</span>
+                                    <span class="pay-method-logos">
+                                        <img src="~/images/payment/tabby.svg" asp-append-version="true" alt="Tabby" height="22">
+                                    </span>
+                                    <span class="pay-method-desc">@Lang.T("Pay in 4, Sharia-compliant, no interest.", "قسّمها على 4 دفعات، متوافق مع الشريعة، بدون فوائد.")</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div id="cardPanel">
+                            <div class="mysr-form"></div>
+                            <p class="payment-secure-note">@Lang.T("Payments are processed securely by Moyasar. Your card details never touch our servers.", "تتم معالجة المدفوعات بأمان عبر ميسّر. لا تمر بيانات بطاقتك عبر خوادمنا.")</p>
+                        </div>
+
+                        <div id="tamaraPanel" style="display:none">
+                            <button type="button" id="tamaraBtn" class="btn btn-primary btn-lg" style="width:100%">
+                                <i class="fas fa-money-bill-wave me-2"></i>@Lang.T("Continue with Tamara", "المتابعة مع تمارا")
+                            </button>
+                            <div id="tamaraError" class="alert alert-danger mt-3" style="display:none"></div>
+                            <p class="payment-secure-note">@Lang.T("You'll be redirected to Tamara to complete your instalment plan securely.", "سيتم تحويلك إلى تمارا لإكمال خطة التقسيط بأمان.")</p>
+                        </div>
+
+                        <div id="tabbyPanel" style="display:none">
+                            <button type="button" id="tabbyBtn" class="btn btn-primary btn-lg" style="width:100%">
+                                <i class="fas fa-money-bill-wave me-2"></i>@Lang.T("Continue with Tabby", "المتابعة مع تابي")
+                            </button>
+                            <div id="tabbyError" class="alert alert-danger mt-3" style="display:none"></div>
+                            <p class="payment-secure-note">@Lang.T("You'll be redirected to Tabby to complete your instalment plan securely.", "سيتم تحويلك إلى تابي لإكمال خطة التقسيط بأمان.")</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.18.0/moyasar.css">
+<style>
+    .registration-form-card {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        --border-color: #dde3ea;
+        --primary-rgb: 15, 76, 129;
+        --text-dark: #1e3a5f;
+        --text-muted: #6b7a90;
+    }
+    .payment-amount-line { font-size: 1.15rem; font-weight: 700; color: #1e3a5f; margin-bottom: 20px; }
+    .payment-secure-note { margin-top: 18px; font-size: 0.85rem; color: #6b7a90; text-align: center; }
+    .mysr-form { min-height: 60px; }
+
+    .pay-method-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 22px; }
+
+    .pay-method-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease;
+        margin-bottom: 0;
+        font-weight: 400;
+    }
+
+    .pay-method-card:hover { border-color: var(--primary); }
+
+    .pay-method-card:has(input:checked) {
+        border-color: var(--primary);
+        background: rgba(var(--primary-rgb), 0.05);
+    }
+
+    .pay-method-card input[type="radio"] {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+        accent-color: var(--primary);
+        cursor: pointer;
+    }
+
+    .pay-method-body { display: flex; flex-direction: column; gap: 4px; }
+    .pay-method-title { font-weight: 600; color: var(--text-dark); }
+    .pay-method-title i { color: var(--primary); }
+    .pay-method-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+
+    .pay-method-logos { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    .pay-method-logos img {
+        height: 20px;
+        width: auto;
+        display: block;
+        padding: 3px 6px;
+        background: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+    }
+
+    @@media (max-width: 768px) {
+        .registration-form-card { padding: 25px; }
+        .pay-method-options { grid-template-columns: 1fr; }
+    }
+</style>
+}
+
+@section Scripts {
+<script src="https://cdn.moyasar.com/mpf/1.18.0/moyasar.js"></script>
+<script>
+const HSTC_API_URL = '@(ViewBag.HstcApiUrl ?? "http://localhost:5050")';
+const REF = '@(registrationId)';
+const CULTURE = (document.documentElement.lang || 'ar').startsWith('ar') ? 'ar' : 'en';
+const T = {
+    amountDue: '@Lang.T("Amount due:", "المبلغ المستحق:")',
+    invalid: '@Lang.T("Invalid or expired payment link.", "رابط دفع غير صالح أو منتهٍ.")',
+    libFailed: '@Lang.T("The payment library failed to load. Please disable ad-blockers and try again.", "تعذّر تحميل مكتبة الدفع. يُرجى تعطيل مانع الإعلانات والمحاولة مجدداً.")',
+    payFailed: '@Lang.T("Could not start payment:", "تعذّر بدء الدفع:")',
+    cardUnavailable: '@Lang.T("Card payment is unavailable right now — you can pay with Tamara instead.", "الدفع بالبطاقة غير متاح حالياً — يمكنك الدفع عبر تمارا بدلاً من ذلك.")'
+};
+
+function fmtSar(n) {
+    return new Intl.NumberFormat(CULTURE === 'ar' ? 'ar-SA' : 'en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 }).format(n)
+        + ' ' + (CULTURE === 'ar' ? 'ر.س' : 'SAR');
+}
+function showError(msg) {
+    document.getElementById('payLoading').style.display = 'none';
+    const e = document.getElementById('payError');
+    e.style.display = '';
+    e.textContent = msg;
+}
+
+async function startTamara() {
+    const btn = document.getElementById('tamaraBtn');
+    const errBox = document.getElementById('tamaraError');
+    errBox.style.display = 'none';
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    try {
+        const res = await fetch(HSTC_API_URL + '/api/public/payments/tamara/create-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ registrationId: REF })
+        });
+        const data = await res.json().catch(() => null);
+        if (!res.ok || !data?.isSuccessful) throw new Error(data?.errorEntry?.errorMessage || ('Server returned ' + res.status));
+        const result = data.resultObject;
+        if (!result.requiresPayment) { window.location.reload(); return; }
+        if (!result.checkoutUrl) throw new Error(T.payFailed);
+        window.location.href = result.checkoutUrl;
+    } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = original;
+        errBox.style.display = '';
+        errBox.textContent = T.payFailed + ' ' + (err.message || '');
+    }
+}
+
+async function startTabby() {
+    const btn = document.getElementById('tabbyBtn');
+    const errBox = document.getElementById('tabbyError');
+    errBox.style.display = 'none';
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    try {
+        const res = await fetch(HSTC_API_URL + '/api/public/payments/tabby/create-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ registrationId: REF })
+        });
+        const data = await res.json().catch(() => null);
+        if (!res.ok || !data?.isSuccessful) throw new Error(data?.errorEntry?.errorMessage || ('Server returned ' + res.status));
+        const result = data.resultObject;
+        if (!result.requiresPayment) { window.location.reload(); return; }
+        if (!result.checkoutUrl) throw new Error(T.payFailed);
+        window.location.href = result.checkoutUrl;
+    } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = original;
+        errBox.style.display = '';
+        errBox.textContent = T.payFailed + ' ' + (err.message || '');
+    }
+}
+
+function wireMethodToggle() {
+    const cardPanel = document.getElementById('cardPanel');
+    const tamaraPanel = document.getElementById('tamaraPanel');
+    const tabbyPanel = document.getElementById('tabbyPanel');
+    document.querySelectorAll('input[name="payMethod"]').forEach(r => r.addEventListener('change', function () {
+        const m = document.querySelector('input[name="payMethod"]:checked')?.value || 'card';
+        cardPanel.style.display = m === 'card' ? '' : 'none';
+        tamaraPanel.style.display = m === 'tamara' ? '' : 'none';
+        tabbyPanel.style.display = m === 'tabby' ? '' : 'none';
+    }));
+    document.getElementById('tamaraBtn').addEventListener('click', startTamara);
+    document.getElementById('tabbyBtn').addEventListener('click', startTabby);
+}
+
+(async function () {
+    if (!REF) { showError(T.invalid); return; }
+    try {
+        const res = await fetch(HSTC_API_URL + '/api/public/payments/create-intent', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ registrationId: REF })
+        });
+        const data = await res.json().catch(() => null);
+        if (!res.ok || !data?.isSuccessful) throw new Error(data?.errorEntry?.errorMessage || ('Server returned ' + res.status));
+        const intent = data.resultObject;
+
+        document.getElementById('payLoading').style.display = 'none';
+
+        if (!intent.requiresPayment) {
+            const s = document.getElementById('paySuccess');
+            s.style.display = '';
+            s.innerHTML = `
+                <div class="text-center py-4">
+                    <i class="fas fa-check-circle text-success" style="font-size:3rem"></i>
+                    <h3 class="mt-3">@Lang.T("Nothing to pay", "لا يوجد مبلغ مستحق")</h3>
+                    <p class="text-muted">@Lang.T("This registration is already settled.", "تمت تسوية هذا الطلب بالفعل.")</p>
+                    <a href="/training" class="btn btn-primary mt-2">@Lang.T("Back to Training Center", "العودة إلى مركز التدريب")</a>
+                </div>`;
+            return;
+        }
+
+        const panel = document.getElementById('payPanel');
+        panel.style.display = '';
+        document.getElementById('payAmountLine').textContent = T.amountDue + ' ' + fmtSar(intent.amount);
+        wireMethodToggle();
+
+        if (typeof Moyasar === 'undefined' || typeof Moyasar.init !== 'function') {
+            document.getElementById('cardPanel').innerHTML = '<div class="alert alert-warning">' + T.cardUnavailable + '</div>';
+        } else {
+            const cfg = {
+                element: '.mysr-form',
+                amount: intent.amountMinor,
+                currency: intent.currency,
+                description: intent.description,
+                publishable_api_key: intent.publishableKey,
+                callback_url: window.location.origin + '/training/payment/callback',
+                methods: (intent.methods && intent.methods.length) ? intent.methods : ['creditcard'],
+                supported_networks: intent.supportedNetworks,
+                language: CULTURE,
+                metadata: { payment_id: intent.paymentId, registration_id: REF }
+            };
+            if (intent.applePay) {
+                cfg.apple_pay = {
+                    country: intent.applePay.country || 'SA',
+                    label: intent.applePay.label || 'HSTC',
+                    validate_merchant_url: intent.applePay.validateMerchantUrl
+                };
+            }
+            try { Moyasar.init(cfg); }
+            catch (e) { document.getElementById('cardPanel').innerHTML = '<div class="alert alert-warning">' + T.cardUnavailable + '</div>'; }
+        }
+    } catch (err) {
+        showError(T.payFailed + ' ' + (err.message || ''));
+    }
+})();
+</script>
+}

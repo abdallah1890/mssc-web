@@ -1,0 +1,267 @@
+@{
+    var seo = SeoModel.Resolve(ViewData, Context.Request,
+        Lang.T("MSSC - Management System Solutions Company | Riyadh", "شركة حلول النظم الإدارية MSSC | الرياض"),
+        Lang.T("MSSC builds governance, performance and capability systems for government and enterprise organizations in Saudi Arabia.",
+               "تبني شركة حلول النظم الإدارية MSSC أنظمة الحوكمة والأداء وبناء القدرات للجهات الحكومية والمؤسسات في المملكة العربية السعودية."),
+        "/images/og-image.jpg");
+    var langReturnUrl = Uri.EscapeDataString($"{Context.Request.Path}{Context.Request.QueryString}");
+}
+<!DOCTYPE html>
+<html lang="@Lang.Code" dir="@Lang.Dir">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <partial name="_GoogleTrackingHead" />
+    <partial name="_LinkedInTrackingHead" />
+    <partial name="_AdPixelsHead" />
+
+    <title>@seo.Title</title>
+    <meta name="description" content="@seo.Description" />
+    @if (!string.IsNullOrWhiteSpace(seo.Keywords))
+    {
+        <meta name="keywords" content="@seo.Keywords" />
+    }
+    <meta name="author" content="MSSC - Management System Solutions Company" />
+    <meta name="robots" content="@seo.Robots" />
+    <link rel="canonical" href="@seo.CanonicalUrl" />
+    <link rel="alternate" hreflang="ar-SA" href="@seo.AlternateAr" />
+    <link rel="alternate" hreflang="en" href="@seo.AlternateEn" />
+    <link rel="alternate" hreflang="x-default" href="@seo.AlternateAr" />
+
+    <meta property="og:type" content="@seo.OgType" />
+    <meta property="og:url" content="@seo.CanonicalUrl" />
+    <meta property="og:title" content="@seo.Title" />
+    <meta property="og:description" content="@seo.Description" />
+    <meta property="og:image" content="@seo.OgImage" />
+    <meta property="og:site_name" content="MSSC" />
+    <meta property="og:locale" content="@Lang.OgLocale" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="@seo.CanonicalUrl" />
+    <meta name="twitter:title" content="@seo.Title" />
+    <meta name="twitter:description" content="@seo.Description" />
+    <meta name="twitter:image" content="@seo.OgImage" />
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    @if (Lang.IsArabic)
+    {
+        <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@@400;500;700;800&display=swap" rel="stylesheet">
+    }
+
+    @RenderSection("Styles", required: false)
+
+    @if (Lang.IsArabic)
+    {
+        <link rel="stylesheet" href="~/css/site.rtl.css" asp-append-version="true" />
+    }
+
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@@type": "Organization",
+        "@@id": "https://mssc.com.sa/#organization",
+        "name": "Management System Solutions Co. (MSSC)",
+        "alternateName": ["شركة حلول النظم الإدارية", "MSSC"],
+        "url": "https://mssc.com.sa",
+        "logo": "https://mssc.com.sa/images/logo.png",
+        "description": "Institutional advisory and training firm in Riyadh, Saudi Arabia. MSSC builds governance, performance management, capability development and standards-readiness (ISO) systems for government, semi-government and enterprise organizations. Its training arm is Horizon Solutions Training Center (مركز آفاق الحلول للتدريب).",
+        "subOrganization": {
+            "@@type": "EducationalOrganization",
+            "@@id": "https://mssc.com.sa/training#organization",
+            "name": "Horizon Solutions Training Center",
+            "alternateName": "مركز آفاق الحلول للتدريب",
+            "url": "https://mssc.com.sa/training"
+        },
+        "address": {
+            "@@type": "PostalAddress",
+            "streetAddress": "Al Imam Saud Ibn Faysal Rd",
+            "addressLocality": "Riyadh",
+            "postalCode": "12363",
+            "addressCountry": "SA"
+        },
+        "contactPoint": [
+            {
+                "@@type": "ContactPoint",
+                "telephone": "+966114500896",
+                "contactType": "customer service",
+                "email": "info@@mssc.com.sa",
+                "availableLanguage": ["Arabic", "English"]
+            },
+            {
+                "@@type": "ContactPoint",
+                "telephone": "+966543618430",
+                "contactType": "training inquiries (phone & WhatsApp)",
+                "email": "training@@mssc.com.sa",
+                "availableLanguage": ["Arabic", "English"]
+            }
+        ],
+        "sameAs": [
+            "https://www.linkedin.com/company/horizon.mssc",
+            "https://x.com/horizonmssc",
+            "https://www.instagram.com/horizon.mssc/",
+            "https://www.facebook.com/horizon.mssc",
+            "https://www.snapchat.com/add/horizon.mssc"
+        ]
+    }
+    </script>
+</head>
+<body>
+    <partial name="_GoogleTrackingNoscript" />
+    <partial name="_LinkedInTrackingNoscript" />
+
+    <header class="header" id="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-top-content">
+                    <div class="contact-info">
+                        <a href="tel:+966114500896"><i class="fas fa-phone"></i> +966 11 450 0896</a>
+                        <a href="mailto:info@mssc.com.sa"><i class="fas fa-envelope"></i> info@mssc.com.sa</a>
+                    </div>
+                    <div class="social-links">
+                        <a class="lang-switch" data-no-lang href="@seo.OtherLangUrl"><i class="fas fa-globe"></i> @Lang.OtherLabel</a>
+                        <a href="https://www.linkedin.com/company/horizon.mssc" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://x.com/horizonmssc" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/horizon.mssc/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/horizon.mssc" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.snapchat.com/add/horizon.mssc" target="_blank" rel="noopener" aria-label="Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">
+                    <img src="/images/logo.png?v=2" alt="Management System Solutions Co. - شركة حلول النظم الإدارية" class="logo-img">
+                </a>
+                <button class="nav-toggle" aria-label="Toggle navigation" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="/" class="nav-link">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li><a href="/about" class="nav-link">@Lang.T("About", "من نحن")</a></li>
+                    <li><a href="/framework" class="nav-link">@Lang.T("Framework", "إطار العمل")</a></li>
+                    <li><a href="/government-solutions" class="nav-link">@Lang.T("Government", "القطاع الحكومي")</a></li>
+                    <li><a href="/enterprise-solutions" class="nav-link">@Lang.T("Enterprise", "قطاع الأعمال")</a></li>
+                    <li><a href="/offers" class="nav-link">@Lang.T("Offers", "العروض")</a></li>
+                    <li><a href="/proof-hub" class="nav-link">@Lang.T("Proof Hub", "مركز الأدلة")</a></li>
+                    <li><a href="/training" class="nav-link nav-link-training">@Lang.T("Training", "التدريب") <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                    <li class="nav-lang-item"><a class="nav-link" data-no-lang href="@seo.OtherLangUrl"><i class="fas fa-globe"></i> @Lang.OtherLabel</a></li>
+                </ul>
+                <a href="/contact" class="btn btn-cta-diagnostic nav-cta">@Lang.T("Request Diagnostic", "اطلب التشخيص")</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="/" class="footer-logo">
+                            <img src="/images/logo.png?v=2" alt="Management System Solutions Co. - شركة حلول النظم الإدارية" class="footer-logo-img">
+                        </a>
+                        <p>@Lang.T("Leading management consulting firm in Saudi Arabia, delivering transformative solutions aligned with Vision 2030.", "شركة استشارات إدارية رائدة في المملكة العربية السعودية، نقدّم حلولاً تحويلية متوائمة مع رؤية 2030.")</p>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/company/horizon.mssc" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://x.com/horizonmssc" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://www.instagram.com/horizon.mssc/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/horizon.mssc" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.snapchat.com/add/horizon.mssc" target="_blank" rel="noopener" aria-label="Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h4>@Lang.T("Quick Links", "روابط سريعة")</h4>
+                        <ul>
+                            <li><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                            <li><a href="/about">@Lang.T("About", "من نحن")</a></li>
+                            <li><a href="/framework">@Lang.T("Framework", "إطار العمل")</a></li>
+                            <li><a href="/offers">@Lang.T("Offers", "العروض")</a></li>
+                            <li><a href="/proof-hub">@Lang.T("Proof Hub", "مركز الأدلة")</a></li>
+                            <li><a href="/contact">@Lang.T("Contact", "تواصل معنا")</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h4>@Lang.T("Solutions", "الحلول")</h4>
+                        <ul>
+                            <li><a href="/government-solutions">@Lang.T("Government Solutions", "الحلول الحكومية")</a></li>
+                            <li><a href="/enterprise-solutions">@Lang.T("Enterprise Solutions", "حلول المؤسسات")</a></li>
+                            <li><a href="/offers">@Lang.T("Six Focused Offers", "ستة عروض متخصّصة")</a></li>
+                            <li><a href="/framework">@Lang.T("The Framework", "إطار العمل")</a></li>
+                            <li><a href="/proof-hub">@Lang.T("Proof Hub", "مركز الأدلة")</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h4>@Lang.T("Training", "التدريب")</h4>
+                        <ul>
+                            <li><a href="/training">@Lang.T("Training Home", "الرئيسية")</a></li>
+                            <li><a href="/training/programs">@Lang.T("Programs", "البرامج")</a></li>
+                            <li><a href="/training/corporate">@Lang.T("Corporate Training", "تدريب المؤسسات")</a></li>
+                            <li><a href="/training/individual">@Lang.T("Individual Training", "تدريب الأفراد")</a></li>
+                            <li><a href="/training/accreditations">@Lang.T("Accreditations", "الاعتمادات")</a></li>
+                            <li><a href="/training/schedule">@Lang.T("Calendar", "التقويم")</a></li>
+                            <li><a href="/training/about">@Lang.T("About Training", "عن مركز التدريب")</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h4>@Lang.T("Contact Us", "تواصل معنا")</h4>
+                        <ul>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>@Lang.T("Al Imam Saud Ibn Faysal Rd,", "طريق الإمام سعود بن فيصل،")<br>@Lang.T("Riyadh 12363, Saudi Arabia", "الرياض 12363، المملكة العربية السعودية")</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+966114500896">+966 11 450 0896</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:info@mssc.com.sa">info@mssc.com.sa</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; @DateTime.Now.Year @Lang.T("MSSC - Management System Solutions Company. All Rights Reserved.", "شركة حلول النظم الإدارية (MSSC). جميع الحقوق محفوظة.")</p>
+                    <div class="footer-policy-links">
+                        <a href="/privacy">@Lang.T("Privacy Policy", "سياسة الخصوصية")</a>
+                        <a href="/cookie-policy">@Lang.T("Cookie Policy", "سياسة ملفات الارتباط")</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/966543618430" class="whatsapp-float" target="_blank" rel="noopener"
+       aria-label="@Lang.T("Chat with us on WhatsApp", "تواصل معنا عبر واتساب")" title="@Lang.T("Chat with us on WhatsApp", "تواصل معنا عبر واتساب")">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

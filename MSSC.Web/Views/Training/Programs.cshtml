@@ -1,0 +1,355 @@
+@model List<MSSC.Web.Models.TrainingCategory>
+@{
+}
+
+<section class="page-hero programs-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>@Lang.T("Find the program that fits your goal.", "اعثر على البرنامج الذي يناسب هدفك.")</h1>
+            <p class="lead">@Lang.T("All MSSC programs are structured around institutional frameworks — covering the governance, performance, capability, standards, and technical competencies that careers and organizations in Saudi Arabia actually need.", "جميع برامج MSSC مبنية حول أطر مؤسسية — تغطّي كفاءات الحوكمة والأداء والقدرات والمعايير والكفاءات التقنية التي تحتاجها المسارات المهنية والمؤسسات في المملكة العربية السعودية فعلاً.")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item"><a href="/training">@Lang.T("Training", "التدريب")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Programs", "البرامج")</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">ثلاث طرق للعثور على <span class="text-primary">البرنامج المناسب.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Three ways to find <span class="text-primary">the right program.</span></h2>
+            }
+        </div>
+
+        <div class="profiles-grid">
+            <div class="profile-card" data-aos="fade-up">
+                <div class="profile-icon"><i class="fas fa-list-ul"></i></div>
+                <h3>@Lang.T("By category", "حسب الفئة")</h3>
+                <p>@Lang.T("Browse the four program categories — Information Technology, Management & Leadership, Health & Safety, Quality & Organizational Excellence — each with its own track structured around a specific institutional competency area.", "تصفّح فئات البرامج الأربع — تقنية المعلومات، والإدارة والقيادة، والصحة والسلامة، والجودة والتميّز المؤسسي — لكلٍّ منها مسار خاص مبنيّ حول مجال كفاءة مؤسسية محدّد.")</p>
+            </div>
+            <div class="profile-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="profile-icon"><i class="fas fa-certificate"></i></div>
+                <h3>@Lang.T("By accreditation", "حسب الاعتماد")</h3>
+                <p>@Lang.T("Filter by accreditation body — IOSH, ACMP, CPD, or TVTC — if you have a specific certification requirement or procurement framework to satisfy.", "صفِّ حسب جهة الاعتماد — IOSH أو ACMP أو CPD أو TVTC — إذا كان لديك متطلب شهادة محدّد أو إطار مشتريات تحتاج لتلبيته.")</p>
+            </div>
+            <div class="profile-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="profile-icon"><i class="fas fa-users"></i></div>
+                <h3>@Lang.T("By audience", "حسب الجمهور")</h3>
+                <p>@Lang.T("If you are an organization, the Corporate Training section helps you deploy programs as part of a broader engagement. If you are an individual, open enrollment gives you direct access to the next available cohort.", "إن كنت مؤسسة، يساعدك قسم التدريب المؤسسي على نشر البرامج كجزء من مشروع أوسع. وإن كنت فرداً، يمنحك التسجيل المفتوح وصولاً مباشراً إلى الدفعة المتاحة القادمة.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        @foreach (var category in Model)
+        {
+            <div class="category-section" id="@category.Slug" data-aos="fade-up">
+                <div class="category-header">
+                    <div class="category-info">
+                        <h2>@category.TitleLocalized</h2>
+                        <p>@category.ShortDescriptionLocalized</p>
+                    </div>
+                    <a href="/training/programs/@category.Slug" class="btn btn-outline-primary">@Lang.T("View All", "عرض الكل")</a>
+                </div>
+
+                <div class="programs-grid">
+                    @foreach (var program in category.Programs)
+                    {
+                        <div class="program-card">
+                            <div class="program-image">
+                                <img src="@(!string.IsNullOrEmpty(program.ImageUrl) ? program.ImageUrl : category.ImageUrl)" alt="@program.TitleLocalized" onerror="this.src='/images/training-default.jpg'">
+                                @if (program.CertificationOffered)
+                                {
+                                    <span class="cert-badge"><i class="fas fa-certificate"></i> @Lang.T("Certified", "معتمد")</span>
+                                }
+                            </div>
+                            <div class="program-content">
+                                <h4>@program.TitleLocalized</h4>
+                                <p>@program.ShortDescriptionLocalized</p>
+                                <div class="program-meta">
+                                    <span><i class="fas fa-clock"></i> @program.DurationDays @Lang.T("Days", "يوم")</span>
+                                    <span><i class="fas fa-signal"></i> @program.LevelLocalized</span>
+                                </div>
+                                <a href="/training/programs/@category.Slug/@program.Slug" class="btn btn-primary btn-sm">@Lang.T("Learn More", "اعرف المزيد")</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .profiles-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .profile-card {
+        background: var(--white);
+        padding: 28px 24px;
+        border-radius: var(--radius-lg);
+        text-align: center;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--gray-200);
+        transition: var(--transition);
+    }
+
+    .profile-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .profile-icon {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 14px;
+        border-radius: 50%;
+        background: rgba(15, 76, 129, 0.1);
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+    }
+
+    .profile-card h3 {
+        font-size: 1.05rem;
+        margin-bottom: 10px;
+    }
+
+    .profile-card p {
+        font-size: 0.875rem;
+        color: var(--gray-600);
+        line-height: 1.55;
+        margin: 0;
+    }
+
+    .benefits-title {
+        text-align: center;
+        font-size: 1.15rem;
+        margin-bottom: 22px;
+    }
+
+    .benefits-grid, .how-to-register {
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .benefits-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 28px;
+    }
+
+    .benefit-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: var(--gray-700);
+    }
+
+    .benefit-item i {
+        color: var(--primary);
+        background: rgba(15, 76, 129, 0.1);
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .register-steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+    }
+
+    .register-step {
+        background: var(--white);
+        padding: 22px 22px;
+        border-radius: 12px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--gray-200);
+    }
+
+    .register-step-num {
+        font-size: 1rem;
+        font-weight: 800;
+        color: var(--secondary);
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+
+    .register-step h4 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .register-step p {
+        font-size: 0.85rem;
+        color: var(--gray-600);
+        line-height: 1.55;
+        margin: 0;
+    }
+
+    @@media (max-width: 992px) {
+        .profiles-grid, .register-steps {
+            grid-template-columns: 1fr;
+        }
+        .benefits-list {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .category-section {
+        margin-bottom: 60px;
+        padding-bottom: 60px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .category-section:last-child {
+        border-bottom: none;
+    }
+
+    .category-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+    }
+
+    .category-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--primary);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .category-info {
+        flex: 1;
+    }
+
+    .category-info h2 {
+        margin-bottom: 5px;
+    }
+
+    .category-info p {
+        margin: 0;
+        color: var(--text-muted);
+    }
+
+    .programs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .program-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .program-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .program-image {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+    }
+
+    .program-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .cert-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #28a745;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+    }
+
+    .program-content {
+        padding: 20px;
+    }
+
+    .program-content h4 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .program-meta {
+        display: flex;
+        gap: 15px;
+        margin: 15px 0;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+
+    .cta-section {
+        background: var(--primary);
+        color: white;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    @@media (max-width: 768px) {
+        .category-header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+}

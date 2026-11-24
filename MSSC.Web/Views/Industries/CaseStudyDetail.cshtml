@@ -1,0 +1,267 @@
+@model MSSC.Web.Models.CaseStudy
+@{
+}
+
+<section class="page-hero case-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <span class="industry-badge">@Model.IndustryLocalized</span>
+            <h1>@Model.TitleLocalized</h1>
+            <p class="client-name">@Lang.T("Client:", "العميل:") @Model.ClientNameLocalized</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item"><a href="/case-studies">@Lang.T("Case Studies", "دراسات الحالة")</a></li>
+                    <li class="breadcrumb-item active">@Model.Title</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8" data-aos="fade-right">
+                <div class="case-image mb-5">
+                    <img src="@Model.ImageUrl" alt="@Model.Title" class="img-fluid rounded shadow" onerror="this.src='/images/case-study-default.jpg'">
+                </div>
+
+                <div class="case-section">
+                    <div class="section-icon challenge">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h2>@Lang.T("The Challenge", "التحدّي")</h2>
+                    <p>@Model.ChallengeLocalized</p>
+                </div>
+
+                <div class="case-section">
+                    <div class="section-icon solution">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h2>@Lang.T("Our Solution", "الحل الذي قدّمناه")</h2>
+                    <p>@Model.SolutionLocalized</p>
+                </div>
+
+                <div class="case-section">
+                    <div class="section-icon results">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2>@Lang.T("The Results", "النتائج")</h2>
+                    <p>@string.Join(Lang.IsArabic ? "، " : ", ", Model.ResultsLocalized)</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4" data-aos="fade-left">
+                <div class="case-sidebar">
+                    <div class="sidebar-card metrics-card">
+                        <h3>@Lang.T("Key Outcomes", "أبرز النتائج")</h3>
+                        <div class="metrics-list">
+                            @foreach (var metric in Model.MetricsLocalized)
+                            {
+                                <div class="metric-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>@metric</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card mt-4">
+                        <h3>@Lang.T("Services Delivered", "الخدمات المُقدَّمة")</h3>
+                        <div class="services-tags">
+                            @foreach (var service in Model.ServicesUsedLocalized)
+                            {
+                                <span class="service-tag">@service</span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card cta-card mt-4">
+                        <h3>@Lang.T("Need Similar Results?", "تريد نتائج مماثلة؟")</h3>
+                        <p>@Lang.T("Let's discuss how we can help your organization achieve its goals.", "لنناقش كيف يمكننا مساعدة مؤسستك على تحقيق أهدافها.")</p>
+                        <a href="/contact" class="btn btn-primary btn-block">@Lang.T("Contact Us", "تواصل معنا")</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">مزيد من <span class="text-primary">قصص النجاح</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">More <span class="text-primary">Success Stories</span></h2>
+            }
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/case-studies" class="btn btn-outline-primary btn-lg">@Lang.T("View All Case Studies", "عرض كل دراسات الحالة")</a>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .industry-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 20px;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+
+    .client-name {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-top: 15px;
+    }
+
+    .case-section {
+        position: relative;
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        margin-bottom: 30px;
+    }
+
+    .section-icon {
+        position: absolute;
+        top: -20px;
+        left: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: white;
+    }
+
+    .section-icon.challenge {
+        background: #f57c00;
+    }
+
+    .section-icon.solution {
+        background: #1976d2;
+    }
+
+    .section-icon.results {
+        background: #2e7d32;
+    }
+
+    .case-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        padding-top: 15px;
+    }
+
+    .case-section p {
+        color: var(--text-muted);
+        line-height: 1.8;
+        margin: 0;
+    }
+
+    .sidebar-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .sidebar-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+
+    .metrics-card {
+        background: #e8f5e9;
+    }
+
+    .metrics-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .metric-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .metric-item i {
+        color: #2e7d32;
+        font-size: 1.1rem;
+    }
+
+    .metric-item span {
+        font-weight: 500;
+        color: var(--text-dark);
+    }
+
+    .services-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .service-tag {
+        display: inline-block;
+        padding: 6px 14px;
+        background: var(--bg-light);
+        border-radius: 20px;
+        font-size: 0.85rem;
+        color: var(--text-dark);
+    }
+
+    .cta-card {
+        background: var(--primary);
+        color: white;
+    }
+
+    .cta-card p {
+        opacity: 0.9;
+        margin-bottom: 15px;
+    }
+
+    .cta-card .btn-primary {
+        background: white;
+        color: var(--primary);
+        border-color: white;
+    }
+
+    .btn-block {
+        display: block;
+        width: 100%;
+    }
+
+    .cta-section {
+        background: var(--primary);
+        color: white;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    @@media (max-width: 768px) {
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+}

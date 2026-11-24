@@ -1,0 +1,547 @@
+@{
+    var categories = ViewBag.Categories as List<MSSC.Web.Models.TrainingCategory>;
+}
+
+<section class="page-hero training-contact-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>@Lang.T("Contact Our Training Team", "تواصل مع فريق التدريب لدينا")</h1>
+            <p class="lead">@Lang.T("Have questions about our training programs? We're here to help you find the right learning solution.", "لديك أسئلة عن برامجنا التدريبية؟ نحن هنا لمساعدتك على إيجاد الحل التعليمي المناسب.")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item"><a href="/training">@Lang.T("Training Center", "مركز التدريب")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Contact Training Team", "تواصل مع فريق التدريب")</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="training-contact-grid">
+            <div class="training-contact-info" data-aos="fade-right">
+                <h2>@Lang.T("Get in Touch", "ابقَ على تواصل")</h2>
+                <p>@Lang.T("Our training advisors are ready to assist you with:", "مستشارو التدريب لدينا مستعدّون لمساعدتك في:")</p>
+
+                <ul class="help-list">
+                    <li><i class="fas fa-check-circle"></i> @Lang.T("Program selection and recommendations", "اختيار البرامج والتوصيات")</li>
+                    <li><i class="fas fa-check-circle"></i> @Lang.T("Course schedules and availability", "جداول الدورات والتوفّر")</li>
+                    <li><i class="fas fa-check-circle"></i> @Lang.T("Corporate training solutions", "حلول التدريب المؤسسي")</li>
+                    <li><i class="fas fa-check-circle"></i> @Lang.T("Certification requirements", "متطلبات الشهادات")</li>
+                    <li><i class="fas fa-check-circle"></i> @Lang.T("Group discounts and packages", "خصومات وباقات المجموعات")</li>
+                    <li><i class="fas fa-check-circle"></i> @Lang.T("Custom training programs", "برامج تدريب مخصّصة")</li>
+                </ul>
+
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h4>@Lang.T("Call Us", "اتصل بنا")</h4>
+                            <a href="tel:+966543618430">+966 54 361 8430</a>
+                            <span class="contact-note">@Lang.T("Sun - Thu, 8:00 AM - 5:00 PM", "الأحد - الخميس، 8:00 صباحاً - 5:00 مساءً")</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h4>@Lang.T("Email Us", "راسلنا")</h4>
+                            <a href="mailto:training@mssc.com.sa">training@mssc.com.sa</a>
+                            <span class="contact-note">@Lang.T("Response within 24 hours", "الرد خلال 24 ساعة")</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h4>@Lang.T("WhatsApp", "واتساب")</h4>
+                            <a href="https://wa.me/966543618430">+966 54 361 8430</a>
+                            <span class="contact-note">@Lang.T("Quick responses", "ردود سريعة")</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h4>@Lang.T("Visit Us", "زُرنا")</h4>
+                            <span>@Lang.T("Al Imam Saud Ibn Faysal Rd", "طريق الإمام سعود بن فيصل")</span>
+                            <span class="contact-note">@Lang.T("Riyadh 12363, Saudi Arabia", "الرياض 12363، المملكة العربية السعودية")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="training-contact-form" data-aos="fade-left">
+                <h3>@Lang.T("Send Us a Message", "أرسل لنا رسالة")</h3>
+                <p>@Lang.T("Fill out the form below and a training advisor will get back to you shortly.", "املأ النموذج أدناه وسيتواصل معك مستشار تدريب قريباً.")</p>
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> @TempData["Success"]
+                    </div>
+                }
+
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-error">
+                        <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+                    </div>
+                }
+
+                <form method="post" data-validate>
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">@Lang.T("Full Name *", "الاسم الكامل *")</label>
+                            <input type="text" id="name" name="Name" required placeholder="@Lang.T("Enter your full name", "أدخل اسمك الكامل")">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">@Lang.T("Email Address *", "البريد الإلكتروني *")</label>
+                            <input type="email" id="email" name="Email" required placeholder="@Lang.T("Enter your email", "أدخل بريدك الإلكتروني")">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">@Lang.T("Phone Number *", "رقم الهاتف *")</label>
+                            <input type="tel" id="phone" name="Phone" required placeholder="@Lang.T("Enter your phone number", "أدخل رقم هاتفك")">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">@Lang.T("Company / Organization", "الشركة / المؤسسة")</label>
+                            <input type="text" id="company" name="Company" placeholder="@Lang.T("Enter your company name", "أدخل اسم شركتك")">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="inquiry-type">@Lang.T("Inquiry Type", "نوع الاستفسار")</label>
+                            <select id="inquiry-type" name="InquiryType">
+                                <option value="">@Lang.T("Select inquiry type", "اختر نوع الاستفسار")</option>
+                                <option value="Program Information">@Lang.T("Program Information", "معلومات عن البرامج")</option>
+                                <option value="Registration">@Lang.T("Course Registration", "تسجيل في دورة")</option>
+                                <option value="Corporate Training">@Lang.T("Corporate Training", "تدريب مؤسسي")</option>
+                                <option value="Certification">@Lang.T("Certification Inquiry", "استفسار عن الشهادات")</option>
+                                <option value="Group Booking">@Lang.T("Group Booking", "حجز جماعي")</option>
+                                <option value="Other">@Lang.T("Other", "أخرى")</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="program">@Lang.T("Training Program of Interest", "البرنامج التدريبي المهتمّ به")</label>
+                            <select id="program" name="Program">
+                                <option value="">@Lang.T("Select a program category", "اختر فئة برنامج")</option>
+                                @if (categories != null)
+                                {
+                                    @foreach (var category in categories)
+                                    {
+                                        <option value="@category.Title">@category.TitleLocalized</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="participants">@Lang.T("Number of Participants", "عدد المشاركين")</label>
+                        <select id="participants" name="Participants">
+                            <option value="">@Lang.T("Select number of participants", "اختر عدد المشاركين")</option>
+                            <option value="1">@Lang.T("1 (Individual)", "1 (فرد)")</option>
+                            <option value="2-5">2-5</option>
+                            <option value="6-10">6-10</option>
+                            <option value="11-20">11-20</option>
+                            <option value="20+">20+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">@Lang.T("Your Message *", "رسالتك *")</label>
+                        <textarea id="message" name="Message" required placeholder="@Lang.T("Tell us about your training needs...", "أخبرنا عن احتياجاتك التدريبية...")"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="Newsletter" value="true">
+                            <span>@Lang.T("Subscribe to our training newsletter for updates on new programs and special offers", "اشترك في نشرتنا التدريبية للحصول على تحديثات حول البرامج الجديدة والعروض الخاصة")</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                        @Lang.T("Send Inquiry", "إرسال الاستفسار") <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">روابط <span class="text-primary">سريعة</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Quick <span class="text-primary">Links</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("Find what you're looking for", "اعثر على ما تبحث عنه")</p>
+        </div>
+
+        <div class="quick-links-grid">
+            <a href="/training/programs" class="quick-link-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="quick-link-icon">
+                    <i class="fas fa-list"></i>
+                </div>
+                <h4>@Lang.T("All Programs", "كل البرامج")</h4>
+                <p>@Lang.T("Browse our complete catalog of training programs", "تصفّح كتالوجنا الكامل للبرامج التدريبية")</p>
+            </a>
+            <a href="/training/schedule" class="quick-link-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="quick-link-icon">
+                    <i class="fas fa-calendar"></i>
+                </div>
+                <h4>@Lang.T("Training Schedule", "جدول التدريب")</h4>
+                <p>@Lang.T("View upcoming sessions and register online", "اطّلع على الجلسات القادمة وسجّل عبر الإنترنت")</p>
+            </a>
+            <a href="/training/corporate" class="quick-link-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="quick-link-icon">
+                    <i class="fas fa-building-user"></i>
+                </div>
+                <h4>@Lang.T("Corporate Training", "التدريب المؤسسي")</h4>
+                <p>@Lang.T("Customized solutions for organizations", "حلول مخصّصة للمؤسسات")</p>
+            </a>
+            <a href="/training/accreditations" class="quick-link-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="quick-link-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h4>@Lang.T("Accreditations", "الاعتمادات")</h4>
+                <p>@Lang.T("Learn about our certifications and partnerships", "تعرّف على شهاداتنا وشراكاتنا")</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">الأسئلة <span class="text-primary">الشائعة</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Frequently Asked <span class="text-primary">Questions</span></h2>
+            }
+        </div>
+
+        @{
+            var faqs = new List<FaqItem>
+            {
+                new(Lang.T("How do I register for a training program?", "كيف أسجّل في برنامج تدريبي؟"),
+                    Lang.T("You can register online through our training schedule page, call us directly, or fill out the contact form above. Our team will guide you through the registration process.", "يمكنك التسجيل عبر الإنترنت من صفحة جدول التدريب، أو الاتصال بنا مباشرة، أو ملء نموذج التواصل أعلاه. وسيرشدك فريقنا خلال عملية التسجيل.")),
+                new(Lang.T("Do you offer group discounts?", "هل تقدّمون خصومات للمجموعات؟"),
+                    Lang.T("Yes, we offer attractive discounts for group bookings. Contact us with the number of participants and programs you're interested in for a customized quote.", "نعم، نقدّم خصومات جذّابة للحجوزات الجماعية. تواصل معنا مع عدد المشاركين والبرامج التي تهمّك للحصول على عرض سعر مخصّص.")),
+                new(Lang.T("What is your cancellation policy?", "ما سياسة الإلغاء لديكم؟"),
+                    Lang.T("Cancellations made 14+ days before the training start date receive a full refund. Cancellations within 7-14 days receive a 50% refund. Later cancellations may be transferred to future sessions.", "الإلغاء قبل 14 يوماً فأكثر من تاريخ بدء التدريب يحصل على استرداد كامل، والإلغاء خلال 7-14 يوماً يحصل على استرداد 50%، والإلغاءات الأحدث يمكن تحويلها لجلسات مستقبلية.")),
+                new(Lang.T("Do you provide certificates?", "هل تقدّمون شهادات؟"),
+                    Lang.T("Yes, all participants who successfully complete our training programs receive a certificate of completion. Some programs offer internationally recognized certifications.", "نعم، يحصل جميع المشاركين الذين يُكملون برامجنا التدريبية بنجاح على شهادة إتمام، وبعض البرامج تقدّم شهادات معترف بها دولياً."))
+            };
+        }
+        <div class="faq-grid">
+            @foreach (var faq in faqs)
+            {
+                <div class="faq-item" data-aos="fade-up">
+                    <h4><i class="fas fa-question-circle"></i> @faq.Question</h4>
+                    <p>@faq.Answer</p>
+                </div>
+            }
+        </div>
+        <partial name="_FaqSchema" model="faqs" />
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .training-contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+    }
+
+    .training-contact-info h2 {
+        margin-bottom: 15px;
+    }
+
+    .help-list {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0 30px;
+    }
+
+    .help-list li {
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .help-list li i {
+        color: var(--primary);
+    }
+
+    .contact-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .contact-card {
+        background: var(--bg-light);
+        border-radius: 12px;
+        padding: 20px;
+        display: flex;
+        gap: 15px;
+        transition: transform 0.3s ease;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .contact-card-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--primary);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .contact-card-content h4 {
+        margin: 0 0 5px 0;
+        font-size: 1rem;
+    }
+
+    .contact-card-content a,
+    .contact-card-content span {
+        display: block;
+        font-size: 0.95rem;
+    }
+
+    .contact-card-content a {
+        color: var(--primary);
+    }
+
+    .contact-note {
+        color: var(--text-muted);
+        font-size: 0.85rem !important;
+    }
+
+    .training-contact-form {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .training-contact-form h3 {
+        margin-bottom: 10px;
+    }
+
+    .training-contact-form > p {
+        color: var(--text-muted);
+        margin-bottom: 30px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+    }
+
+    .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+    }
+
+    .checkbox-label input {
+        width: auto;
+        margin-top: 4px;
+    }
+
+    .checkbox-label span {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .quick-links-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    .quick-link-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .quick-link-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .quick-link-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        margin: 0 auto 15px;
+    }
+
+    .quick-link-card h4 {
+        margin-bottom: 10px;
+    }
+
+    .quick-link-card p {
+        color: var(--text-muted);
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+    .faq-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .faq-item {
+        background: var(--bg-light);
+        border-radius: 15px;
+        padding: 25px;
+    }
+
+    .faq-item h4 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        color: var(--primary);
+    }
+
+    .faq-item p {
+        color: var(--text-muted);
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .alert {
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .alert-success {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .alert-error {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    @@media (max-width: 992px) {
+        .training-contact-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .quick-links-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .contact-cards {
+            grid-template-columns: 1fr;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+
+        .quick-links-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .faq-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+}

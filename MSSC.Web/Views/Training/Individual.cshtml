@@ -1,0 +1,142 @@
+@{
+    var categories = ViewBag.Categories as List<MSSC.Web.Models.TrainingCategory>;
+}
+
+<section class="page-hero individual-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h1>ابنِ كفاءة تستطيع إثباتها <span class="text-secondary">في العمل، وفي القاعة.</span></h1>
+            }
+            else
+            {
+                <h1>Build competence you can prove <span class="text-secondary">in the work, and in the room.</span></h1>
+            }
+            <p class="lead">@Lang.T("Open enrollment programs give professionals structured, standards-based learning that is directly applicable in the workplace. Not attendance certificates. Real competence that advances careers.", "تمنح برامج التسجيل المفتوح المهنيين تعلّماً منظّماً قائماً على المعايير وقابلاً للتطبيق مباشرة في مكان العمل. لا شهادات حضور، بل كفاءة حقيقية تُطوّر المسار المهني.")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item"><a href="/training">@Lang.T("Training", "التدريب")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Individual Training", "تدريب الأفراد")</li>
+                </ol>
+            </nav>
+            <div class="mt-4">
+                <a href="/training/programs" class="btn btn-primary btn-lg">@Lang.T("Browse All Programs", "تصفّح كل البرامج")</a>
+                <a href="/training/schedule" class="btn btn-white btn-lg ms-2">@Lang.T("View Training Calendar", "عرض تقويم التدريب")</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">ثلاث فئات من الأفراد <span class="text-primary">نخدمها.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Three individual profiles <span class="text-primary">we serve.</span></h2>
+            }
+        </div>
+
+        <div class="profiles-grid">
+            <div class="profile-card" data-aos="fade-up">
+                <div class="profile-icon"><i class="fas fa-user-graduate"></i></div>
+                <h3>@Lang.T("Career Builders", "بُناة المسار المهني")</h3>
+                <p>@Lang.T("Early-career professionals and job seekers who need credible institutional competence — governance awareness, performance management skills, and standards knowledge — to compete effectively and perform from day one.", "المهنيون في بداية مسارهم والباحثون عن عمل الذين يحتاجون كفاءة مؤسسية موثوقة — الوعي بالحوكمة، ومهارات إدارة الأداء، والمعرفة بالمعايير — للمنافسة بفاعلية والأداء من اليوم الأول.")</p>
+            </div>
+            <div class="profile-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="profile-icon"><i class="fas fa-arrow-trend-up"></i></div>
+                <h3>@Lang.T("Upskilling Professionals", "المهنيون الساعون لتطوير مهاراتهم")</h3>
+                <p>@Lang.T("Mid-career professionals seeking to strengthen specific capabilities tied to their current role or next promotion. Programs are structured around practical application, not theory, so the learning shows in actual work outcomes.", "المهنيون في منتصف مسارهم الساعون لتعزيز قدرات محددة مرتبطة بدورهم الحالي أو ترقيتهم القادمة. والبرامج مبنية حول التطبيق العملي لا النظرية، بحيث يظهر التعلّم في نتائج العمل الفعلية.")</p>
+            </div>
+            <div class="profile-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="profile-icon"><i class="fas fa-certificate"></i></div>
+                <h3>@Lang.T("Certification Seekers", "الساعون للحصول على الشهادات")</h3>
+                <p>@Lang.T("Professionals pursuing IOSH, ACMP, CPD, or ISO credentials as part of a career development plan or role requirement. Programs go beyond exam preparation — they build the operational understanding that makes the certification meaningful.", "المهنيون الساعون للحصول على شهادات IOSH أو ACMP أو CPD أو ISO ضمن خطة تطوير مهني أو متطلب وظيفي. والبرامج تتجاوز التحضير للاختبار — فهي تبني الفهم التشغيلي الذي يجعل الشهادة ذات معنى.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">تعلّم منظّم. شهادات معترف بها. <span class="text-primary">قابل للتطبيق من اليوم الأول.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Structured learning. Recognized credentials. <span class="text-primary">Applicable from day one.</span></h2>
+            }
+        </div>
+
+        <div class="benefits-grid" data-aos="fade-up">
+            <div class="benefits-list">
+                <div class="benefit-item"><i class="fas fa-check"></i> @Lang.T("Structured learning paths aligned to your career objectives — not random courses", "مسارات تعلّم منظّمة متوائمة مع أهدافك المهنية — لا دورات عشوائية")</div>
+                <div class="benefit-item"><i class="fas fa-check"></i> @Lang.T("Internationally recognized certifications: IOSH, ACMP, CPD, ISO-aligned", "شهادات معترف بها دولياً: IOSH وACMP وCPD ومتوائمة مع ISO")</div>
+                <div class="benefit-item"><i class="fas fa-check"></i> @Lang.T("Practical outputs applicable in the workplace from the day training ends", "مخرجات عملية قابلة للتطبيق في مكان العمل من يوم انتهاء التدريب")</div>
+                <div class="benefit-item"><i class="fas fa-check"></i> @Lang.T("Expert instructors with real Saudi government and enterprise delivery experience", "مدرّبون خبراء بخبرة فعلية في التقديم للجهات الحكومية والمؤسسات السعودية")</div>
+                <div class="benefit-item"><i class="fas fa-check"></i> @Lang.T("Open enrollment — join the next available cohort without waiting for a corporate group", "تسجيل مفتوح — انضمّ إلى الدفعة المتاحة القادمة دون انتظار مجموعة مؤسسية")</div>
+                <div class="benefit-item"><i class="fas fa-check"></i> @Lang.T("TVTC registered — recognized by Saudi employers and government procurement", "مُسجَّل لدى TVTC — معترف به لدى جهات التوظيف السعودية والمشتريات الحكومية")</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            <h2 class="section-title">@Lang.T("Three steps to enroll.", "ثلاث خطوات للتسجيل.")</h2>
+        </div>
+
+        <div class="register-steps" data-aos="fade-up">
+            <div class="register-step">
+                <div class="register-step-num">01</div>
+                <h4>@Lang.T("Browse", "تصفّح")</h4>
+                <p>@Lang.T("Find your program in the catalog — filter by category, accreditation, or duration.", "اعثر على برنامجك في الكتالوج — صفِّ حسب الفئة أو الاعتماد أو المدة.")</p>
+            </div>
+            <div class="register-step">
+                <div class="register-step-num">02</div>
+                <h4>@Lang.T("Check the calendar", "راجع التقويم")</h4>
+                <p>@Lang.T("Review the 2026 schedule for the next available cohort date and delivery format.", "راجع جدول 2026 لمعرفة موعد الدفعة المتاحة القادمة وصيغة التقديم.")</p>
+            </div>
+            <div class="register-step">
+                <div class="register-step-num">03</div>
+                <h4>@Lang.T("Register", "سجّل")</h4>
+                <p>@Lang.T("Complete the registration form. Our team will confirm your enrollment and send pre-program materials within 2 business days.", "أكمل نموذج التسجيل. وسيؤكّد فريقنا تسجيلك ويرسل مواد ما قبل البرنامج خلال يومَي عمل.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="cta-block" data-aos="fade-up" style="text-align: center; padding: 50px 30px; max-width: 900px; margin: 0 auto; background: var(--white); border-radius: 16px;">
+            <h2 class="section-title">@Lang.T("Find your program.", "اعثر على برنامجك.")</h2>
+            <p class="lead" style="margin: 18px auto 25px; max-width: 720px;">@Lang.T("Browse the full program catalog and register for the next available cohort.", "تصفّح كتالوج البرامج الكامل وسجّل في الدفعة المتاحة القادمة.")</p>
+            <a href="/training/programs" class="btn btn-primary btn-lg">@Lang.T("Browse All Programs", "تصفّح كل البرامج")</a>
+            <a href="/training/schedule" class="btn btn-outline-primary btn-lg ms-2">@Lang.T("View Training Calendar", "عرض تقويم التدريب")</a>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .individual-hero {
+        background: linear-gradient(rgba(15, 30, 50, 0.78), rgba(10, 25, 45, 0.85)),
+                    url('/images/training-hero.jpg') center/cover no-repeat;
+        padding: 130px 0 56px;
+        text-align: center;
+        color: var(--white);
+    }
+
+    .individual-hero h1 { color: var(--white); margin-bottom: 14px; }
+    .individual-hero h1 .text-secondary { color: var(--secondary); }
+    .individual-hero .lead { color: rgba(255,255,255,0.85); max-width: 760px; margin: 0 auto 18px; }
+</style>
+}

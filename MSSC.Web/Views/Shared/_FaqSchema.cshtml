@@ -1,0 +1,16 @@
+@model IEnumerable<FaqItem>
+@{
+    var schema = new Dictionary<string, object>
+    {
+        ["@context"] = "https://schema.org",
+        ["@type"] = "FAQPage",
+        ["inLanguage"] = Lang.Code,
+        ["mainEntity"] = Model.Select(f => new Dictionary<string, object>
+        {
+            ["@type"] = "Question",
+            ["name"] = f.Question,
+            ["acceptedAnswer"] = new Dictionary<string, object> { ["@type"] = "Answer", ["text"] = f.Answer }
+        })
+    };
+}
+<script type="application/ld+json">@Html.Raw(System.Text.Json.JsonSerializer.Serialize(schema))</script>

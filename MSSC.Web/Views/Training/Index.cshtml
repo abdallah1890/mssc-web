@@ -1,0 +1,684 @@
+@{
+    var categories = ViewBag.Categories as List<MSSC.Web.Models.TrainingCategory>;
+    var sessions = ViewBag.UpcomingSessions as List<MSSC.Web.Models.TrainingSession>;
+    var trainers = ViewBag.Trainers as List<MSSC.Web.Models.Trainer>;
+    var accreditations = ViewBag.Accreditations as List<MSSC.Web.Models.Accreditation>;
+}
+
+<section class="training-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="hero-badge">@Lang.T("Horizon Solutions Training Center — by MSSC", "مركز آفاق الحلول للتدريب — من MSSC")</div>
+                @if (Lang.IsArabic)
+                {
+                    <h1>ابنِ قدرات <span class="text-primary">تدوم.</span></h1>
+                }
+                else
+                {
+                    <h1>Build capability <span class="text-primary">that lasts.</span></h1>
+                }
+                <p class="lead">@Lang.T("Structured training programs for organizations that need their teams to operate institutional systems — and for professionals who need practical, standards-based competence that advances their careers.", "برامج تدريبية منظّمة للمؤسسات التي تحتاج فرقها لتشغيل الأنظمة المؤسسية — وللمهنيين الذين يحتاجون كفاءة عملية قائمة على المعايير تُطوّر مسارهم المهني.")</p>
+                <div class="hero-buttons">
+                    <a href="/training/programs" class="btn btn-primary btn-lg">@Lang.T("Register for a Program", "سجّل في برنامج")</a>
+                    <a href="/training/schedule" class="btn btn-outline-light btn-lg">@Lang.T("View 2026 Calendar", "عرض تقويم 2026")</a>
+                </div>
+                <p class="mt-4" style="font-size: 0.95rem; opacity: 0.9;">@Lang.T("Accredited by IOSH · ACMP · CPD · TVTC · 50+ programs · 2,000+ professionals trained", "معتمد من IOSH · ACMP · CPD · TVTC · أكثر من 50 برنامجاً · أكثر من 2,000 متدرّب")</p>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">@Lang.T("Training Programs", "برنامج تدريبي")</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">2,000+</span>
+                        <span class="stat-label">@Lang.T("Professionals Trained", "متدرّب ومتدرّبة")</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">@Lang.T("Satisfaction Rate", "نسبة الرضا")</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">@Lang.T("Expert Trainers", "مدرّب خبير")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">يُنتج التدريب قيمته حين يُترجَم إلى <span class="text-primary">ممارسة تشغيلية.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Training produces value when it translates into <span class="text-primary">operating practice.</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("There is a meaningful difference between familiarity with a framework and the ability to apply it. Between attending a governance workshop and being able to chair a governance committee. Between completing a change management certification and leading adoption within a real institutional context. Our programs bridge the gap between attendance and application — built around institutional frameworks, not generic professional development curricula.", "ثمة فرق جوهري بين الإلمام بإطار والقدرة على تطبيقه؛ بين حضور ورشة حوكمة والقدرة على رئاسة لجنة حوكمة؛ بين إكمال شهادة في إدارة التغيير وقيادة التبنّي ضمن سياق مؤسسي حقيقي. تسدّ برامجنا الفجوة بين الحضور والتطبيق — مبنية على أطر مؤسسية، لا مناهج تطوير مهني عامة.")</p>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">اختر <span class="text-primary">مسارك.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Choose <span class="text-primary">your path.</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("Whether you represent an organization or yourself, there is a clear route designed for your needs.", "سواء كنت تمثّل مؤسسة أو نفسك، هناك مسار واضح مُصمَّم لاحتياجاتك.")</p>
+        </div>
+
+        <div class="audience-grid">
+            <a href="/training/corporate" class="audience-card" data-aos="fade-right">
+                <div class="audience-icon"><i class="fas fa-building"></i></div>
+                <h3>@Lang.T("For Organizations", "للمؤسسات")</h3>
+                <p>@Lang.T("Government · Enterprise · Corporate L&D. Programs are designed to align with your governance and performance frameworks — so that capability development becomes part of the operating system, not a separate activity.", "القطاع الحكومي · المؤسسات · التعلّم والتطوير المؤسسي. تُصمَّم البرامج لتتوائم مع أطر الحوكمة والأداء لديك — بحيث يصبح تطوير القدرات جزءاً من النظام التشغيلي، لا نشاطاً منفصلاً.")</p>
+                <span class="audience-cta">@Lang.T("Browse Corporate Training", "تصفّح التدريب المؤسسي") <i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="/training/individual" class="audience-card" data-aos="fade-left">
+                <div class="audience-icon"><i class="fas fa-user-graduate"></i></div>
+                <h3>@Lang.T("For Individuals", "للأفراد")</h3>
+                <p>@Lang.T("Professionals · Career Builders · Certification Seekers. Programs provide structured, standards-based competence that is directly applicable in the workplace — building professional credibility through demonstrated capability.", "المهنيون · بُناة المسار المهني · الساعون للشهادات. توفّر البرامج كفاءة منظّمة قائمة على المعايير وقابلة للتطبيق مباشرة في مكان العمل — لبناء مصداقية مهنية عبر قدرة مُثبتة.")</p>
+                <span class="audience-cta">@Lang.T("Browse Programs & Register", "تصفّح البرامج وسجّل") <i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">أربع فئات. <span class="text-primary">ثلاثة عشر مساراً.</span> إطار مؤسسي واحد.</h2>
+            }
+            else
+            {
+                <h2 class="section-title">Four categories. <span class="text-primary">Thirteen tracks.</span> One institutional framework.</h2>
+            }
+            <p class="section-subtitle">@Lang.T("Every program is structured around the MSSC institutional framework — providing competence in the areas that government and enterprise organizations need to operate effectively.", "كل برنامج مبنيّ حول إطار MSSC المؤسسي — يوفّر الكفاءة في المجالات التي تحتاجها الجهات الحكومية والمؤسسات للعمل بفعالية.")</p>
+        </div>
+
+        <div class="categories-grid">
+            @if (categories != null)
+            {
+                @foreach (var category in categories)
+                {
+                    <div class="category-card" data-aos="fade-up">
+                        <h3>@category.TitleLocalized</h3>
+                        <p>@category.ShortDescriptionLocalized</p>
+                        <span class="program-count">@category.Programs.Count @Lang.T("Programs", "برنامج")</span>
+                        <a href="/training/programs/@category.Slug" class="btn btn-outline-primary">
+                            @Lang.T("View Programs", "عرض البرامج") <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">أكثر البرامج <span class="text-primary">طلباً.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Most in-demand <span class="text-primary">programs.</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("A selection of programs regularly requested by government entities, enterprise teams, and individual professionals.", "مجموعة مختارة من البرامج التي تطلبها بانتظام الجهات الحكومية وفِرق المؤسسات والمهنيون الأفراد.")</p>
+        </div>
+
+        <div class="row">
+            @if (categories != null)
+            {
+                var featuredPrograms = categories.SelectMany(c => c.Programs.Where(p => p.IsFeatured).Select(p => new { Program = p, Category = c })).Take(6).ToList();
+                @foreach (var item in featuredPrograms)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+                        <div class="program-card">
+                            <div class="program-image">
+                                <img src="@(!string.IsNullOrEmpty(item.Program.ImageUrl) ? item.Program.ImageUrl : item.Category.ImageUrl)" alt="@item.Program.Title" onerror="this.src='/images/training-default.jpg'">
+                                <span class="program-badge">@item.Category.TitleLocalized</span>
+                                @if (item.Program.CertificationOffered)
+                                {
+                                    <span class="cert-badge"><i class="fas fa-certificate"></i> @Lang.T("Certified", "معتمد")</span>
+                                }
+                            </div>
+                            <div class="program-content">
+                                <h4>@item.Program.TitleLocalized</h4>
+                                <p>@item.Program.ShortDescriptionLocalized</p>
+                                <div class="program-meta">
+                                    <span><i class="fas fa-clock"></i> @item.Program.DurationDays @Lang.T("Days", "يوم")</span>
+                                    <span><i class="fas fa-signal"></i> @item.Program.LevelLocalized</span>
+                                </div>
+                                <a href="/training/programs/@item.Category.Slug/@item.Program.Slug" class="btn btn-primary btn-sm">
+                                    @Lang.T("Learn More", "اعرف المزيد")
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/training/programs" class="btn btn-outline-primary btn-lg">@Lang.T("View All Programs", "عرض كل البرامج")</a>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding corporate-training-section text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                @if (Lang.IsArabic)
+                {
+                    <h2 class="section-title">برامج مُصمَّمة حول <span class="text-primary">نظامك،</span> لا حول كتالوج.</h2>
+                }
+                else
+                {
+                    <h2 class="section-title">Programs designed around <span class="text-primary">your system,</span> not around a catalog.</h2>
+                }
+                <p class="lead">@Lang.T("When organizations deploy training alongside an MSSC advisory engagement, programs are customized to the frameworks, terminology, and operating context the teams are already working within.", "عندما تنشر المؤسسات التدريب بالتوازي مع مشروع استشاري لـ MSSC، تُخصَّص البرامج للأطر والمصطلحات والسياق التشغيلي الذي تعمل ضمنه الفرق فعلاً.")</p>
+                <ul class="corporate-features">
+                    <li><i class="fas fa-check-circle"></i> @Lang.T("Custom programs aligned to your operating framework", "برامج مُخصّصة متوائمة مع إطار عملك التشغيلي")</li>
+                    <li><i class="fas fa-check-circle"></i> @Lang.T("Role-based delivery across executive, managerial, and operational levels", "تقديم قائم على الأدوار عبر المستويات التنفيذية والإدارية والتشغيلية")</li>
+                    <li><i class="fas fa-check-circle"></i> @Lang.T("Onsite, virtual, or blended delivery formats", "صيغ تقديم حضورية أو افتراضية أو مدمجة")</li>
+                    <li><i class="fas fa-check-circle"></i> @Lang.T("Competency assessment, progress tracking, and adoption measurement", "تقييم الجدارات، وتتبّع التقدّم، وقياس التبنّي")</li>
+                    <li><i class="fas fa-check-circle"></i> @Lang.T("Post-program coaching and sustainment support", "تدريب لاحق للبرنامج ودعم للاستدامة")</li>
+                    <li><i class="fas fa-check-circle"></i> @Lang.T("Procurement-ready documentation: TOR, program outline, completion reports", "وثائق جاهزة للمشتريات: الاختصاصات، وملخّص البرنامج، وتقارير الإنجاز")</li>
+                </ul>
+                <a href="/training/corporate" class="btn btn-primary btn-lg mt-3">@Lang.T("Request Corporate Training", "اطلب تدريباً مؤسسياً")</a>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="corporate-image">
+                    <img src="/images/corporate-training-hero.jpg" alt="@Lang.T("Corporate Training", "التدريب المؤسسي")" class="img-fluid rounded" onerror="this.src='/images/training-default.jpg'">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">معترف به من جهات <span class="text-primary">دولية ووطنية رائدة.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Recognized by leading <span class="text-primary">international and national bodies.</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("Accreditation connects the learning to a recognized standard — one that employers, procurement teams, and senior leadership already rely on. Programs are accredited by or aligned to IOSH, ACMP, CPD, and TVTC.", "يربط الاعتماد التعلّم بمعيار معترف به — معيار تعتمد عليه جهات التوظيف وفرق المشتريات والقيادة العليا. والبرامج معتمدة من أو متوائمة مع IOSH وACMP وCPD وTVTC.")</p>
+        </div>
+
+        <div class="accreditations-grid">
+            @if (accreditations != null)
+            {
+                @foreach (var accreditation in accreditations)
+                {
+                    <div class="accreditation-card" data-aos="fade-up">
+                        <img src="@accreditation.LogoUrl" alt="@accreditation.Name" onerror="this.src='/images/accreditation-default.png'">
+                        <h5>@accreditation.Name</h5>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/training/accreditations" class="btn btn-outline-primary">@Lang.T("Learn More", "اعرف المزيد")</a>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">الأسئلة <span class="text-primary">الشائعة.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Frequently asked <span class="text-primary">questions.</span></h2>
+            }
+        </div>
+
+        @{
+            var faqs = new List<FaqItem>
+            {
+                new(Lang.T("Are these programs available for individuals or organizations?", "هل هذه البرامج متاحة للأفراد أم للمؤسسات؟"),
+                    Lang.T("Both. Open enrollment programs are available for individuals registering directly. Corporate programs are customized for organizations deploying training across a team or department. Each has its own registration process and pricing structure.", "كلاهما. برامج التسجيل المفتوح متاحة للأفراد الذين يسجّلون مباشرة، والبرامج المؤسسية مُخصّصة للمؤسسات التي تنشر التدريب عبر فريق أو إدارة. ولكلٍّ منها عملية تسجيل وهيكل أسعار خاص.")),
+                new(Lang.T("How do Horizon Solutions Training Center programs differ from other training providers?", "بماذا تختلف برامج مركز آفاق الحلول للتدريب عن مزوّدي التدريب الآخرين؟"),
+                    Lang.T("Programs are structured around institutional frameworks — governance, performance, capability, standards — that reflect how organizations actually operate. Programs are designed for application, not attendance. The content is aligned to what institutions need to perform, not only to generic professional development categories.", "البرامج مبنية حول أطر مؤسسية — الحوكمة، والأداء، والقدرات، والمعايير — تعكس كيف تعمل المؤسسات فعلاً. وهي مُصمَّمة للتطبيق لا للحضور. والمحتوى متوائم مع ما تحتاجه المؤسسات للأداء، لا مع فئات تطوير مهني عامة فحسب.")),
+                new(Lang.T("Do programs lead to internationally recognized certifications?", "هل تؤدّي البرامج إلى شهادات معترف بها دولياً؟"),
+                    Lang.T("Yes. Select programs are certified by IOSH, CPD, and ACMP, and others are aligned with ISO standards. All programs are TVTC-registered, which supports procurement requirements for government and semi-government organizations in Saudi Arabia.", "نعم. بعض البرامج معتمدة من IOSH وCPD وACMP، وأخرى متوائمة مع معايير ISO. وجميع البرامج مُسجَّلة لدى TVTC، مما يدعم متطلبات المشتريات للجهات الحكومية وشبه الحكومية في المملكة العربية السعودية.")),
+                new(Lang.T("Can programs be customized for our organization?", "هل يمكن تخصيص البرامج لمؤسستنا؟"),
+                    Lang.T("Yes. Corporate programs begin with a needs assessment to align the curriculum, examples, and delivery format to your organization's operating context. Contact us to initiate a corporate training consultation.", "نعم. تبدأ البرامج المؤسسية بتقييم للاحتياجات لمواءمة المنهج والأمثلة وصيغة التقديم مع السياق التشغيلي لمؤسستك. تواصل معنا لبدء استشارة تدريب مؤسسي.")),
+                new(Lang.T("Can a team register for an open enrollment program together?", "هل يمكن لفريق التسجيل في برنامج تسجيل مفتوح معاً؟"),
+                    Lang.T("Yes. Group registrations are accommodated with appropriate pricing, and a dedicated cohort can be scheduled where team size and timeline allow. Contact the training team to discuss group registration.", "نعم. تُستوعَب تسجيلات المجموعات بأسعار مناسبة، ويمكن جدولة دفعة مخصّصة حيثما يسمح حجم الفريق والجدول الزمني. تواصل مع فريق التدريب لمناقشة تسجيل المجموعات.")),
+                new(Lang.T("Our organization is already engaged with MSSC for advisory work. Can we align training to that engagement?", "مؤسستنا مرتبطة بالفعل مع MSSC لعمل استشاري. هل يمكننا مواءمة التدريب مع ذلك المشروع؟"),
+                    Lang.T("Yes — and we recommend it. When training aligns with the governance or performance system being implemented, adoption is faster and the system holds after delivery. Speak with your MSSC engagement lead or contact us directly to coordinate.", "نعم — ونوصي بذلك. فحين يتوائم التدريب مع نظام الحوكمة أو الأداء الجاري تطبيقه، يصبح التبنّي أسرع ويبقى النظام بعد التسليم. تحدّث مع مدير مشروعك في MSSC أو تواصل معنا مباشرة للتنسيق."))
+            };
+        }
+        <div class="faq-list" data-aos="fade-up">
+            @foreach (var faq in faqs)
+            {
+                <details class="faq-item">
+                    <summary>@faq.Question</summary>
+                    <p>@faq.Answer</p>
+                </details>
+            }
+        </div>
+        <partial name="_FaqSchema" model="faqs" />
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">ابنِ قدرات تدعم <span class="text-primary">الأداء المؤسسي.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Build capability that supports <span class="text-primary">institutional performance.</span></h2>
+            }
+        </div>
+
+        <div class="cta-split" data-aos="fade-up">
+            <div class="cta-split-item">
+                <h3>@Lang.T("For Organizations", "للمؤسسات")</h3>
+                <p>@Lang.T("Request a corporate training consultation. We will assess current capability requirements, align the appropriate programs to your operating framework, and propose a structured delivery plan.", "اطلب استشارة تدريب مؤسسي. سنقيّم متطلبات القدرات الحالية، ونوائم البرامج المناسبة مع إطار عملك، ونقترح خطة تقديم منظّمة.")</p>
+                <a href="/training/corporate" class="btn btn-primary">@Lang.T("Request Corporate Training", "اطلب تدريباً مؤسسياً")</a>
+                <a href="/training/contact" class="btn btn-outline-primary ms-2">@Lang.T("Book a Discovery Call", "احجز جلسة استكشافية")</a>
+            </div>
+            <div class="cta-split-item">
+                <h3>@Lang.T("For Individuals", "للأفراد")</h3>
+                <p>@Lang.T("Browse the program catalog, identify the program that aligns with your professional development objectives, and register for the next available cohort.", "تصفّح كتالوج البرامج، وحدّد البرنامج المتوائم مع أهداف تطويرك المهني، وسجّل في الدفعة المتاحة القادمة.")</p>
+                <a href="/training/programs" class="btn btn-primary">@Lang.T("Browse All Programs", "تصفّح كل البرامج")</a>
+                <a href="/training/schedule" class="btn btn-outline-primary ms-2">@Lang.T("View Training Calendar", "عرض تقويم التدريب")</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .differentiators-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .diff-card {
+        background: var(--white);
+        padding: 26px 22px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--gray-200);
+        transition: var(--transition);
+    }
+
+    .diff-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .diff-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        background: rgba(15, 76, 129, 0.1);
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        margin-bottom: 14px;
+    }
+
+    .diff-card h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+        line-height: 1.35;
+    }
+
+    .diff-card p {
+        font-size: 0.875rem;
+        color: var(--gray-600);
+        line-height: 1.55;
+        margin: 0;
+    }
+
+    .trainers-callout {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        background: linear-gradient(135deg, var(--white) 0%, var(--bg-light) 100%);
+        padding: 28px 30px;
+        border-radius: 16px;
+        border-left: 4px solid var(--secondary);
+        box-shadow: var(--shadow-md);
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .trainers-callout-icon {
+        flex-shrink: 0;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: rgba(15, 76, 129, 0.1);
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .trainers-callout-body h3 {
+        font-size: 1.15rem;
+        margin-bottom: 8px;
+    }
+
+    .trainers-callout-body p {
+        font-size: 0.9rem;
+        color: var(--gray-600);
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    @@media (max-width: 992px) {
+        .differentiators-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @@media (max-width: 600px) {
+        .differentiators-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .trainers-callout {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+    .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .category-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .category-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .category-icon {
+        width: 70px;
+        height: 70px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 1.8rem;
+        color: white;
+    }
+
+    .category-card h3 {
+        margin-bottom: 15px;
+    }
+
+    .program-count {
+        display: block;
+        color: var(--primary);
+        font-weight: 600;
+        margin: 15px 0;
+    }
+
+    .program-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        height: 100%;
+    }
+
+    .program-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .program-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .program-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .program-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--primary);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+    }
+
+    .cert-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #28a745;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+    }
+
+    .program-content {
+        padding: 20px;
+    }
+
+    .program-content h4 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .program-meta {
+        display: flex;
+        gap: 15px;
+        margin: 15px 0;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+
+    .sessions-table {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        overflow-x: auto;
+    }
+
+    .sessions-table .table {
+        margin: 0;
+    }
+
+    .sessions-table th {
+        border: none;
+        color: var(--text-muted);
+        font-weight: 600;
+        padding: 15px;
+    }
+
+    .sessions-table td {
+        padding: 15px;
+        vertical-align: middle;
+    }
+
+    .corporate-training-section {
+        background: var(--primary);
+    }
+
+    .corporate-training-section .section-title {
+        color: white;
+    }
+
+    .corporate-training-section .text-primary {
+        color: #00C8FF !important;
+    }
+
+    .corporate-features {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+    }
+
+    .corporate-features li {
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .corporate-features i {
+        color: #00C8FF;
+        font-size: 1.2rem;
+    }
+
+    .trainers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .trainer-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .trainer-image {
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .trainer-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .trainer-info {
+        padding: 20px;
+    }
+
+    .trainer-info h4 {
+        margin-bottom: 5px;
+    }
+
+    .trainer-title {
+        color: var(--primary);
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .trainer-specialization {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .accreditations-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .accreditation-card {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .accreditation-card img {
+        height: 60px;
+        object-fit: contain;
+        margin-bottom: 15px;
+    }
+
+    .accreditation-card h5 {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .cta-section {
+        background: var(--primary);
+        color: white;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    @@media (max-width: 768px) {
+        .training-hero h1 {
+            font-size: 2rem;
+        }
+
+        .hero-buttons,
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-stats {
+            margin-top: 40px;
+        }
+    }
+</style>
+}

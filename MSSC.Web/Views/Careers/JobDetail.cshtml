@@ -1,0 +1,362 @@
+@model MSSC.Web.Models.JobOpening
+@{
+    var relatedJobs = ViewBag.RelatedJobs as List<MSSC.Web.Models.JobOpening>;
+}
+
+<section class="page-hero job-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <div class="job-badges">
+                <span class="badge-department">@Model.Department</span>
+                <span class="badge-type">@Model.Type</span>
+            </div>
+            <h1>@Model.Title</h1>
+            <div class="job-quick-info">
+                <span><i class="fas fa-map-marker-alt"></i> @Model.Location</span>
+                <span><i class="fas fa-signal"></i> @(Lang.IsArabic ? $"مستوى {Model.ExperienceLevel}" : $"{Model.ExperienceLevel} Level")</span>
+                <span><i class="fas fa-calendar-alt"></i> @Lang.T("Posted", "نُشر في") @Model.PostedDate.ToString("MMM dd, yyyy")</span>
+            </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item"><a href="/careers">@Lang.T("Careers", "الوظائف")</a></li>
+                    <li class="breadcrumb-item active">@Model.Title</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8" data-aos="fade-right">
+                <div class="job-section">
+                    <h2>@Lang.T("About the Role", "عن الوظيفة")</h2>
+                    <p>@Model.Description</p>
+                </div>
+
+                <div class="job-section">
+                    <h2><i class="fas fa-tasks text-primary"></i> @Lang.T("Key Responsibilities", "المسؤوليات الرئيسية")</h2>
+                    <ul class="job-list">
+                        @foreach (var responsibility in Model.Responsibilities)
+                        {
+                            <li><i class="fas fa-check-circle"></i> @responsibility</li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="job-section">
+                    <h2><i class="fas fa-clipboard-check text-primary"></i> @Lang.T("Requirements", "المتطلبات")</h2>
+                    <ul class="job-list">
+                        @foreach (var requirement in Model.Requirements)
+                        {
+                            <li><i class="fas fa-check-circle"></i> @requirement</li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="job-section">
+                    <h2><i class="fas fa-gift text-primary"></i> @Lang.T("What We Offer", "ما نقدّمه")</h2>
+                    <ul class="benefits-list">
+                        @foreach (var benefit in Model.Benefits)
+                        {
+                            <li><i class="fas fa-star"></i> @benefit</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4" data-aos="fade-left">
+                <div class="job-sidebar">
+                    <div class="sidebar-card apply-card">
+                        <h3>@Lang.T("Apply for This Position", "تقدّم لهذه الوظيفة")</h3>
+                        <p>@Lang.T("Take the next step in your career. We'd love to hear from you.", "اتّخذ الخطوة التالية في مسارك المهني. يسعدنا تواصلك معنا.")</p>
+                        <a href="/careers/apply/@Model.Slug" class="btn btn-primary btn-block">
+                            <i class="fas fa-paper-plane me-2"></i>@Lang.T("Apply Now", "قدّم الآن")
+                        </a>
+                    </div>
+
+                    <div class="sidebar-card mt-4">
+                        <h3>@Lang.T("Job Summary", "ملخّص الوظيفة")</h3>
+                        <ul class="summary-list">
+                            <li>
+                                <span class="label">@Lang.T("Department", "القسم")</span>
+                                <span class="value">@Model.Department</span>
+                            </li>
+                            <li>
+                                <span class="label">@Lang.T("Location", "الموقع")</span>
+                                <span class="value">@Model.Location</span>
+                            </li>
+                            <li>
+                                <span class="label">@Lang.T("Employment Type", "نوع التوظيف")</span>
+                                <span class="value">@Model.Type</span>
+                            </li>
+                            <li>
+                                <span class="label">@Lang.T("Experience Level", "مستوى الخبرة")</span>
+                                <span class="value">@Model.ExperienceLevel</span>
+                            </li>
+                            <li>
+                                <span class="label">@Lang.T("Posted Date", "تاريخ النشر")</span>
+                                <span class="value">@Model.PostedDate.ToString("MMM dd, yyyy")</span>
+                            </li>
+                            @if (Model.ClosingDate.HasValue)
+                            {
+                                <li>
+                                    <span class="label">@Lang.T("Closing Date", "تاريخ الإغلاق")</span>
+                                    <span class="value">@Model.ClosingDate.Value.ToString("MMM dd, yyyy")</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card mt-4">
+                        <h3>@Lang.T("Share This Job", "شارك هذه الوظيفة")</h3>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="share-btn twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="share-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="share-btn email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                    @if (relatedJobs != null && relatedJobs.Any())
+                    {
+                        <div class="sidebar-card mt-4">
+                            <h3>@Lang.T("Other Openings", "وظائف أخرى")</h3>
+                            <ul class="related-jobs">
+                                @foreach (var job in relatedJobs)
+                                {
+                                    <li>
+                                        <a href="/careers/@job.Slug">
+                                            <strong>@job.Title</strong>
+                                            <span>@job.Department - @job.Location</span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .job-hero {
+        background: var(--primary);
+        padding: 120px 0 80px;
+    }
+
+    .job-badges {
+        margin-bottom: 15px;
+    }
+
+    .badge-department, .badge-type {
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        margin-right: 10px;
+    }
+
+    .badge-department {
+        background: rgba(255,255,255,0.2);
+    }
+
+    .badge-type {
+        background: var(--primary);
+    }
+
+    .job-quick-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 20px;
+        opacity: 0.9;
+    }
+
+    .job-quick-info span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .job-section {
+        margin-bottom: 40px;
+    }
+
+    .job-section h2 {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .job-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .job-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .job-list li:last-child {
+        border-bottom: none;
+    }
+
+    .job-list i {
+        color: var(--primary);
+        margin-top: 3px;
+    }
+
+    .benefits-list {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .benefits-list li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+        background: var(--bg-light);
+        border-radius: 10px;
+    }
+
+    .benefits-list i {
+        color: #ffc107;
+    }
+
+    .sidebar-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .sidebar-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    .apply-card {
+        background: var(--primary);
+        color: white;
+    }
+
+    .apply-card .btn-primary {
+        background: white;
+        color: var(--primary);
+        border-color: white;
+    }
+
+    .btn-block {
+        display: block;
+        width: 100%;
+    }
+
+    .summary-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .summary-list li {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .summary-list li:last-child {
+        border-bottom: none;
+    }
+
+    .summary-list .label {
+        color: var(--text-muted);
+    }
+
+    .summary-list .value {
+        font-weight: 500;
+    }
+
+    .share-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .share-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+    }
+
+    .share-btn:hover {
+        transform: translateY(-3px);
+    }
+
+    .share-btn.linkedin { background: #0077b5; }
+    .share-btn.twitter { background: #1da1f2; }
+    .share-btn.facebook { background: #4267B2; }
+    .share-btn.email { background: var(--primary); }
+
+    .related-jobs {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .related-jobs li {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .related-jobs li:last-child {
+        border-bottom: none;
+    }
+
+    .related-jobs a {
+        text-decoration: none;
+        color: var(--text-dark);
+    }
+
+    .related-jobs a:hover {
+        color: var(--primary);
+    }
+
+    .related-jobs strong {
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .related-jobs span {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+
+    @@media (max-width: 768px) {
+        .job-quick-info {
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+</style>
+}

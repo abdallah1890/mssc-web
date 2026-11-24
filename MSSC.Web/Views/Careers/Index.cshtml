@@ -1,0 +1,402 @@
+@{
+    var jobs = ViewBag.Jobs as List<MSSC.Web.Models.JobOpening>;
+    var values = ViewBag.Values as List<MSSC.Web.Models.CompanyValue>;
+    var benefits = ViewBag.Benefits as List<MSSC.Web.Models.TeamBenefit>;
+}
+
+<section class="careers-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                @if (Lang.IsArabic)
+                {
+                    <h1>انضمّ إلى <span class="text-primary">فريقنا</span></h1>
+                }
+                else
+                {
+                    <h1>Join Our <span class="text-primary">Team</span></h1>
+                }
+                <p class="lead">@Lang.T("Be part of a team that transforms organizations and shapes the future of business excellence in Saudi Arabia.", "كن جزءاً من فريق يُحدث التحوّل في المؤسسات ويصوغ مستقبل التميّز المؤسسي في المملكة العربية السعودية.")</p>
+                <a href="/contact" class="btn btn-primary btn-lg">@Lang.T("Contact Us", "تواصل معنا")</a>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <img src="/images/team.jpg" alt="@Lang.T("MSSC Team", "فريق MSSC")" class="img-fluid rounded shadow" onerror="this.src='/images/careers-hero.jpg'">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title"><span class="text-primary">قِيَمنا</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Our <span class="text-primary">Values</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("The principles that guide everything we do", "المبادئ التي توجّه كل ما نقوم به")</p>
+        </div>
+
+        <div class="values-grid">
+            @if (values != null)
+            {
+                @foreach (var value in values)
+                {
+                    <div class="value-card" data-aos="fade-up">
+                        <div class="value-icon">
+                            <i class="fas @value.Icon"></i>
+                        </div>
+                        <h3>@value.Title</h3>
+                        <p>@value.Description</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">لماذا الانضمام إلى <span class="text-primary">MSSC</span>؟</h2>
+            }
+            else
+            {
+                <h2 class="section-title">Why Join <span class="text-primary">MSSC</span>?</h2>
+            }
+            <p class="section-subtitle">@Lang.T("Benefits and perks of being part of our team", "مزايا ومنافع أن تكون جزءاً من فريقنا")</p>
+        </div>
+
+        <div class="benefits-grid">
+            @if (benefits != null)
+            {
+                @foreach (var benefit in benefits)
+                {
+                    <div class="benefit-card" data-aos="fade-up">
+                        <div class="benefit-icon">
+                            <i class="fas @benefit.Icon"></i>
+                        </div>
+                        <h4>@benefit.Title</h4>
+                        <p>@benefit.Description</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title"><span class="text-primary">آلية</span> التقديم</h2>
+            }
+            else
+            {
+                <h2 class="section-title">Application <span class="text-primary">Process</span></h2>
+            }
+        </div>
+
+        <div class="process-steps">
+            <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                <div class="step-number">1</div>
+                <h4>@Lang.T("Apply Online", "قدّم إلكترونياً")</h4>
+                <p>@Lang.T("Submit your application through our careers portal", "قدّم طلبك عبر بوابة التوظيف لدينا")</p>
+            </div>
+            <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                <div class="step-number">2</div>
+                <h4>@Lang.T("Initial Screening", "الفرز الأولي")</h4>
+                <p>@Lang.T("Our HR team reviews your qualifications", "يراجع فريق الموارد البشرية مؤهلاتك")</p>
+            </div>
+            <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                <div class="step-number">3</div>
+                <h4>@Lang.T("Interview", "المقابلة")</h4>
+                <p>@Lang.T("Meet with our team to discuss your experience", "تلتقي بفريقنا لمناقشة خبرتك")</p>
+            </div>
+            <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                <div class="step-number">4</div>
+                <h4>@Lang.T("Offer", "العرض")</h4>
+                <p>@Lang.T("Receive and accept your offer to join MSSC", "تستلم عرضك للانضمام إلى MSSC وتقبله")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .careers-hero {
+        background: #1e3a5f;
+        color: white;
+        padding: 120px 0 80px;
+    }
+
+    .careers-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 25px;
+    }
+
+    .value-card {
+        text-align: center;
+        padding: 30px 20px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease;
+    }
+
+    .value-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .value-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        font-size: 1.3rem;
+        color: white;
+    }
+
+    .value-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .value-card p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+
+    .benefit-card {
+        display: flex;
+        gap: 20px;
+        padding: 25px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .benefit-icon {
+        flex-shrink: 0;
+        width: 50px;
+        height: 50px;
+        background: var(--bg-light);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: var(--primary);
+    }
+
+    .benefit-card h4 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .benefit-card p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .jobs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .job-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px 30px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .job-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .job-main {
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .job-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .job-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .job-meta span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .job-date {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+
+    .job-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .no-jobs {
+        padding: 60px 20px;
+        background: var(--bg-light);
+        border-radius: 15px;
+    }
+
+    .no-jobs i {
+        font-size: 3rem;
+        color: var(--text-muted);
+        margin-bottom: 20px;
+    }
+
+    .process-steps {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    .process-steps::before {
+        content: '';
+        position: absolute;
+        top: 40px;
+        left: 15%;
+        right: 15%;
+        height: 2px;
+        background: var(--primary);
+        opacity: 0.3;
+    }
+
+    .process-step {
+        flex: 1;
+        min-width: 200px;
+        text-align: center;
+        padding: 0 20px;
+        position: relative;
+    }
+
+    .step-number {
+        width: 80px;
+        height: 80px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: 700;
+        color: white;
+        margin: 0 auto 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .process-step h4 {
+        margin-bottom: 10px;
+        color: var(--text-dark);
+    }
+
+    .process-step p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+    }
+
+    .cta-section {
+        background: var(--primary);
+        color: white;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    @@media (max-width: 992px) {
+        .process-steps::before {
+            display: none;
+        }
+
+        .process-step {
+            flex: 0 0 50%;
+            margin-bottom: 30px;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .careers-hero h1 {
+            font-size: 2rem;
+        }
+
+        .job-card {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .job-actions {
+            width: 100%;
+        }
+
+        .job-actions .btn {
+            flex: 1;
+        }
+
+        .process-step {
+            flex: 0 0 100%;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+}

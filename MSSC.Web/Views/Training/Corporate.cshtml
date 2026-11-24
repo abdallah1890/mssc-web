@@ -1,0 +1,425 @@
+@{
+    var categories = ViewBag.Categories as List<MSSC.Web.Models.TrainingCategory>;
+}
+
+<section class="page-hero corporate-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>@Lang.T("Programs designed around your system, not around a catalog.", "برامج تدريبية تُبنى حول واقع مؤسستك، لا وفق قوالب ثابتة.")</h1>
+            <p class="lead">@Lang.T("When organizations deploy MSSC training alongside an advisory engagement, programs are customized to the frameworks, terminology, and operating context the teams are already working within.", "عندما تنشر المؤسسات تدريب MSSC بالتوازي مع مشروع استشاري، تُخصَّص البرامج للأطر والمصطلحات والسياق التشغيلي الذي تعمل ضمنه الفرق فعلاً.")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item"><a href="/training">@Lang.T("Training", "التدريب")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Corporate Training", "التدريب المؤسسي")</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                @if (Lang.IsArabic)
+                {
+                    <h2 class="section-title">مبنيّ للمؤسسات التي تحتاج <span class="text-primary">قدرات تبقى.</span></h2>
+                }
+                else
+                {
+                    <h2 class="section-title">Built for organizations that need <span class="text-primary">capability to stay.</span></h2>
+                }
+                <p class="lead">@Lang.T("When MSSC is engaged independently, we begin with a needs assessment to ensure the program addresses what the institution actually requires — not a generic catalog selection.", "عند التعاقد مع MSSC، نبدأ بتقييم احتياجات المؤسسة لضمان تقديم برامج تعالج تحدياتها الفعلية، بدلًا من الاعتماد على برامج جاهزة من قائمة عامة.")</p>
+                <p>@Lang.T("Whether you are building governance, performance, or capability systems with us — or running training as a standalone capability initiative — programs are aligned to how Saudi institutions actually operate.", "سواء كان التدريب جزءًا من مبادرات الحوكمة والأداء وبناء القدرات، أو مبادرة مستقلة لتطوير الكفاءات، فإن برامجنا مصممة بما يتوافق مع واقع عمل المؤسسات السعودية.")</p>
+                <div class="corporate-stats mt-4">
+                    <div class="stat-item">
+                        <span class="stat-number">2,000+</span>
+                        <span class="stat-label">@Lang.T("Professionals Trained", "متدرّب ومتدرّبة")</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">@Lang.T("Satisfaction Rate", "نسبة الرضا")</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">TVTC</span>
+                        <span class="stat-label">@Lang.T("Registered for Procurement", "مُسجَّل للمشتريات")</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <img src="/images/corporate-training-hero.jpg" alt="@Lang.T("Corporate Training", "التدريب المؤسسي")" class="img-fluid rounded shadow" onerror="this.src='/images/training-default.jpg'">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">نهج متكامل يبدأ بتقييم الاحتياجات <span class="text-primary">وينتهي بتحقيق الاستدامة.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Structured from <span class="text-primary">needs assessment to sustainment.</span></h2>
+            }
+        </div>
+
+        <div class="approach-list" data-aos="fade-up">
+            <div class="approach-list-item"><i class="fas fa-check"></i> @Lang.T("Needs assessment and program design aligned to your operating framework", "تقييم الاحتياجات وتصميم البرنامج بما يتواءم مع إطار عملك التشغيلي")</div>
+            <div class="approach-list-item"><i class="fas fa-check"></i> @Lang.T("Role-based delivery across executive, managerial, and operational levels", "تقديم قائم على الأدوار عبر المستويات التنفيذية والإدارية والتشغيلية")</div>
+            <div class="approach-list-item"><i class="fas fa-check"></i> @Lang.T("Onsite, virtual, or blended delivery formats", "خيارات تقديم حضورية أو افتراضية أو مدمجة")</div>
+            <div class="approach-list-item"><i class="fas fa-check"></i> @Lang.T("Competency assessment, progress tracking, and adoption measurement", "تقييم الجدارات، وتتبّع التقدّم، وقياس التبنّي")</div>
+            <div class="approach-list-item"><i class="fas fa-check"></i> @Lang.T("Post-program coaching and sustainment support", "متابعة ما بعد البرنامج ودعم لضمان الاستدامة")</div>
+            <div class="approach-list-item"><i class="fas fa-check"></i> @Lang.T("Procurement documentation: TOR, program outline, completion reports", "وثائق المشتريات: الاختصاصات، وملخّص البرنامج، وتقارير الإنجاز")</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">مجالات <span class="text-primary">التدريب</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Training <span class="text-primary">Areas</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("Comprehensive programs across all institutional domains.", "برامج شاملة عبر كل المجالات المؤسسية.")</p>
+        </div>
+
+        <div class="training-areas-grid">
+            @if (categories != null)
+            {
+                @foreach (var category in categories)
+                {
+                    <div class="area-card" data-aos="fade-up">
+                        <h3>@category.TitleLocalized</h3>
+                        <p>@category.ShortDescriptionLocalized</p>
+                        <ul class="area-programs">
+                            @foreach (var program in category.Programs.Take(3))
+                            {
+                                <li>@program.TitleLocalized</li>
+                            }
+                            @if (category.Programs.Count > 3)
+                            {
+                                <li class="more">+@(category.Programs.Count - 3) @Lang.T("more programs", "برامج إضافية")</li>
+                            }
+                        </ul>
+                        <a href="/training/programs/@category.Slug" class="btn btn-outline-primary btn-sm">@Lang.T("View Programs", "عرض البرامج")</a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">من الاستشارة إلى التقديم <span class="text-primary">في أربع خطوات.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">From consultation to delivery <span class="text-primary">in four steps.</span></h2>
+            }
+        </div>
+
+        <div class="approach-timeline">
+            <div class="approach-step" data-aos="fade-up" data-aos-delay="100">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>@Lang.T("Consultation", "الاستشارة")</h3>
+                    <p>@Lang.T("A structured conversation to understand your operating context, current capability gaps, and deployment objectives.", "محادثة منظّمة لفهم سياقك التشغيلي، وفجوات القدرات الحالية، وأهداف النشر.")</p>
+                </div>
+            </div>
+            <div class="approach-step" data-aos="fade-up" data-aos-delay="200">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>@Lang.T("Program Design", "تصميم البرنامج")</h3>
+                    <p>@Lang.T("We design the curriculum, delivery format, and role-based tracks aligned to your framework and team structure.", "نُصمّم المنهج وصيغة التقديم والمسارات القائمة على الأدوار بما يتواءم مع إطارك وهيكل فريقك.")</p>
+                </div>
+            </div>
+            <div class="approach-step" data-aos="fade-up" data-aos-delay="300">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>@Lang.T("Delivery", "التقديم")</h3>
+                    <p>@Lang.T("Onsite, virtual, or blended delivery. Flexible scheduling. Group cohorts managed around your operational calendar.", "تقديم حضوري أو افتراضي أو مدمج. جدولة مرنة. ودفعات جماعية تُدار وفق تقويمك التشغيلي.")</p>
+                </div>
+            </div>
+            <div class="approach-step" data-aos="fade-up" data-aos-delay="400">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>@Lang.T("Sustainment", "الاستدامة")</h3>
+                    <p>@Lang.T("Post-delivery competency assessment, adoption measurement, and optional coaching support to ensure capability holds.", "تقييم الجدارات بعد التقديم، وقياس التبنّي، ودعم تدريبي اختياري لضمان بقاء القدرات.")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="cta-block" data-aos="fade-up" style="text-align: center; padding: 50px 30px; max-width: 900px; margin: 0 auto; background: var(--bg-light); border-radius: 16px;">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">هل أنت مستعدّ لنشر التدريب <span class="text-primary">لفريقك؟</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Ready to deploy training <span class="text-primary">for your team?</span></h2>
+            }
+            <p class="lead" style="margin: 18px auto 25px; max-width: 720px;">
+                @Lang.T("Contact us to initiate a corporate training consultation. We will assess your current requirements, align the right programs, and propose a structured delivery plan.", "تواصل معنا لبدء استشارة تدريب مؤسسي. سنقيّم متطلباتك الحالية، ونوائم البرامج المناسبة، ونقترح خطة تقديم منظّمة.")
+            </p>
+            <a href="/training/contact" class="btn btn-primary btn-lg">@Lang.T("Request Corporate Training", "اطلب تدريباً مؤسسياً")</a>
+            <a href="/training/contact" class="btn btn-outline-primary btn-lg ms-2">@Lang.T("Book a Discovery Call", "احجز جلسة استكشافية")</a>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .corporate-stats {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-number {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .stat-label {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .approach-timeline {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        flex-wrap: wrap;
+    }
+
+    .approach-timeline::before {
+        content: '';
+        position: absolute;
+        top: 40px;
+        left: 10%;
+        right: 10%;
+        height: 3px;
+        background: var(--primary);
+    }
+
+    .approach-step {
+        flex: 1;
+        min-width: 200px;
+        text-align: center;
+        padding: 0 20px;
+        position: relative;
+    }
+
+    .step-number {
+        width: 80px;
+        height: 80px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: 700;
+        color: white;
+        margin: 0 auto 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .step-content h3 {
+        margin-bottom: 10px;
+    }
+
+    .step-content p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+    }
+
+    .training-areas-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .area-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .area-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .area-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--primary);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    .area-card h3 {
+        margin-bottom: 10px;
+    }
+
+    .area-programs {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+    }
+
+    .area-programs li {
+        padding: 5px 0;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .area-programs li.more {
+        color: var(--primary);
+        font-weight: 500;
+    }
+
+    .delivery-card {
+        background: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        padding: 30px;
+        height: 100%;
+    }
+
+    .delivery-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .delivery-card h3 {
+        margin-bottom: 15px;
+    }
+
+    .delivery-card p {
+        opacity: 0.9;
+        margin-bottom: 20px;
+    }
+
+    .delivery-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .delivery-card li {
+        padding: 5px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .delivery-card li i {
+        color: var(--primary);
+    }
+
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .benefit-item {
+        text-align: center;
+        padding: 30px;
+        background: var(--bg-light);
+        border-radius: 15px;
+    }
+
+    .benefit-item i {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 15px;
+    }
+
+    .benefit-item h4 {
+        margin-bottom: 10px;
+    }
+
+    .benefit-item p {
+        color: var(--text-muted);
+        margin: 0;
+    }
+
+    .cta-section {
+        background: var(--primary);
+        color: white;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    @@media (max-width: 992px) {
+        .approach-timeline::before {
+            display: none;
+        }
+
+        .approach-step {
+            flex: 0 0 50%;
+            margin-bottom: 30px;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .corporate-stats {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .approach-step {
+            flex: 0 0 100%;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+}

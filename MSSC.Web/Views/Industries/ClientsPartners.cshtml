@@ -1,0 +1,382 @@
+@{
+    var clients = ViewBag.Clients as List<MSSC.Web.Models.Client>;
+    var caseStudies = ViewBag.CaseStudies as List<MSSC.Web.Models.CaseStudy>;
+}
+
+<section class="page-hero clients-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>@Lang.T("Clients & Partners", "العملاء والشركاء")</h1>
+            <p class="lead">@Lang.T("Trusted by leading organizations across Saudi Arabia and the region", "موضع ثقة المؤسسات الرائدة في المملكة العربية السعودية والمنطقة")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Clients & Partners", "العملاء والشركاء")</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">موضع ثقة <span class="text-primary">المؤسسات الرائدة</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Trusted by <span class="text-primary">Leading Organizations</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("Partnering with government, education, and industry leaders across Saudi Arabia", "نعمل بالشراكة مع قادة القطاع الحكومي والتعليم والصناعة في أنحاء المملكة")</p>
+        </div>
+
+        @if (clients != null)
+        {
+            var governmentClients = clients.Where(c => c.Industry == "Government").ToList();
+            var otherClients = clients.Where(c => c.Industry != "Government").ToList();
+
+            <div class="clients-category-label" data-aos="fade-up">
+                <span>@Lang.T("Government Ministries & Authorities", "الوزارات والجهات الحكومية")</span>
+            </div>
+            <div class="clients-grid-large" data-aos="fade-up">
+                @foreach (var client in governmentClients)
+                {
+                    var needsDarkBg = client.LogoUrl.Contains("ahsa.png");
+                    <div class="client-logo-lg @(needsDarkBg ? "dark-bg" : "")" title="@client.Name">
+                        <img src="@client.LogoUrl" alt="@client.Name" onerror="this.src='/images/client-default.png'">
+                    </div>
+                }
+            </div>
+
+            <div class="clients-category-label mt-5" data-aos="fade-up">
+                <span>@Lang.T("Universities & Private Sector", "الجامعات والقطاع الخاص")</span>
+            </div>
+            <div class="clients-grid-large" data-aos="fade-up">
+                @foreach (var client in otherClients)
+                {
+                    <div class="client-logo-lg" title="@client.Name">
+                        <img src="@client.LogoUrl" alt="@client.Name" onerror="this.src='/images/client-default.png'">
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+<section class="section-padding bg-dark text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">@Lang.T("Clients Served", "عميل تمت خدمته")</span>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">@Lang.T("Projects Delivered", "مشروع مُنجَز")</span>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-item">
+                    <span class="stat-number">96%</span>
+                    <span class="stat-label">@Lang.T("Client Satisfaction", "رضا العملاء")</span>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-item">
+                    <span class="stat-number">85%</span>
+                    <span class="stat-label">@Lang.T("Repeat Business", "تكرار التعامل")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (caseStudies != null && caseStudies.Any())
+{
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                @if (Lang.IsArabic)
+                {
+                    <h2 class="section-title">قصص <span class="text-primary">النجاح</span></h2>
+                }
+                else
+                {
+                    <h2 class="section-title">Success <span class="text-primary">Stories</span></h2>
+                }
+                <p class="section-subtitle">@Lang.T("See how we've helped our clients achieve their goals", "اطّلع على كيف ساعدنا عملاءنا على تحقيق أهدافهم")</p>
+            </div>
+
+            <div class="case-studies-grid">
+                @foreach (var caseStudy in caseStudies.Take(3))
+                {
+                    <div class="case-study-card" data-aos="fade-up">
+                        <div class="case-study-image">
+                            <img src="@caseStudy.ImageUrl" alt="@caseStudy.TitleLocalized" onerror="this.src='/images/case-study-default.jpg'">
+                            <span class="case-study-industry">@caseStudy.IndustryLocalized</span>
+                        </div>
+                        <div class="case-study-content">
+                            <h4>@caseStudy.TitleLocalized</h4>
+                            <p class="client-name"><strong>@Lang.T("Client:", "العميل:")</strong> @caseStudy.ClientNameLocalized</p>
+                            <p>@caseStudy.ChallengeLocalized.Substring(0, Math.Min(caseStudy.ChallengeLocalized.Length, 120))...</p>
+                            <div class="metrics">
+                                @foreach (var metric in caseStudy.MetricsLocalized.Take(3))
+                                {
+                                    <span class="metric-badge">@metric</span>
+                                }
+                            </div>
+                            <a href="/case-studies/@caseStudy.Slug" class="btn btn-primary btn-sm mt-3">@Lang.T("Read More", "اقرأ المزيد")</a>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="/case-studies" class="btn btn-outline-primary btn-lg">@Lang.T("View All Case Studies", "عرض كل دراسات الحالة")</a>
+            </div>
+        </div>
+    </section>
+}
+
+@section Styles {
+<style>
+    .clients-category-label {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .clients-category-label span {
+        display: inline-block;
+        padding: 10px 30px;
+        background: var(--primary);
+        color: white;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .clients-grid-large {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 25px;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .client-logo-lg {
+        background: #EBEBEB;
+        border-radius: 15px;
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 140px;
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+
+    .client-logo-lg:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(68, 114, 196, 0.2);
+        border-color: #5B9BD5;
+    }
+
+    .client-logo-lg img {
+        max-width: 100%;
+        max-height: 90px;
+        object-fit: contain;
+        transition: all 0.3s ease;
+    }
+
+    .client-logo-lg.dark-bg {
+        background: #006E61;
+        border-color: #006E61;
+    }
+
+    .client-logo-lg.dark-bg:hover {
+        background: #005a50;
+        border-color: var(--primary);
+    }
+
+    .stat-item {
+        padding: 20px;
+    }
+
+    .stat-number {
+        display: block;
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .stat-label {
+        font-size: 1rem;
+        opacity: 0.9;
+    }
+
+    .case-studies-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    .case-study-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .case-study-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .case-study-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .case-study-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .case-study-industry {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--primary);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+    }
+
+    .case-study-content {
+        padding: 25px;
+    }
+
+    .case-study-content h4 {
+        margin-bottom: 10px;
+    }
+
+    .client-name {
+        font-size: 0.9rem;
+        color: var(--primary);
+        margin-bottom: 10px;
+    }
+
+    .metrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .metric-badge {
+        display: inline-block;
+        padding: 5px 12px;
+        background: var(--bg-light);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        color: var(--text-dark);
+    }
+
+    .cta-section {
+        background: var(--primary);
+        color: white;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    @@media (max-width: 1200px) {
+        .clients-grid-large {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    @@media (max-width: 992px) {
+        .clients-grid-large {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .client-logo-lg {
+            height: 120px;
+            padding: 20px;
+        }
+
+        .client-logo-lg img {
+            max-height: 70px;
+        }
+
+        .clients-category-label span {
+            font-size: 1rem;
+            padding: 8px 25px;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .case-studies-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .clients-grid-large {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .client-logo-lg {
+            height: 100px;
+            padding: 15px;
+        }
+
+        .client-logo-lg img {
+            max-height: 60px;
+        }
+
+        .clients-category-label span {
+            font-size: 0.9rem;
+            padding: 8px 20px;
+        }
+    }
+
+    @@media (max-width: 480px) {
+        .clients-grid-large {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .client-logo-lg {
+            height: 85px;
+            padding: 12px;
+        }
+
+        .client-logo-lg img {
+            max-height: 50px;
+        }
+    }
+</style>
+}

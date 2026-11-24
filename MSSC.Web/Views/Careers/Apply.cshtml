@@ -1,0 +1,339 @@
+@model MSSC.Web.Models.JobOpening
+@{
+}
+
+<section class="page-hero apply-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>@Lang.T("Apply for Position", "التقديم على الوظيفة")</h1>
+            <h2>@Model.Title</h2>
+            <p class="job-location"><i class="fas fa-map-marker-alt"></i> @Model.Location</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item"><a href="/careers">@Lang.T("Careers", "الوظائف")</a></li>
+                    <li class="breadcrumb-item"><a href="/careers/@Model.Slug">@Model.Title</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Apply", "التقديم")</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="application-form-card" data-aos="fade-up">
+                    <h2>@Lang.T("Application Form", "نموذج التقديم")</h2>
+                    <p class="form-subtitle">@Lang.T("Please fill out the form below. All fields marked with * are required.", "يُرجى تعبئة النموذج أدناه. جميع الحقول المعلَّمة بـ * مطلوبة.")</p>
+
+                    <form id="applicationForm" class="application-form">
+                        <input type="hidden" name="jobId" value="@Model.Id">
+                        <input type="hidden" name="jobTitle" value="@Model.Title">
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> @Lang.T("Personal Information", "المعلومات الشخصية")</h3>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="fullName">@Lang.T("Full Name *", "الاسم الكامل *")</label>
+                                        <input type="text" id="fullName" name="fullName" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">@Lang.T("Email Address *", "البريد الإلكتروني *")</label>
+                                        <input type="email" id="email" name="email" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phone">@Lang.T("Phone Number *", "رقم الهاتف *")</label>
+                                        <input type="tel" id="phone" name="phone" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="linkedin">@Lang.T("LinkedIn Profile", "حساب لينكدإن")</label>
+                                        <input type="url" id="linkedin" name="linkedin" class="form-control" placeholder="https://linkedin.com/in/...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-briefcase"></i> @Lang.T("Professional Background", "الخلفية المهنية")</h3>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="currentPosition">@Lang.T("Current Position *", "المنصب الحالي *")</label>
+                                        <input type="text" id="currentPosition" name="currentPosition" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="experience">@Lang.T("Years of Experience *", "سنوات الخبرة *")</label>
+                                        <select id="experience" name="experience" class="form-control" required>
+                                            <option value="">@Lang.T("Select...", "اختر...")</option>
+                                            <option value="0-2">@Lang.T("0-2 years", "0-2 سنة")</option>
+                                            <option value="3-5">@Lang.T("3-5 years", "3-5 سنوات")</option>
+                                            <option value="6-10">@Lang.T("6-10 years", "6-10 سنوات")</option>
+                                            <option value="10+">@Lang.T("10+ years", "أكثر من 10 سنوات")</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-file-alt"></i> @Lang.T("Resume / CV", "السيرة الذاتية")</h3>
+
+                            <div class="form-group">
+                                <label for="resume">@Lang.T("Upload Resume (PDF, DOC, DOCX - Max 5MB) *", "ارفع السيرة الذاتية (PDF، DOC، DOCX - بحد أقصى 5 ميغابايت) *")</label>
+                                <div class="file-upload">
+                                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                                    <div class="file-upload-label">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>@Lang.T("Click to upload or drag and drop", "انقر للرفع أو اسحب وأفلت")</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-pen"></i> @Lang.T("Cover Letter", "خطاب التغطية")</h3>
+
+                            <div class="form-group">
+                                <label for="coverLetter">@Lang.T("Why are you interested in this role? *", "لماذا أنت مهتمّ بهذه الوظيفة؟ *")</label>
+                                <textarea id="coverLetter" name="coverLetter" class="form-control" rows="6" required placeholder="@Lang.T("Tell us about your background, why you're interested in this position, and what you can bring to our team...", "أخبرنا عن خلفيتك، وسبب اهتمامك بهذه الوظيفة، وما يمكنك تقديمه لفريقنا...")"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-question-circle"></i> @Lang.T("Additional Questions", "أسئلة إضافية")</h3>
+
+                            <div class="form-group">
+                                <label for="noticePeriod">@Lang.T("What is your notice period?", "ما مدة إشعارك للاستقالة؟")</label>
+                                <select id="noticePeriod" name="noticePeriod" class="form-control">
+                                    <option value="">@Lang.T("Select...", "اختر...")</option>
+                                    <option value="immediate">@Lang.T("Immediately available", "متاح فوراً")</option>
+                                    <option value="2weeks">@Lang.T("2 weeks", "أسبوعان")</option>
+                                    <option value="1month">@Lang.T("1 month", "شهر واحد")</option>
+                                    <option value="2months">@Lang.T("2 months", "شهران")</option>
+                                    <option value="3months">@Lang.T("3+ months", "3 أشهر فأكثر")</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="salary">@Lang.T("Expected Salary (SAR/month)", "الراتب المتوقع (ريال/شهرياً)")</label>
+                                <input type="text" id="salary" name="salary" class="form-control" placeholder="@Lang.T("e.g., 15,000 - 20,000", "مثال: 15,000 - 20,000")">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="referral">@Lang.T("How did you hear about this position?", "كيف عرفت عن هذه الوظيفة؟")</label>
+                                <select id="referral" name="referral" class="form-control">
+                                    <option value="">@Lang.T("Select...", "اختر...")</option>
+                                    <option value="website">@Lang.T("MSSC Website", "موقع MSSC")</option>
+                                    <option value="linkedin">@Lang.T("LinkedIn", "لينكدإن")</option>
+                                    <option value="referral">@Lang.T("Employee Referral", "ترشيح موظف")</option>
+                                    <option value="jobboard">@Lang.T("Job Board", "لوحة وظائف")</option>
+                                    <option value="other">@Lang.T("Other", "أخرى")</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox" id="terms" name="terms" class="form-check-input" required>
+                                    <label for="terms" class="form-check-label">
+                                        @Lang.T("I confirm that the information provided is accurate and I agree to the", "أؤكّد صحة المعلومات المقدّمة وأوافق على") <a href="/privacy" target="_blank">@Lang.T("Privacy Policy", "سياسة الخصوصية")</a> *
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-submit">
+                            <i class="fas fa-paper-plane me-2"></i>@Lang.T("Submit Application", "إرسال الطلب")
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .apply-hero {
+        background: var(--primary);
+        padding: 120px 0 80px;
+    }
+
+    .apply-hero h1 {
+        font-size: 1.5rem;
+        opacity: 0.9;
+        margin-bottom: 10px;
+    }
+
+    .apply-hero h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .job-location {
+        opacity: 0.9;
+    }
+
+    .application-form-card {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+    }
+
+    .application-form-card h2 {
+        margin-bottom: 10px;
+    }
+
+    .form-subtitle {
+        color: var(--text-muted);
+        margin-bottom: 30px;
+    }
+
+    .form-section {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .form-section:last-of-type {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .form-section h3 {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--primary);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--text-dark);
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+    }
+
+    .file-upload {
+        position: relative;
+    }
+
+    .file-upload input[type="file"] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .file-upload-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        border: 2px dashed var(--border-color);
+        border-radius: 10px;
+        background: var(--bg-light);
+        transition: all 0.3s ease;
+    }
+
+    .file-upload-label i {
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 10px;
+    }
+
+    .file-upload:hover .file-upload-label {
+        border-color: var(--primary);
+        background: rgba(var(--primary-rgb), 0.05);
+    }
+
+    .form-check {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .form-check-input {
+        margin-top: 4px;
+    }
+
+    .form-check-label a {
+        color: var(--primary);
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 15px;
+    }
+
+    @@media (max-width: 768px) {
+        .application-form-card {
+            padding: 25px;
+        }
+
+        .apply-hero h2 {
+            font-size: 1.8rem;
+        }
+    }
+</style>
+}
+
+@section Scripts {
+<script>
+document.getElementById('applicationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    this.innerHTML = `
+        <div class="success-message text-center py-5">
+            <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+            <h3 class="mt-4">@Lang.T("Application Submitted!", "تم إرسال طلبك!")</h3>
+            <p class="text-muted">@Lang.T("Thank you for applying to MSSC. Our HR team will review your application and get back to you soon.", "شكراً لتقدّمك إلى MSSC. سيراجع فريق الموارد البشرية طلبك ويتواصل معك قريباً.")</p>
+            <a href="/careers" class="btn btn-primary mt-3">@Lang.T("Back to Careers", "العودة للوظائف")</a>
+        </div>
+    `;
+});
+</script>
+}

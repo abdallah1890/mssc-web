@@ -1,0 +1,125 @@
+@{
+    var stats = ViewBag.Stats as Dictionary<string, string>;
+}
+
+<section class="page-hero about-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>@Lang.T("About MSSC", "عن MSSC")</h1>
+            <p class="lead">@Lang.T("Our success is defined not only by what we build, but also by what your organization can achieve after we leave.", "نجاحنا لا يُقاس بما نبنيه فحسب، بل بما تستطيع مؤسستك تحقيقه بعد رحيلنا.")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("About Us", "من نحن")</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image-wrapper" data-aos="fade-right">
+                <img src="/images/about-main.jpg" alt="@Lang.T("MSSC Office", "مكتب MSSC")" class="about-image"
+                     onerror="this.style.background='#0f4c81'; this.style.height='500px'; this.style.borderRadius='24px';">
+                <div class="about-experience">
+                    <div class="experience-number">6</div>
+                    <div class="experience-text">@Lang.T("Connected Pillars", "ركائز مترابطة")</div>
+                </div>
+            </div>
+            <div class="about-content" data-aos="fade-left">
+                <span class="section-label">@Lang.T("Who We Are", "من نحن")</span>
+                <h2 class="section-title">@Lang.T("Built for the organizations driving Saudi Arabia's institutional transformation.", "مبنيّة من أجل المؤسسات التي تقود التحوّل المؤسسي في المملكة العربية السعودية.")</h2>
+                <p class="about-text">
+                    <strong>@Lang.T("MSSC (Management System Solutions Company)", "شركة حلول النظم الإدارية (MSSC)")</strong> @Lang.T("is a Saudi-focused institutional advisory firm built on one principle: the most effective consulting strengthens internal capability rather than creating ongoing dependency.", "هي شركة استشارات مؤسسية تركّز على السوق السعودي، قائمة على مبدأ واحد: الاستشارة الأكثر فعالية هي التي تُعزّز القدرات الداخلية بدلاً من خلق اعتماد دائم.")
+                </p>
+                <p class="about-text">
+                    @Lang.T("We work with government entities, semi-government bodies, and enterprise organizations operating within the ambitions of Vision 2030 — where rising expectations for accountability, performance, and institutional capability require more than good intentions.", "نعمل مع الجهات الحكومية وشبه الحكومية والمؤسسات الكبرى التي تعمل ضمن طموحات رؤية 2030 — حيث تتطلّب التوقعات المتزايدة للمساءلة والأداء والقدرة المؤسسية أكثر من مجرد النوايا الحسنة.")
+                </p>
+                <p class="about-text">
+                    @Lang.T("We combine consulting-level systems thinking with structured capability development. Instead of delivering advice or training in isolation, we integrate governance design, performance management, and people enablement into a unified operating model.", "نجمع بين التفكير المنظومي على مستوى الاستشارات وتطوير القدرات المنظّم. وبدلاً من تقديم الاستشارة أو التدريب بمعزل عن بعضهما، ندمج تصميم الحوكمة وإدارة الأداء وتمكين الأفراد في نموذج تشغيلي موحّد.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-label">@Lang.T("What We Believe", "ما نؤمن به")</span>
+            <h2 class="section-title">@Lang.T("The challenge most organizations face is not a lack of effort, but the absence of a connected operating system.", "التحدّي الذي تواجهه معظم المؤسسات ليس نقص الجهد، بل غياب نظام تشغيلي مترابط.")</h2>
+            <p class="section-subtitle">
+                @Lang.T("That is what we address. Not frameworks on paper. Not recommendations that expire after the engagement. Operating systems that internal teams understand, use, and sustain — because the capability is embedded in the organization, not retained by the consultant.", "هذا ما نعالجه. لا أُطر على الورق، ولا توصيات تنتهي صلاحيتها بعد انتهاء المشروع، بل أنظمة تشغيلية تفهمها الفرق الداخلية وتستخدمها وتحافظ على استمراريتها — لأن القدرة مُترسّخة في المؤسسة، لا محتكَرة لدى المستشار.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content" data-aos="fade-right" style="@(Lang.IsArabic ? "padding-left: 20px; padding-right: 0;" : "padding-right: 20px; padding-left: 0;")">
+                <span class="section-label">@Lang.T("Who We Work With", "مع من نعمل")</span>
+                <h2 class="section-title" style="text-align: @(Lang.IsArabic ? "right" : "left");">@Lang.T("We work with organizations ready to close the gap between strategy and execution.", "نعمل مع المؤسسات المستعدّة لسدّ الفجوة بين الاستراتيجية والتنفيذ.")</h2>
+                <div class="about-features" style="grid-template-columns: 1fr;">
+                    <div class="about-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>@Lang.T("Government & Semi-Government Entities", "الجهات الحكومية وشبه الحكومية")</h4>
+                            <p>@Lang.T("Public institutions preparing to meet the demands of Vision 2030.", "مؤسسات عامة تستعدّ لتلبية متطلبات رؤية 2030.")</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>@Lang.T("Regulated, Committee-Led Environments", "بيئات منظَّمة تقودها اللجان")</h4>
+                            <p>@Lang.T("Organizations that require governance that operates in practice, not just on paper.", "مؤسسات تحتاج حوكمة تعمل على أرض الواقع، لا على الورق فقط.")</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>@Lang.T("Enterprise Organizations", "المؤسسات الكبرى")</h4>
+                            <p>@Lang.T("Companies managing complexity, growth, or transformation at scale.", "شركات تُدير التعقيد أو النمو أو التحوّل على نطاق واسع.")</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-users-gear"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>@Lang.T("Leadership Teams", "فرق القيادة")</h4>
+                            <p>@Lang.T("Leaders seeking practical operating discipline — not another engagement that produces documentation without results.", "قادة يبحثون عن انضباط تشغيلي عملي — لا مشروع آخر يُنتج وثائق دون نتائج.")</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image-wrapper" data-aos="fade-left">
+                <img src="/images/team.jpg" alt="MSSC Team" class="about-image"
+                     onerror="this.style.background='#1e3a5f'; this.style.height='500px'; this.style.borderRadius='24px';">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container">
+        <div class="cta-block" data-aos="fade-up" style="text-align: center; padding: 50px 30px; max-width: 900px; margin: 0 auto; background: var(--white); border-radius: 16px;">
+            <h2 class="section-title">@Lang.T("Build systems that last. Build organizations that perform.", "ابنِ أنظمة تدوم. ابنِ مؤسسات تُحقّق الأداء.")</h2>
+            <p class="lead" style="margin: 18px auto 25px; max-width: 720px;">
+                @Lang.T("If your organization is working to strengthen governance, performance, capability, or operational readiness — MSSC provides the structured partnership to move forward with confidence.", "إذا كانت مؤسستك تسعى لتعزيز الحوكمة أو الأداء أو القدرات أو الجاهزية التشغيلية — فإن MSSC تقدّم الشراكة المنظّمة للمضيّ قدماً بثقة.")
+            </p>
+            <a href="/contact" class="btn btn-primary btn-lg">@Lang.T("Request Institutional Readiness Diagnostic", "اطلب تشخيص الجاهزية المؤسسية")</a>
+            <a href="/contact" class="btn btn-outline-primary btn-lg ms-2">@Lang.T("Book a Discovery Call", "احجز جلسة استكشافية")</a>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,212 @@
+@{
+}
+
+<section class="page-hero enterprise-solutions-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h1>لقد بنيت مؤسسة قوية. <span class="text-secondary">والآن ابنِ الأنظمة التي تُوسّع نطاقها.</span></h1>
+            }
+            else
+            {
+                <h1>You&#x2019;ve built a strong organization. <span class="text-secondary">Now build the systems to scale it.</span></h1>
+            }
+            <p class="lead">@Lang.T("We help enterprises build the internal operating infrastructure — governance, performance discipline, and institutional capability — needed to scale operations consistently and reduce dependence on individual effort.", "نساعد المؤسسات على بناء البنية التشغيلية الداخلية — الحوكمة، وانضباط الأداء، والقدرة المؤسسية — اللازمة لتوسيع العمليات باتّساق وتقليل الاعتماد على الجهد الفردي.")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Enterprise Solutions", "حلول المؤسسات")</li>
+                </ol>
+            </nav>
+            <div class="mt-4">
+                <a href="/contact" class="btn btn-primary btn-lg">@Lang.T("Request Diagnostic", "اطلب التشخيص")</a>
+                <a href="/framework" class="btn btn-white btn-lg ms-2">@Lang.T("View Framework", "اطّلع على إطار العمل")</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            <span class="section-label">@Lang.T("The Challenge", "التحدّي")</span>
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">النمو دون بنية تشغيلية <span class="text-primary">يُنتج نتائج غير متّسقة.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Growth without operating infrastructure <span class="text-primary">produces inconsistent results.</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("Enterprises frequently reach a stage where strategic ambition exceeds internal operating capacity. The direction is clear and the talent exists — but without a connected operating system, execution becomes inconsistent and the burden concentrates on a small number of individuals.", "كثيراً ما تبلغ المؤسسات مرحلة يتجاوز فيها الطموح الاستراتيجي القدرة التشغيلية الداخلية. فالاتجاه واضح والكفاءات موجودة — لكن دون نظام تشغيلي مترابط، يصبح التنفيذ غير متّسق ويتركّز العبء على عدد قليل من الأفراد.")</p>
+        </div>
+
+        <div class="challenge-list" data-aos="fade-up">
+            <div class="challenge-item"><i class="fas fa-triangle-exclamation"></i> @Lang.T("Growth outpaces internal structure, leading to inconsistent execution across teams", "النمو يتجاوز البنية الداخلية، مما يؤدي إلى تنفيذ غير متّسق بين الفرق")</div>
+            <div class="challenge-item"><i class="fas fa-triangle-exclamation"></i> @Lang.T("KPIs are tracked but rarely used to inform decisions", "تُتابَع مؤشرات الأداء لكنها نادراً ما تُستخدم لتوجيه القرارات")</div>
+            <div class="challenge-item"><i class="fas fa-triangle-exclamation"></i> @Lang.T("Governance exists in organizational charts but not in daily operating practice", "الحوكمة موجودة في الهياكل التنظيمية لكنها غائبة عن الممارسة التشغيلية اليومية")</div>
+            <div class="challenge-item"><i class="fas fa-triangle-exclamation"></i> @Lang.T("Training investments do not produce lasting behavioral change", "استثمارات التدريب لا تُنتج تغييراً سلوكياً دائماً")</div>
+            <div class="challenge-item"><i class="fas fa-triangle-exclamation"></i> @Lang.T("Reporting exists without accountability structures", "التقارير موجودة دون هياكل مساءلة")</div>
+            <div class="challenge-item"><i class="fas fa-triangle-exclamation"></i> @Lang.T("Results depend on specific individuals rather than repeatable systems", "النتائج تعتمد على أفراد بعينهم بدلاً من أنظمة قابلة للتكرار")</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">نظام تشغيلي مترابط <span class="text-primary">مبنيّ لمرحلتك الحالية ولتوسّعك المستقبلي.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">A connected operating system <span class="text-primary">built for your current stage and future scale.</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("The solution is not more activity. It is a system that makes existing effort more consistent, more visible, and more sustainable.", "الحل ليس مزيداً من النشاط، بل نظام يجعل الجهد القائم أكثر اتّساقاً ووضوحاً واستدامة.")</p>
+        </div>
+
+        <div class="solutions-table">
+            <div class="solution-row" data-aos="fade-up">
+                <div class="solution-row-title">@Lang.T("Institutional Readiness Diagnostic", "تشخيص الجاهزية المؤسسية")</div>
+                <div class="solution-row-body">@Lang.T("A structured assessment of current operating maturity covering governance, performance, and capability — with a prioritized roadmap for where to focus first.", "تقييم منظّم لمستوى النضج التشغيلي الحالي يشمل الحوكمة والأداء والقدرات — مع خارطة طريق مُرتَّبة حسب الأولوية لتحديد نقطة التركيز الأولى.")</div>
+            </div>
+            <div class="solution-row" data-aos="fade-up">
+                <div class="solution-row-title">@Lang.T("Governance Operating System", "نظام تشغيل الحوكمة")</div>
+                <div class="solution-row-body">@Lang.T("Clearer decision rights, stronger process discipline, and reduced dependence on individuals. We design and build the governance architecture that converts policy into consistent operating practice.", "صلاحيات قرار أوضح، وانضباط أقوى في العمليات، واعتماد أقل على الأفراد. نُصمّم ونبني هيكل الحوكمة الذي يُحوّل السياسة إلى ممارسة تشغيلية متّسقة.")</div>
+            </div>
+            <div class="solution-row" data-aos="fade-up">
+                <div class="solution-row-title">@Lang.T("KPI & Performance Operating System", "نظام تشغيل مؤشرات الأداء وإدارة الأداء")</div>
+                <div class="solution-row-body">@Lang.T("A connected performance management system from strategic objectives to operational metrics — with review cadences, dashboards, and accountability structures that make performance improvement consistent.", "نظام مترابط لإدارة الأداء من الأهداف الاستراتيجية إلى المقاييس التشغيلية — مع دورات مراجعة، ولوحات معلومات، وهياكل مساءلة تجعل تحسين الأداء متّسقاً.")</div>
+            </div>
+            <div class="solution-row" data-aos="fade-up">
+                <div class="solution-row-title">@Lang.T("Capability & Change Enablement", "تمكين القدرات والتغيير")</div>
+                <div class="solution-row-body">@Lang.T("Role-based learning pathways, enablement toolkits, and structured adoption plans so that internal teams own the operating system and can sustain it independently.", "مسارات تعلّم قائمة على الأدوار، وأدوات تمكين، وخطط تبنٍّ منظّمة بحيث تمتلك الفرق الداخلية النظام التشغيلي وتحافظ على استمراريته باستقلالية.")</div>
+            </div>
+            <div class="solution-row solution-row-training" data-aos="fade-up">
+                <div class="solution-row-title">@Lang.T("Professional Training Programs", "البرامج التدريبية الاحترافية")</div>
+                <div class="solution-row-body">@Lang.T("Focused, practical training in governance, KPI management, institutional performance, operational readiness, and capability development — designed for enterprise operating contexts and aligned to the systems being built. Available for teams and individuals.", "تدريب مركّز وعملي في الحوكمة، وإدارة مؤشرات الأداء، والأداء المؤسسي، والجاهزية التشغيلية، وتطوير القدرات — مُصمَّم لسياقات تشغيل المؤسسات ومتوائم مع الأنظمة المبنية. متاح للفرق والأفراد.")</div>
+            </div>
+            <div class="solution-row" data-aos="fade-up">
+                <div class="solution-row-title">@Lang.T("ISO / EFQM Readiness Enablement", "تمكين الجاهزية لـ ISO / EFQM")</div>
+                <div class="solution-row-body">@Lang.T("Standards alignment built with the operational depth required for ongoing compliance — with internal ownership structures that sustain the standard after initial certification.", "مواءمة للمعايير مبنية بالعمق التشغيلي اللازم للامتثال المستمر — مع هياكل ملكية داخلية تحافظ على المعيار بعد الحصول على الشهادة الأولى.")</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="training-connection-card" data-aos="fade-up">
+            <div class="training-connection-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div class="training-connection-body">
+                <span class="section-label">@Lang.T("Training Connection", "الربط بالتدريب")</span>
+                <h3>@Lang.T("Pair the operating system with aligned training — adoption is faster, results hold after delivery.", "اقرن النظام التشغيلي بتدريب متوائم — يصبح التبنّي أسرع، وتبقى النتائج بعد التسليم.")</h3>
+                <p>@Lang.T("Enterprise organizations that combine governance or performance system implementation with aligned training programs see faster adoption and stronger results. Programs are designed for enterprise operating contexts — available as structured team delivery or open enrollment.", "المؤسسات التي تجمع بين تطبيق نظام الحوكمة أو الأداء وبرامج تدريب متوائمة تشهد تبنّياً أسرع ونتائج أقوى. والبرامج مُصمَّمة لسياقات تشغيل المؤسسات — متاحة كتقديم منظّم للفرق أو بتسجيل مفتوح.")</p>
+                <a href="/training" class="btn btn-outline-primary btn-sm">@Lang.T("Explore Training Programs", "استكشف البرامج التدريبية")</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="cta-block" data-aos="fade-up" style="text-align: center; padding: 50px 30px; max-width: 900px; margin: 0 auto; background: var(--white); border-radius: 16px;">
+            <h2 class="section-title">@Lang.T("Ready to build operational discipline?", "هل أنت مستعدّ لبناء الانضباط التشغيلي؟")</h2>
+            <p class="lead" style="margin: 18px auto 25px; max-width: 720px;">@Lang.T("Start with a diagnostic — a structured view of your current operating maturity and the most practical path forward.", "ابدأ بالتشخيص — رؤية منظّمة لمستوى نضجك التشغيلي الحالي وأكثر المسارات عملية للمضيّ قدماً.")</p>
+            <a href="/contact" class="btn btn-primary btn-lg">@Lang.T("Request Institutional Readiness Diagnostic", "اطلب تشخيص الجاهزية المؤسسية")</a>
+            <a href="/contact" class="btn btn-outline-primary btn-lg ms-2">@Lang.T("Book a Discovery Call", "احجز جلسة استكشافية")</a>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .enterprise-solutions-hero {
+        background: linear-gradient(rgba(15, 30, 50, 0.78), rgba(10, 25, 45, 0.85)),
+                    url('/images/industries/financial.jpg') center/cover no-repeat;
+        padding: 130px 0 56px;
+        text-align: center;
+        color: var(--white);
+    }
+
+    .enterprise-solutions-hero h1 { color: var(--white); margin-bottom: 14px; }
+    .enterprise-solutions-hero h1 .text-secondary { color: var(--secondary); }
+    .enterprise-solutions-hero .lead { color: rgba(255,255,255,0.85); max-width: 760px; margin: 0 auto 18px; }
+
+    .challenge-list {
+        max-width: 880px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 22px;
+    }
+
+    .challenge-item {
+        background: var(--white);
+        padding: 14px 18px;
+        border-radius: 8px;
+        box-shadow: var(--shadow-sm);
+        font-size: 0.9rem;
+        color: var(--gray-700);
+        line-height: 1.5;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .challenge-item i {
+        color: #d97706;
+        background: rgba(217, 119, 6, 0.1);
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .solutions-table {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        gap: 12px;
+    }
+
+    .solution-row {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 22px;
+        background: var(--white);
+        padding: 20px 24px;
+        border-radius: 10px;
+        box-shadow: var(--shadow-sm);
+        border-left: 3px solid var(--primary);
+    }
+
+    .solution-row-training {
+        border-left-color: var(--secondary);
+        background: linear-gradient(180deg, rgba(0, 200, 255, 0.04) 0%, var(--white) 100%);
+    }
+
+    .solution-row-title {
+        font-weight: 700;
+        color: var(--primary);
+        font-size: 0.95rem;
+    }
+
+    .solution-row-body {
+        font-size: 0.875rem;
+        color: var(--gray-700);
+        line-height: 1.55;
+    }
+
+    @@media (max-width: 768px) {
+        .challenge-list { grid-template-columns: 1fr; }
+        .solution-row { grid-template-columns: 1fr; gap: 6px; }
+    }
+</style>
+}

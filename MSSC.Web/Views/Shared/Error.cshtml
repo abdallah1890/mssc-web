@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Error";
+}
+
+<section class="page-header" style="min-height: 60vh; display: flex; align-items: center;">
+    <div class="container" style="text-align: center;">
+        <h1 style="font-size: 8rem; color: var(--secondary); margin-bottom: 20px;">404</h1>
+        <h2 style="color: var(--white); margin-bottom: 20px;">@Lang.T("Page Not Found", "الصفحة غير موجودة")</h2>
+        <p style="color: var(--gray-400); margin-bottom: 40px; font-size: 1.25rem;">
+            @Lang.T("The page you're looking for doesn't exist or has been moved.", "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.")
+        </p>
+        <a href="/" class="btn btn-secondary btn-lg">
+            <i class="fas fa-home"></i> @Lang.T("Return Home", "العودة للرئيسية")
+        </a>
+    </div>
+</section>

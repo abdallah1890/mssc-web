@@ -1,0 +1,197 @@
+<section class="page-hero contact-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>@Lang.T("Contact Us", "تواصل معنا")</h1>
+            <p class="lead">@Lang.T("Get in touch with our team of experts to discuss your business needs", "تواصل مع فريق خبرائنا لمناقشة احتياجات عملك")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Contact Us", "تواصل معنا")</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info-card" data-aos="fade-right">
+                <h3>@Lang.T("Get In Touch", "ابقَ على تواصل")</h3>
+                <p>@Lang.T("We're here to help. Reach out to us through any of the following channels or fill out the contact form.", "نحن هنا لمساعدتك. تواصل معنا عبر أي من القنوات التالية أو املأ نموذج التواصل.")</p>
+
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>@Lang.T("Visit Our Office", "زُر مكتبنا")</h4>
+                            <p>@Lang.T("Al Imam Saud Ibn Faysal Rd", "طريق الإمام سعود بن فيصل")<br>@Lang.T("Riyadh 12363, Saudi Arabia", "الرياض 12363، المملكة العربية السعودية")</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>@Lang.T("Call Us", "اتصل بنا")</h4>
+                            <a href="tel:+966114500896">+966 11 450 0896</a><br>
+                            <a href="tel:+966112314588">+966 11 231 4588</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>@Lang.T("Email Us", "راسلنا")</h4>
+                            <a href="mailto:info@mssc.com.sa">info@mssc.com.sa</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>@Lang.T("Working Hours", "ساعات العمل")</h4>
+                            <p>@Lang.T("Sunday - Thursday", "الأحد - الخميس")<br>@Lang.T("8:00 AM - 5:00 PM", "8:00 صباحاً - 5:00 مساءً")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-social">
+                    <h4>@Lang.T("Follow Us", "تابعنا")</h4>
+                    <div class="contact-social-links">
+                        <a href="https://www.linkedin.com/company/horizon.mssc" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://x.com/horizonmssc" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/horizon.mssc/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/horizon.mssc" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.snapchat.com/add/horizon.mssc" target="_blank" rel="noopener" aria-label="Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+                        <a href="https://wa.me/966114500896" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-wrapper" data-aos="fade-left">
+                <h3>@Lang.T("Send Us a Message", "أرسل لنا رسالة")</h3>
+                <p>@Lang.T("Fill out the form below and our team will get back to you shortly.", "املأ النموذج أدناه وسيتواصل معك فريقنا قريباً.")</p>
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> @TempData["Success"]
+                    </div>
+                }
+
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-error">
+                        <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+                    </div>
+                }
+
+                <form asp-action="Submit" method="post" data-validate>
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">@Lang.T("Full Name *", "الاسم الكامل *")</label>
+                            <input type="text" id="name" name="Name" required placeholder="@Lang.T("Enter your full name", "أدخل اسمك الكامل")">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">@Lang.T("Email Address *", "البريد الإلكتروني *")</label>
+                            <input type="email" id="email" name="Email" required placeholder="@Lang.T("Enter your email", "أدخل بريدك الإلكتروني")">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">@Lang.T("Phone Number", "رقم الهاتف")</label>
+                            <input type="tel" id="phone" name="Phone" placeholder="@Lang.T("Enter your phone number", "أدخل رقم هاتفك")">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">@Lang.T("Company Name", "اسم الشركة")</label>
+                            <input type="text" id="company" name="Company" placeholder="@Lang.T("Enter your company name", "أدخل اسم شركتك")">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">@Lang.T("Service of Interest", "الخدمة المهتمّ بها")</label>
+                        <select id="service" name="Service">
+                            <option value="">@Lang.T("Select a service", "اختر خدمة")</option>
+                            <option value="Strategy Management">@Lang.T("Strategy Management", "إدارة الاستراتيجية")</option>
+                            <option value="Change Management">@Lang.T("Change Management", "إدارة التغيير")</option>
+                            <option value="Portfolio & Program Management">@Lang.T("Portfolio & Program Management", "إدارة المحافظ والبرامج")</option>
+                            <option value="Organizational Design">@Lang.T("Organizational Design", "التصميم المؤسسي")</option>
+                            <option value="Human Capital Development">@Lang.T("Human Capital Development", "تطوير رأس المال البشري")</option>
+                            <option value="Digital Transformation">@Lang.T("Digital Transformation", "التحوّل الرقمي")</option>
+                            <option value="Other">@Lang.T("Other", "أخرى")</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">@Lang.T("Your Message *", "رسالتك *")</label>
+                        <textarea id="message" name="Message" required placeholder="@Lang.T("Tell us about your project or inquiry...", "أخبرنا عن مشروعك أو استفسارك...")"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                        @Lang.T("Send Message", "إرسال الرسالة") <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-light" style="padding: 0;">
+    <div style="width: 100%; height: 450px; background: var(--gray-300);">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.674894584584!2d46.6752!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzQ5LjAiTiA0NsKwNDAnMzAuNyJF!5e0!3m2!1sen!2ssa!4v1234567890"
+            width="100%"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-label">@Lang.T("FAQ", "الأسئلة الشائعة")</span>
+            <h2 class="section-title">@Lang.T("Frequently Asked Questions", "الأسئلة الشائعة")</h2>
+        </div>
+        @{
+            var faqs = new List<FaqItem>
+            {
+                new(Lang.T("How do I request a consultation?", "كيف أطلب استشارة؟"),
+                    Lang.T("You can request a consultation by filling out the contact form above, calling us directly, or sending an email. Our team will respond within 24 business hours to schedule a meeting.", "يمكنك طلب استشارة بملء نموذج التواصل أعلاه، أو الاتصال بنا مباشرة، أو إرسال بريد إلكتروني. وسيردّ فريقنا خلال 24 ساعة عمل لتحديد موعد.")),
+                new(Lang.T("What industries do you serve?", "ما القطاعات التي تخدمونها؟"),
+                    Lang.T("We serve clients across all sectors including government, healthcare, education, industrial, financial services, and more. Our expertise spans multiple industries and business domains.", "نخدم عملاء في جميع القطاعات بما فيها الحكومي والرعاية الصحية والتعليم والصناعة والخدمات المالية وغيرها. وتمتدّ خبرتنا عبر قطاعات ومجالات أعمال متعددة.")),
+                new(Lang.T("How long does a typical engagement last?", "كم تستغرق مدة المشروع عادةً؟"),
+                    Lang.T("Engagement duration varies based on scope and complexity. Projects typically range from 3 months for focused initiatives to 24+ months for comprehensive transformation programs.", "تختلف مدة المشروع بحسب النطاق والتعقيد. وتتراوح المشاريع عادةً من 3 أشهر للمبادرات المركّزة إلى أكثر من 24 شهراً لبرامج التحوّل الشاملة.")),
+                new(Lang.T("Do you offer remote consulting services?", "هل تقدّمون خدمات استشارية عن بُعد؟"),
+                    Lang.T("Yes, we offer both on-site and remote consulting services. Our hybrid approach allows us to serve clients across Saudi Arabia and the region with flexibility and efficiency.", "نعم، نقدّم خدمات استشارية حضورياً وعن بُعد. ويتيح لنا نهجنا الهجين خدمة العملاء في أنحاء المملكة والمنطقة بمرونة وكفاءة."))
+            };
+        }
+        <div class="services-grid" style="grid-template-columns: 1fr 1fr; gap: 30px;">
+            @for (var i = 0; i < faqs.Count; i++)
+            {
+                <div class="service-card" data-aos="fade-up" data-aos-delay="@(i * 100)" style="padding: 30px;">
+                    <h4 style="margin-bottom: 12px; color: var(--primary);">
+                        <i class="fas fa-question-circle" style="@(Lang.IsArabic ? "margin-left: 8px;" : "margin-right: 8px;")"></i>
+                        @faqs[i].Question
+                    </h4>
+                    <p style="margin: 0;">
+                        @faqs[i].Answer
+                    </p>
+                </div>
+            }
+        </div>
+        <partial name="_FaqSchema" model="faqs" />
+    </div>
+</section>
+

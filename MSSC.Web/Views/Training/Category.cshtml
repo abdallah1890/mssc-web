@@ -1,0 +1,228 @@
+@model MSSC.Web.Models.TrainingCategory
+@{
+}
+
+<section class="page-hero category-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            @if (!string.IsNullOrEmpty(Model.Icon))
+            {
+                <div class="hero-icon">
+                    <i class="fas @Model.Icon"></i>
+                </div>
+            }
+            <h1>@(Lang.IsArabic ? $"تدريب {Model.TitleLocalized}" : $"{Model.Title} Training")</h1>
+            <p class="lead">@Model.ShortDescriptionLocalized</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item"><a href="/training">@Lang.T("Training Center", "مركز التدريب")</a></li>
+                    <li class="breadcrumb-item"><a href="/training/programs">@Lang.T("Programs", "البرامج")</a></li>
+                    <li class="breadcrumb-item active">@Model.TitleLocalized</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                @if (Lang.IsArabic)
+                {
+                    <h2 class="section-title">عن تدريب <span class="text-primary">@Model.TitleLocalized</span></h2>
+                }
+                else
+                {
+                    <h2 class="section-title">About <span class="text-primary">@Model.Title</span> Training</h2>
+                }
+                <p class="lead">@Model.DescriptionLocalized</p>
+                <div class="mt-4">
+                    <a href="/training/register" class="btn btn-primary">
+                        <i class="fas fa-calendar-plus me-2"></i>@Lang.T("Register Now", "سجّل الآن")
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <img src="@Model.ImageUrl" alt="@Model.TitleLocalized" class="img-fluid rounded shadow" onerror="this.src='/images/training-default.jpg'">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">برامج <span class="text-primary">@Model.TitleLocalized</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">@Model.Title <span class="text-primary">Programs</span></h2>
+            }
+            <p class="section-subtitle">@Model.Programs.Count @Lang.T("programs available in this category", "برنامج متاح في هذه الفئة")</p>
+        </div>
+
+        <div class="programs-grid">
+            @foreach (var program in Model.Programs)
+            {
+                <div class="program-card" data-aos="fade-up">
+                    <div class="program-image">
+                        <img src="@(!string.IsNullOrEmpty(program.ImageUrl) ? program.ImageUrl : Model.ImageUrl)" alt="@program.TitleLocalized" onerror="this.src='/images/training-default.jpg'">
+                        @if (program.CertificationOffered)
+                        {
+                            <span class="cert-badge"><i class="fas fa-certificate"></i> @Lang.T("Certified", "معتمد")</span>
+                        }
+                        @if (program.IsFeatured)
+                        {
+                            <span class="featured-badge"><i class="fas fa-star"></i> @Lang.T("Featured", "مميّز")</span>
+                        }
+                    </div>
+                    <div class="program-content">
+                        <h4>@program.TitleLocalized</h4>
+                        <p>@program.ShortDescriptionLocalized</p>
+                        <div class="program-details">
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>@program.DurationDays @Lang.T("Days", "يوم")</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-signal"></i>
+                                <span>@program.LevelLocalized</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>@program.DeliveryMethod</span>
+                            </div>
+                        </div>
+                        <div class="program-actions">
+                            <a href="/training/programs/@Model.Slug/@program.Slug" class="btn btn-primary">@Lang.T("Learn More", "اعرف المزيد")</a>
+                            <a href="/training/register?programId=@program.Id" class="btn btn-outline-primary">@Lang.T("Register", "سجّل")</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .programs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    .program-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .program-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .program-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .program-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .cert-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #28a745;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+    }
+
+    .featured-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: #ffc107;
+        color: #333;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+    }
+
+    .program-content {
+        padding: 25px;
+    }
+
+    .program-content h4 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .program-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 20px 0;
+        padding: 15px 0;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .detail-item i {
+        color: var(--primary);
+    }
+
+    .program-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .cta-section {
+        background: var(--primary);
+        color: white;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    @@media (max-width: 768px) {
+        .programs-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .program-actions {
+            flex-direction: column;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+}

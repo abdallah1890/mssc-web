@@ -1,0 +1,924 @@
+@{
+    var sessionList = ViewBag.SessionList as List<MSSC.Web.Models.TrainingSession> ?? new List<MSSC.Web.Models.TrainingSession>();
+    var courseOptions = ViewBag.CourseOptions as List<MSSC.Web.Models.CourseOption> ?? new List<MSSC.Web.Models.CourseOption>();
+    var selectedSessionValue = ViewBag.SelectedSessionValue as string;
+    var selectedCourseValue = ViewBag.SelectedCourseValue as string;
+    var portalMode = (bool)(ViewBag.PortalMode ?? false);
+}
+
+<section class="page-hero register-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>@Lang.T("Register for Training", "التسجيل في التدريب")</h1>
+            <p class="lead">@Lang.T("Secure your seat in our professional development programs", "احجز مقعدك في برامجنا للتطوير المهني")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item"><a href="/training">@Lang.T("Training Center", "مركز التدريب")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Register", "التسجيل")</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8" data-aos="fade-right">
+                <div class="registration-form-card">
+                    <h2>@Lang.T("Registration Form", "نموذج التسجيل")</h2>
+                    <p class="form-subtitle">@Lang.T("Please fill out the form below to register for training. Our team will contact you within 24 hours to confirm your registration.", "يُرجى تعبئة النموذج أدناه للتسجيل في التدريب. وسيتواصل معك فريقنا خلال 24 ساعة لتأكيد تسجيلك.")</p>
+
+                    <form id="registrationForm" class="registration-form">
+                        <div class="form-section">
+                            <h3><i class="fas fa-graduation-cap"></i> @Lang.T("Training Selection", "اختيار التدريب")</h3>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="program">@Lang.T("Select Program *", "اختر البرنامج *")</label>
+                                        <select id="program" name="program" class="form-control" required>
+                                            <option value="">@Lang.T("Choose a program...", "اختر برنامجاً...")</option>
+                                            @foreach (var course in courseOptions)
+                                            {
+                                                if (selectedCourseValue == course.Id)
+                                                {
+                                                    <option value="@course.Id" selected>@course.TitleLocalized</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@course.Id">@course.TitleLocalized</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="session">@Lang.T("Select Session", "اختر الجلسة")</label>
+                                        <select id="session" name="session" class="form-control">
+                                            <option value="">@Lang.T("Choose a session (optional)...", "اختر جلسة (اختياري)...")</option>
+                                            @foreach (var session in sessionList)
+                                            {
+                                                if (selectedSessionValue == session.PortalSessionId)
+                                                {
+                                                    <option value="@session.PortalSessionId" data-program-id="@session.PortalCourseId" data-price="@session.Price.ToString(System.Globalization.CultureInfo.InvariantCulture)" selected>@session.ProgramTitleLocalized - @session.StartDate.ToString("MMM dd, yyyy") (@session.LocationLocalized)</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@session.PortalSessionId" data-program-id="@session.PortalCourseId" data-price="@session.Price.ToString(System.Globalization.CultureInfo.InvariantCulture)">@session.ProgramTitleLocalized - @session.StartDate.ToString("MMM dd, yyyy") (@session.LocationLocalized)</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> @Lang.T("Your Details", "بياناتك")</h3>
+
+                            <div class="form-group">
+                                <label for="fullName">@Lang.T("Full Name *", "الاسم الكامل *")</label>
+                                <input type="text" id="fullName" name="fullName" class="form-control" required>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">@Lang.T("Email Address *", "البريد الإلكتروني *")</label>
+                                        <input type="email" id="email" name="email" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phone">@Lang.T("Phone Number *", "رقم الجوال *")</label>
+                                        <input type="tel" id="phone" name="phone" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="consent-check" for="terms">
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    <span class="consent-text">
+                                        @Lang.T("I agree to the", "أوافق على") <a href="/terms" target="_blank">@Lang.T("Terms & Conditions", "الشروط والأحكام")</a> @Lang.T("and", "و") <a href="/privacy" target="_blank">@Lang.T("Privacy Policy", "سياسة الخصوصية")</a> <span class="required-mark">*</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-money-check-alt"></i> @Lang.T("Payment", "الدفع")</h3>
+
+                            <div class="pay-mode-options">
+                                <label class="pay-mode-card">
+                                    <input type="radio" name="payMode" value="individual" checked>
+                                    <span class="pay-mode-body">
+                                        <span class="pay-mode-title">@Lang.T("Pay now (individual)", "الدفع الآن (كفرد)")</span>
+                                        <span class="pay-mode-desc">@Lang.T("Pay online securely and reserve your seat instantly.", "ادفع أونلاين بأمان واحجز مقعدك فوراً.")</span>
+                                    </span>
+                                </label>
+                                <label class="pay-mode-card">
+                                    <input type="radio" name="payMode" value="company">
+                                    <span class="pay-mode-body">
+                                        <span class="pay-mode-title">@Lang.T("I belong to a company (pay later)", "تابع لشركة (الدفع لاحقاً)")</span>
+                                        <span class="pay-mode-desc">@Lang.T("Your company will be invoiced. Our team will contact you.", "ستُفوتَر شركتك. سيتواصل معك فريقنا.")</span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="pay-method-group mt-3" id="payMethodGroup">
+                                <label class="pay-method-label">@Lang.T("Payment method", "طريقة الدفع")</label>
+                                <div class="pay-method-options">
+                                    <label class="pay-method-card">
+                                        <input type="radio" name="payMethod" value="card" checked>
+                                        <span class="pay-method-body">
+                                            <span class="pay-method-title">@Lang.T("Card / mada", "بطاقة / مدى")</span>
+                                            <span class="pay-method-logos">
+                                                <img src="~/images/payment/mada.svg" asp-append-version="true" alt="mada" height="20">
+                                                <img src="~/images/payment/visa.svg" asp-append-version="true" alt="Visa" height="20">
+                                                <img src="~/images/payment/mastercard.svg" asp-append-version="true" alt="Mastercard" height="20">
+                                                <img src="~/images/payment/applepay.svg" asp-append-version="true" alt="Apple Pay" height="20">
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="pay-method-card">
+                                        <input type="radio" name="payMethod" value="tamara">
+                                        <span class="pay-method-body">
+                                            <span class="pay-method-title">@Lang.T("Split with Tamara", "قسّمها مع تمارا")</span>
+                                            <span class="pay-method-logos">
+                                                <img src="~/images/payment/tamara.svg" asp-append-version="true" alt="Tamara" height="22">
+                                            </span>
+                                            <span class="pay-method-desc">@Lang.T("Pay in instalments, Sharia-compliant, no interest.", "قسّط على دفعات، متوافق مع الشريعة، بدون فوائد.")</span>
+                                        </span>
+                                    </label>
+                                    <label class="pay-method-card">
+                                        <input type="radio" name="payMethod" value="tabby">
+                                        <span class="pay-method-body">
+                                            <span class="pay-method-title">@Lang.T("Split with Tabby", "قسّمها مع تابي")</span>
+                                            <span class="pay-method-logos">
+                                                <img src="~/images/payment/tabby.svg" asp-append-version="true" alt="Tabby" height="22">
+                                            </span>
+                                            <span class="pay-method-desc">@Lang.T("Pay in 4, Sharia-compliant, no interest.", "قسّمها على 4 دفعات، متوافق مع الشريعة، بدون فوائد.")</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-3" id="companyNameGroup" style="display:none;">
+                                <label for="companyName">@Lang.T("Company Name *", "اسم الشركة *")</label>
+                                <input type="text" id="companyName" name="companyName" class="form-control">
+                            </div>
+
+                            <div class="fee-hint" id="feeHint" style="display:none;">
+                                <i class="fas fa-tag"></i> <span id="feeHintText"></span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-submit">
+                            <i class="fas fa-paper-plane me-2"></i><span class="submit-label">@Lang.T("Submit Registration", "إرسال التسجيل")</span>
+                        </button>
+                    </form>
+
+                    <div id="paymentPanel" class="payment-panel" style="display:none;">
+                        <h3 class="payment-panel-title"><i class="fas fa-lock"></i> @Lang.T("Secure Payment", "دفع آمن")</h3>
+                        <p class="payment-amount-line" id="paymentAmountLine"></p>
+                        <div class="mysr-form"></div>
+                        <p class="payment-secure-note">@Lang.T("Payments are processed securely by Moyasar. Your card details never touch our servers.", "تتم معالجة المدفوعات بأمان عبر ميسّر. لا تمر بيانات بطاقتك عبر خوادمنا.")</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4" data-aos="fade-left">
+                <div class="registration-sidebar">
+                    <div class="sidebar-card">
+                        <h3>@Lang.T("Need Help?", "تحتاج مساعدة؟")</h3>
+                        <p>@Lang.T("Our team is here to assist you with the registration process.", "فريقنا هنا لمساعدتك في عملية التسجيل.")</p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span class="ltr-text">+966 54 361 8430</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span class="ltr-text">training@mssc.com.sa</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-clock"></i>
+                                <span>@Lang.T("Sun-Thu: 8am - 5pm", "الأحد-الخميس: 8 صباحاً - 5 مساءً")</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card mt-4">
+                        <h3>@Lang.T("What's Included", "ما يشمله")</h3>
+                        <ul class="included-list">
+                            <li><i class="fas fa-check-circle"></i> @Lang.T("Course materials & handouts", "مواد الدورة والنشرات")</li>
+                            <li><i class="fas fa-check-circle"></i> @Lang.T("Certificate of completion", "شهادة إتمام")</li>
+                            <li><i class="fas fa-check-circle"></i> @Lang.T("Refreshments & lunch", "مرطبات وغداء")</li>
+                            <li><i class="fas fa-check-circle"></i> @Lang.T("Post-training support", "دعم بعد التدريب")</li>
+                            <li><i class="fas fa-check-circle"></i> @Lang.T("Digital resources access", "وصول للموارد الرقمية")</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card mt-4">
+                        <h3>@Lang.T("Cancellation Policy", "سياسة الإلغاء")</h3>
+                        <ul class="policy-list">
+                            <li><strong>@Lang.T("14+ days:", "14 يوماً فأكثر:")</strong> @Lang.T("Full refund", "استرداد كامل")</li>
+                            <li><strong>@Lang.T("7-13 days:", "7-13 يوماً:")</strong> @Lang.T("50% refund", "استرداد 50%")</li>
+                            <li><strong>@Lang.T("Less than 7 days:", "أقل من 7 أيام:")</strong> @Lang.T("No refund (transfer available)", "بلا استرداد (التحويل متاح)")</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.18.0/moyasar.css">
+<style>
+    .registration-form-card, .registration-sidebar {
+        --border-color: #dde3ea;
+        --primary-rgb: 15, 76, 129;
+        --text-dark: #1e3a5f;
+        --text-muted: #6b7a90;
+    }
+
+    .registration-form-card {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .registration-form-card h2 {
+        margin-bottom: 10px;
+    }
+
+    .form-subtitle {
+        color: var(--text-muted);
+        margin-bottom: 30px;
+    }
+
+    .form-section {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .form-section:last-of-type {
+        border-bottom: none;
+    }
+
+    .form-section h3 {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--primary);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--text-dark);
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+    }
+
+    .form-group label.consent-check {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        background: var(--bg-light, #f8f9fa);
+        cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease;
+        margin-bottom: 0;
+        font-weight: 400;
+    }
+
+    .form-group label.consent-check:hover {
+        border-color: var(--primary);
+    }
+
+    .form-group label.consent-check:has(input:checked) {
+        border-color: var(--primary);
+        background: rgba(var(--primary-rgb), 0.05);
+    }
+
+    .consent-check input[type="checkbox"] {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        margin-top: 1px;
+        accent-color: var(--primary);
+        cursor: pointer;
+    }
+
+    .consent-text {
+        font-size: 0.95rem;
+        line-height: 1.55;
+        color: var(--text-dark);
+    }
+
+    .consent-text a {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+
+    .consent-text .required-mark {
+        color: #dc3545;
+        font-weight: 700;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .sidebar-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .sidebar-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .contact-info {
+        margin-top: 20px;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .contact-item:last-child {
+        border-bottom: none;
+    }
+
+    .contact-item i {
+        color: var(--primary);
+        width: 20px;
+    }
+
+    .included-list, .policy-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .included-list li {
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .included-list li:last-child {
+        border-bottom: none;
+    }
+
+    .included-list i {
+        color: #28a745;
+    }
+
+    .policy-list li {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .policy-list li:last-child {
+        border-bottom: none;
+    }
+
+    .pay-mode-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .pay-mode-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease;
+        margin-bottom: 0;
+        font-weight: 400;
+    }
+
+    .pay-mode-card:hover { border-color: var(--primary); }
+
+    .pay-mode-card:has(input:checked) {
+        border-color: var(--primary);
+        background: rgba(var(--primary-rgb), 0.05);
+    }
+
+    .pay-mode-card input[type="radio"] {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+        accent-color: var(--primary);
+        cursor: pointer;
+    }
+
+    .pay-mode-body { display: flex; flex-direction: column; gap: 4px; }
+    .pay-mode-title { font-weight: 600; color: var(--text-dark); }
+    .pay-mode-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+
+    .pay-method-label { display: block; font-weight: 600; color: var(--text-dark); margin-bottom: 10px; }
+    .pay-method-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+
+    .pay-method-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease;
+        margin-bottom: 0;
+        font-weight: 400;
+    }
+
+    .pay-method-card:hover { border-color: var(--primary); }
+
+    .pay-method-card:has(input:checked) {
+        border-color: var(--primary);
+        background: rgba(var(--primary-rgb), 0.05);
+    }
+
+    .pay-method-card input[type="radio"] {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+        accent-color: var(--primary);
+        cursor: pointer;
+    }
+
+    .pay-method-body { display: flex; flex-direction: column; gap: 4px; }
+    .pay-method-title { font-weight: 600; color: var(--text-dark); }
+    .pay-method-title i { color: var(--primary); }
+    .pay-method-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+
+    .pay-method-logos { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    .pay-method-logos img {
+        height: 20px;
+        width: auto;
+        display: block;
+        padding: 3px 6px;
+        background: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+    }
+
+    .fee-hint {
+        margin-top: 16px;
+        padding: 12px 16px;
+        border-radius: 8px;
+        background: rgba(var(--primary-rgb), 0.06);
+        color: var(--primary);
+        font-weight: 600;
+    }
+
+    .payment-panel { margin-top: 10px; }
+
+    .payment-panel-title {
+        font-size: 1.15rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--primary);
+        margin-bottom: 8px;
+    }
+
+    .payment-amount-line {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 20px;
+    }
+
+    .payment-secure-note {
+        margin-top: 18px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        text-align: center;
+    }
+
+    .mysr-form { min-height: 60px; }
+
+    @@media (max-width: 768px) {
+        .registration-form-card {
+            padding: 25px;
+        }
+        .pay-mode-options { grid-template-columns: 1fr; }
+        .pay-method-options { grid-template-columns: 1fr; }
+    }
+</style>
+}
+
+@section Scripts {
+<script src="https://cdn.moyasar.com/mpf/1.18.0/moyasar.js"></script>
+<script>
+(function() {
+    var programSelect = document.getElementById('program');
+    var sessionSelect = document.getElementById('session');
+    var sessionOptions = Array.from(sessionSelect.querySelectorAll('option[data-program-id]'));
+
+    function filterSessions() {
+        var selectedProgramId = programSelect.value;
+        sessionSelect.value = '';
+
+        sessionOptions.forEach(function(opt) {
+            if (!selectedProgramId || opt.getAttribute('data-program-id') === selectedProgramId) {
+                opt.style.display = '';
+                opt.disabled = false;
+            } else {
+                opt.style.display = 'none';
+                opt.disabled = true;
+            }
+        });
+    }
+
+    programSelect.addEventListener('change', filterSessions);
+
+    function syncProgramFromSession() {
+        var opt = sessionSelect.options[sessionSelect.selectedIndex];
+        var pid = opt && opt.getAttribute('data-program-id');
+        if (pid && programSelect.value !== pid) {
+            var keep = sessionSelect.value;
+            programSelect.value = pid;
+            filterSessions();
+            sessionSelect.value = keep;
+        }
+    }
+
+    sessionSelect.addEventListener('change', syncProgramFromSession);
+
+    if (sessionSelect.value) {
+        syncProgramFromSession();
+    } else if (programSelect.value) {
+        filterSessions();
+    }
+})();
+
+const HSTC_API_URL = '@(ViewBag.HstcApiUrl ?? "http://localhost:5050")';
+const PORTAL_MODE = @(portalMode ? "true" : "false");
+const CULTURE = (document.documentElement.lang || 'ar').startsWith('ar') ? 'ar' : 'en';
+
+const T = {
+    submitting: '@Lang.T("Processing...", "جارٍ المعالجة...")',
+    payNow: '@Lang.T("Continue to Payment", "المتابعة للدفع")',
+    submitReg: '@Lang.T("Submit Registration", "إرسال التسجيل")',
+    companyRequired: '@Lang.T("Please enter your company name.", "يُرجى إدخال اسم الشركة.")',
+    fee: '@Lang.T("Course fee:", "رسوم الدورة:")',
+    amountDue: '@Lang.T("Amount due:", "المبلغ المستحق:")',
+    regFailed: '@Lang.T("Registration failed:", "فشل التسجيل:")',
+    payFailed: '@Lang.T("Could not start payment:", "تعذّر بدء الدفع:")',
+    payLibFailed: '@Lang.T("The payment library failed to load. Please disable ad-blockers and try again.", "تعذّر تحميل مكتبة الدفع. يُرجى تعطيل مانع الإعلانات والمحاولة مجدداً.")',
+    unknown: '@Lang.T("unknown error", "خطأ غير معروف")'
+};
+
+const form = document.getElementById('registrationForm');
+const companyGroup = document.getElementById('companyNameGroup');
+const companyInput = document.getElementById('companyName');
+const feeHint = document.getElementById('feeHint');
+const feeHintText = document.getElementById('feeHintText');
+const payMethodGroup = document.getElementById('payMethodGroup');
+const submitBtn = form.querySelector('button[type="submit"]');
+const sessionSel = document.getElementById('session');
+const programSel = document.getElementById('program');
+
+function currentPayMode() {
+    return form.querySelector('input[name="payMode"]:checked')?.value || 'individual';
+}
+
+function currentPayMethod() {
+    return form.querySelector('input[name="payMethod"]:checked')?.value || 'card';
+}
+
+function labelForMode() {
+    return currentPayMode() === 'company' ? T.submitReg : T.payNow;
+}
+
+function selectedSessionPrice() {
+    const opt = sessionSel.options[sessionSel.selectedIndex];
+    const p = opt ? parseFloat(opt.getAttribute('data-price')) : NaN;
+    return (p && p > 0) ? p : 0;
+}
+
+function fmtSar(n) {
+    const s = new Intl.NumberFormat(CULTURE === 'ar' ? 'ar-SA' : 'en-US',
+        { minimumFractionDigits: 0, maximumFractionDigits: 2 }).format(n);
+    return s + ' ' + (CULTURE === 'ar' ? 'ر.س' : 'SAR');
+}
+
+function refreshPayUi() {
+    const isCompany = currentPayMode() === 'company';
+    companyGroup.style.display = isCompany ? '' : 'none';
+    companyInput.required = isCompany;
+    if (payMethodGroup) payMethodGroup.style.display = isCompany ? 'none' : '';
+
+    const lbl = submitBtn.querySelector('.submit-label');
+    if (lbl) lbl.textContent = labelForMode();
+
+    const price = selectedSessionPrice();
+    if (!isCompany && price > 0) {
+        feeHint.style.display = '';
+        feeHintText.textContent = T.fee + ' ' + fmtSar(price);
+    } else {
+        feeHint.style.display = 'none';
+    }
+}
+
+form.querySelectorAll('input[name="payMode"]').forEach(r => r.addEventListener('change', refreshPayUi));
+sessionSel.addEventListener('change', refreshPayUi);
+programSel.addEventListener('change', refreshPayUi);
+refreshPayUi();
+
+function showError(msg) {
+    const existing = form.querySelector('.alert-danger');
+    if (existing) existing.remove();
+    const box = document.createElement('div');
+    box.className = 'alert alert-danger mt-3';
+    box.textContent = msg;
+    submitBtn.parentNode.insertBefore(box, submitBtn);
+}
+
+function setBusy(busy) {
+    submitBtn.disabled = busy;
+    submitBtn.innerHTML = busy
+        ? '<i class="fas fa-spinner fa-spin"></i> ' + T.submitting
+        : '<i class="fas fa-paper-plane me-2"></i><span class="submit-label">' + labelForMode() + '</span>';
+}
+
+async function createRegistration() {
+    const selectedProgram = programSel.options[programSel.selectedIndex]?.text || '';
+    const selectedSession = sessionSel.options[sessionSel.selectedIndex]?.text || '';
+    const mode = currentPayMode();
+
+    const fullName = form.fullName.value.trim();
+    const spaceIdx = fullName.indexOf(' ');
+    const firstName = spaceIdx > 0 ? fullName.slice(0, spaceIdx) : fullName;
+    const lastName = spaceIdx > 0 ? fullName.slice(spaceIdx + 1).trim() : '';
+
+    const payload = {
+        firstName: firstName,
+        lastName: lastName,
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        companyName: mode === 'company' ? companyInput.value.trim() : null,
+        notes: [
+            'Program: ' + selectedProgram,
+            selectedSession ? 'Session: ' + selectedSession : null,
+            mode === 'company' ? 'Payment: Pay later via company' : 'Payment: Online (individual)'
+        ].filter(Boolean).join('\n'),
+        preferredLanguage: CULTURE,
+        type: 1,
+        source: 'MSSC.Web/Register',
+        suppressConfirmationEmail: mode === 'individual'
+    };
+
+    if (PORTAL_MODE) {
+        payload.courseId = programSel.value || null;
+        payload.sessionId = sessionSel.value || null;
+    }
+
+    const res = await fetch(HSTC_API_URL + '/api/public/registrations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
+    const data = await res.json().catch(() => null);
+    if (!res.ok || !data?.isSuccessful) {
+        throw new Error(data?.errorEntry?.errorMessage || ('Server returned ' + res.status));
+    }
+    return data.resultObject;
+}
+
+let cachedReg = null;
+function registrationSignature() {
+    return [
+        programSel.value, sessionSel.value,
+        form.fullName.value.trim(), form.email.value.trim(), form.phone.value.trim(),
+        currentPayMode(),
+        currentPayMode() === 'company' ? companyInput.value.trim() : ''
+    ].join('|');
+}
+async function ensureRegistration() {
+    const sig = registrationSignature();
+    if (cachedReg && cachedReg.sig === sig && cachedReg.id) return { id: cachedReg.id };
+    const reg = await createRegistration();
+    cachedReg = { sig: sig, id: reg && reg.id };
+    return reg;
+}
+
+function showRegistrationSuccess(refId) {
+    form.innerHTML = `
+        <div class="success-message text-center py-5">
+            <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+            <h3 class="mt-4">@Lang.T("Registration Submitted!", "تم إرسال تسجيلك!")</h3>
+            <p class="text-muted">@Lang.T("Thank you for your registration. Our team will contact you within 24 hours to confirm your enrollment.", "شكراً لتسجيلك. سيتواصل معك فريقنا خلال 24 ساعة لتأكيد تسجيلك.")</p>
+            <p class="text-muted small">@Lang.T("Reference:", "المرجع:") ${refId || ''}</p>
+            <a href="/training" class="btn btn-primary mt-3">@Lang.T("Back to Training Center", "العودة إلى مركز التدريب")</a>
+        </div>
+    `;
+    form.style.display = '';
+}
+
+async function startPayment(registrationId) {
+    const res = await fetch(HSTC_API_URL + '/api/public/payments/create-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ registrationId: registrationId })
+    });
+    const data = await res.json().catch(() => null);
+    if (!res.ok || !data?.isSuccessful) {
+        const err = new Error(data?.errorEntry?.errorMessage || ('Server returned ' + res.status));
+        err.code = data?.errorEntry?.errorCode;
+        throw err;
+    }
+    const intent = data.resultObject;
+
+    if (!intent.requiresPayment) {
+        showRegistrationSuccess(registrationId);
+        return;
+    }
+
+    if (typeof Moyasar === 'undefined' || !Moyasar || typeof Moyasar.init !== 'function') {
+        throw new Error(T.payLibFailed);
+    }
+
+    const panel = document.getElementById('paymentPanel');
+    document.getElementById('paymentAmountLine').textContent = T.amountDue + ' ' + fmtSar(intent.amount);
+    panel.style.display = '';
+
+    const initConfig = {
+        element: '.mysr-form',
+        amount: intent.amountMinor,
+        currency: intent.currency,
+        description: intent.description,
+        publishable_api_key: intent.publishableKey,
+        callback_url: window.location.origin + '/training/payment/callback',
+        methods: (intent.methods && intent.methods.length) ? intent.methods : ['creditcard'],
+        supported_networks: intent.supportedNetworks,
+        language: CULTURE,
+        metadata: {
+            payment_id: intent.paymentId,
+            registration_id: registrationId
+        }
+    };
+
+    if (intent.applePay) {
+        initConfig.apple_pay = {
+            country: intent.applePay.country || 'SA',
+            label: intent.applePay.label || 'HSTC',
+            validate_merchant_url: intent.applePay.validateMerchantUrl
+        };
+    }
+
+    try {
+        Moyasar.init(initConfig);
+    } catch (e) {
+        panel.style.display = 'none';
+        throw new Error(T.payLibFailed);
+    }
+
+    form.style.display = 'none';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function startTamara(registrationId) {
+    const res = await fetch(HSTC_API_URL + '/api/public/payments/tamara/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ registrationId: registrationId })
+    });
+    const data = await res.json().catch(() => null);
+    if (!res.ok || !data?.isSuccessful) {
+        const err = new Error(data?.errorEntry?.errorMessage || ('Server returned ' + res.status));
+        err.code = data?.errorEntry?.errorCode;
+        throw err;
+    }
+    const result = data.resultObject;
+
+    if (!result.requiresPayment) {
+        showRegistrationSuccess(registrationId);
+        return;
+    }
+    if (!result.checkoutUrl) {
+        throw new Error(T.payFailed + ' ' + T.unknown);
+    }
+
+    window.location.href = result.checkoutUrl;
+}
+
+async function startTabby(registrationId) {
+    const res = await fetch(HSTC_API_URL + '/api/public/payments/tabby/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ registrationId: registrationId })
+    });
+    const data = await res.json().catch(() => null);
+    if (!res.ok || !data?.isSuccessful) {
+        const err = new Error(data?.errorEntry?.errorMessage || ('Server returned ' + res.status));
+        err.code = data?.errorEntry?.errorCode;
+        throw err;
+    }
+    const result = data.resultObject;
+
+    if (!result.requiresPayment) {
+        showRegistrationSuccess(registrationId);
+        return;
+    }
+    if (!result.checkoutUrl) {
+        throw new Error(T.payFailed + ' ' + T.unknown);
+    }
+
+    window.location.href = result.checkoutUrl;
+}
+
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const mode = currentPayMode();
+
+    if (mode === 'company' && !companyInput.value.trim()) {
+        showError(T.companyRequired);
+        companyInput.focus();
+        return;
+    }
+
+    const existing = form.querySelector('.alert-danger');
+    if (existing) existing.remove();
+    setBusy(true);
+
+    let stage = 'reg';
+    try {
+        const reg = await ensureRegistration();
+        if (mode === 'company') {
+            showRegistrationSuccess(reg?.id);
+            return;
+        }
+        stage = 'pay';
+        const method = currentPayMethod();
+        if (method === 'tamara') {
+            await startTamara(reg.id);
+        } else if (method === 'tabby') {
+            await startTabby(reg.id);
+        } else {
+            await startPayment(reg.id);
+        }
+    } catch (err) {
+        setBusy(false);
+        if (err && err.code === 'AlreadyEnrolled') {
+            showError(err.message);
+        } else {
+            showError((stage === 'pay' ? T.payFailed : T.regFailed) + ' ' + (err.message || T.unknown));
+        }
+    }
+});
+</script>
+}

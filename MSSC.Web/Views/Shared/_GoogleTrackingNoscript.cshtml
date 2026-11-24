@@ -1,0 +1,8 @@
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@{
+    var gtmId = MSSC.Web.Services.Tracking.Google(Configuration, Context).GtmId;
+}
+@if (gtmId.Length > 0)
+{
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=@gtmId" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+}

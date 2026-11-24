@@ -1,0 +1,167 @@
+@{
+}
+
+<section class="page-hero offers-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h1>ابدأ برؤية واضحة، <span class="text-secondary">ثم ابنِ نظامًا يدعم التنفيذ.</span></h1>
+            }
+            else
+            {
+                <h1>Start with clarity. <span class="text-secondary">Then build the system.</span></h1>
+            }
+            <p class="lead">@Lang.T("Six focused offers — each designed to address a specific institutional challenge and produce outputs your organization can implement, use, and sustain.", "ستة عروض متخصّصة — صُممت كل خدمة لمعالجة تحدٍ مؤسسي محدد وتقديم مخرجات عملية قابلة للتطبيق بما يضمن استدامة أثرها داخل مؤسستك.")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Offers", "العروض")</li>
+                </ol>
+            </nav>
+            <div class="mt-4">
+                <a href="/contact" class="btn btn-primary btn-lg">@Lang.T("Book a Discovery Call", "احجز جلسة استكشافية")</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">كل عرض. <span class="text-primary">مشروحٌ بالكامل.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Each offer. <span class="text-primary">Fully explained.</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("Each offer can be structured as a Diagnostic, Blueprint, Build & Enable, or Retainer engagement — depending on your organization's current stage and objectives.", "يمكن تنظيم كل عرض كمشروع تشخيص، أو مخطّط، أو بناء وتمكين، أو ارتباط مستمر — بحسب المرحلة الحالية لمؤسستك وأهدافها.")</p>
+        </div>
+
+        <div class="offers-grid">
+            <div class="offer-card" data-aos="fade-up">
+                <div class="offer-number">01</div>
+                <h3>@Lang.T("Institutional Readiness Diagnostic", "تشخيص الجاهزية المؤسسية")</h3>
+                <p class="offer-meta">@Lang.T("Entry Offer · 2–3 weeks", "عرض تمهيدي · 2–3 أسابيع")</p>
+                <p>@Lang.T("A structured assessment of current governance, performance, and capability maturity — delivering a clear gap map and phased roadmap before any implementation decisions are made.", "تقييم منظّم لمستوى نضج الحوكمة والأداء والقدرات الحالي — يقدّم خارطة فجوات واضحة وخارطة طريق مرحلية قبل اتخاذ أي قرارات تنفيذية.")</p>
+                <p class="offer-suitable"><strong>@Lang.T("Suitable for:", "مناسب لـ:")</strong> @Lang.T("new engagements, RFP preparation, scope clarification, and leadership alignment.", "المشاريع الجديدة، وإعداد كرّاسات الطرح (RFP)، وتوضيح النطاق، ومواءمة القيادة.")</p>
+                <ul class="offer-deliverables">
+                    <li>@Lang.T("Institutional Readiness Scorecard", "بطاقة قياس الجاهزية المؤسسية")</li>
+                    <li>@Lang.T("Gap Analysis by Pillar", "تحليل الفجوات حسب الركيزة")</li>
+                    <li>@Lang.T("Prioritized Improvement Roadmap", "خارطة طريق للتحسين مُرتَّبة حسب الأولوية")</li>
+                    <li>@Lang.T("Discovery Session Report", "تقرير الجلسة الاستكشافية")</li>
+                </ul>
+                <a href="/contact" class="btn btn-outline-primary btn-sm">@Lang.T("Request this offer", "اطلب هذا العرض")</a>
+            </div>
+
+            <div class="offer-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="offer-number">02</div>
+                <h3>@Lang.T("Governance Operating System Build", "بناء نظام تشغيل الحوكمة")</h3>
+                <p class="offer-meta">@Lang.T("4–10 weeks", "4–10 أسابيع")</p>
+                <p>@Lang.T("We design and build the governance architecture that translates policies into consistent operational practice — committee frameworks, decision rights, process structure, and accountability mechanisms.", "نُصمّم ونبني هيكل الحوكمة الذي يُترجم السياسات إلى ممارسة تشغيلية متّسقة — أطر اللجان، وصلاحيات اتخاذ القرار، وبنية العمليات، وآليات المساءلة.")</p>
+                <p class="offer-suitable"><strong>@Lang.T("Suitable for:", "مناسب لـ:")</strong> @Lang.T("organizations that need clearer accountability structures, decision-making frameworks, and operating consistency.", "المؤسسات التي تحتاج هياكل مساءلة أوضح، وأطر اتخاذ قرار، واتّساقاً تشغيلياً.")</p>
+                <ul class="offer-deliverables">
+                    <li>@Lang.T("Governance Framework Document", "وثيقة إطار الحوكمة")</li>
+                    <li>@Lang.T("Committee Structure & Terms of Reference", "هيكل اللجان واختصاصاتها")</li>
+                    <li>@Lang.T("Decision Rights & Authority Matrix", "مصفوفة صلاحيات اتخاذ القرار")</li>
+                    <li>@Lang.T("Policies & Procedures Governance Model", "نموذج حوكمة السياسات والإجراءات")</li>
+                    <li>@Lang.T("Process Architecture Overview", "نظرة عامة على بنية العمليات")</li>
+                </ul>
+                <a href="/contact" class="btn btn-outline-primary btn-sm">@Lang.T("Request this offer", "اطلب هذا العرض")</a>
+            </div>
+
+            <div class="offer-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="offer-number">03</div>
+                <h3>@Lang.T("KPI & Performance Operating System", "نظام تشغيل مؤشرات الأداء وإدارة الأداء")</h3>
+                <p class="offer-meta">@Lang.T("4–10 weeks", "4–10 أسابيع")</p>
+                <p>@Lang.T("We build a connected KPI and performance management system — from strategic objectives to operational metrics — with the review cadences, dashboards, and accountability structures that make performance management consistent and actionable.", "نبني نظاماً مترابطاً لمؤشرات الأداء وإدارة الأداء — من الأهداف الاستراتيجية إلى المقاييس التشغيلية — مع دورات المراجعة، ولوحات المعلومات، وهياكل المساءلة التي تجعل إدارة الأداء متّسقة وقابلة للتنفيذ.")</p>
+                <p class="offer-suitable"><strong>@Lang.T("Suitable for:", "مناسب لـ:")</strong> @Lang.T("organizations with KPI frameworks in place that are not being used to drive decisions.", "المؤسسات التي لديها أطر مؤشرات أداء قائمة لكنها لا تُستخدم لتوجيه القرارات.")</p>
+                <ul class="offer-deliverables">
+                    <li>@Lang.T("Strategic & Operational KPI Framework", "إطار مؤشرات الأداء الاستراتيجية والتشغيلية")</li>
+                    <li>@Lang.T("KPI Definition Library", "مكتبة تعريفات المؤشرات")</li>
+                    <li>@Lang.T("Cascading Model (Corporate → Department → Individual)", "نموذج التتالي (مؤسسي ← إدارة ← فرد)")</li>
+                    <li>@Lang.T("Performance Scorecard & Dashboard Template", "بطاقة الأداء وقالب لوحة المعلومات")</li>
+                    <li>@Lang.T("Review Cadence & Reporting Rhythm Design", "تصميم دورات المراجعة وإيقاع التقارير")</li>
+                </ul>
+                <a href="/contact" class="btn btn-outline-primary btn-sm">@Lang.T("Request this offer", "اطلب هذا العرض")</a>
+            </div>
+
+            <div class="offer-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="offer-number">04</div>
+                <h3>@Lang.T("Capability & Change Enablement Program", "برنامج تمكين القدرات والتغيير")</h3>
+                <p class="offer-meta">@Lang.T("6–16 weeks", "6–16 أسبوعاً")</p>
+                <p>@Lang.T("We design and deliver structured capability programs that build genuine internal ownership of the operating system through role-based learning pathways, enablement toolkits, and adoption plans that remain within the organization after delivery.", "نُصمّم ونُقدّم برامج قدرات منظّمة تبني ملكية داخلية حقيقية للنظام التشغيلي عبر مسارات تعلّم قائمة على الأدوار، وأدوات تمكين، وخطط تبنٍّ تبقى داخل المؤسسة بعد التسليم.")</p>
+                <p class="offer-suitable"><strong>@Lang.T("Suitable for:", "مناسب لـ:")</strong> @Lang.T("organizations where capability investment has not produced lasting behavioral change.", "المؤسسات التي لم يُنتج فيها الاستثمار في القدرات تغييراً سلوكياً دائماً.")</p>
+                <ul class="offer-deliverables">
+                    <li>@Lang.T("Competency Framework by Role", "إطار الجدارات حسب الدور")</li>
+                    <li>@Lang.T("Learning Pathway Design", "تصميم مسارات التعلّم")</li>
+                    <li>@Lang.T("Enablement Toolkits", "أدوات التمكين")</li>
+                    <li>@Lang.T("Adoption Measurement Plan", "خطة قياس التبنّي")</li>
+                    <li>@Lang.T("Coaching & Support Approach", "منهجية التدريب والدعم")</li>
+                </ul>
+                <a href="/contact" class="btn btn-outline-primary btn-sm">@Lang.T("Request this offer", "اطلب هذا العرض")</a>
+            </div>
+
+            <div class="offer-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="offer-number">05</div>
+                <h3>@Lang.T("ISO / EFQM Readiness Enablement", "تمكين الجاهزية لـ ISO / EFQM")</h3>
+                <p class="offer-meta">@Lang.T("4–12 weeks", "4–12 أسبوعاً")</p>
+                <p>@Lang.T("We prepare organizations for international management standards and excellence frameworks — including ISO 9001, EFQM, and national excellence models — with the operational depth required to sustain alignment, not just pass an audit.", "نُهيّئ المؤسسات لمعايير الإدارة الدولية وأطر التميّز — بما في ذلك ISO 9001 وEFQM ونماذج التميّز الوطنية — بالعمق التشغيلي اللازم لاستدامة المواءمة، لا لمجرد اجتياز التدقيق.")</p>
+                <p class="offer-suitable"><strong>@Lang.T("Suitable for:", "مناسب لـ:")</strong> @Lang.T("organizations pursuing certification, award submission, or ongoing standards compliance.", "المؤسسات الساعية للحصول على شهادة، أو التقدّم لجائزة، أو الامتثال المستمر للمعايير.")</p>
+                <ul class="offer-deliverables">
+                    <li>@Lang.T("Readiness Assessment Against Standard", "تقييم الجاهزية مقابل المعيار")</li>
+                    <li>@Lang.T("Documentation Alignment Plan", "خطة مواءمة الوثائق")</li>
+                    <li>@Lang.T("Internal Ownership & Responsibility Model", "نموذج الملكية والمسؤولية الداخلية")</li>
+                    <li>@Lang.T("Audit Readiness Planning", "التخطيط للجاهزية للتدقيق")</li>
+                    <li>@Lang.T("Evidence Structure & Narrative Framework", "بنية الأدلة وإطار السرد")</li>
+                </ul>
+                <a href="/contact" class="btn btn-outline-primary btn-sm">@Lang.T("Request this offer", "اطلب هذا العرض")</a>
+            </div>
+
+            <div class="offer-card offer-card-training" data-aos="fade-up" data-aos-delay="500">
+                <div class="offer-number">06</div>
+                <h3>@Lang.T("Professional Training Programs", "البرامج التدريبية الاحترافية")</h3>
+                <p class="offer-meta">@Lang.T("2–5 days per program · Open enrollment & corporate delivery", "2–5 أيام لكل برنامج · تسجيل مفتوح وتقديم مؤسسي")</p>
+                <p>@Lang.T("Structured, practical training programs in governance, KPI management, institutional performance, and capability development — built around the same frameworks your organization is implementing.", "برامج تدريبية منظّمة وعملية في الحوكمة، وإدارة مؤشرات الأداء، والأداء المؤسسي، وتطوير القدرات — مبنية على الأطر نفسها التي تطبّقها مؤسستك.")</p>
+                <p class="offer-suitable"><strong>@Lang.T("Suitable for:", "مناسب لـ:")</strong> @Lang.T("organizations equipping teams to operate the systems being built — and for professionals developing institutional capability independently.", "المؤسسات التي تُجهّز فرقها لتشغيل الأنظمة المبنية — وللمهنيين الذين يطوّرون قدراتهم المؤسسية باستقلالية.")</p>
+                <ul class="offer-deliverables">
+                    <li>@Lang.T("Governance & Decision Making", "الحوكمة واتخاذ القرار")</li>
+                    <li>@Lang.T("Performance & KPI Management", "إدارة الأداء ومؤشراته")</li>
+                    <li>@Lang.T("Institutional Capability & Change", "القدرات المؤسسية والتغيير")</li>
+                    <li>@Lang.T("Standards & Operational Excellence", "المعايير والتميّز التشغيلي")</li>
+                    <li>@Lang.T("Leadership & Institutional Readiness", "القيادة والجاهزية المؤسسية")</li>
+                </ul>
+                <a href="/training" class="btn btn-primary btn-sm">@Lang.T("Explore Training Programs", "استكشف البرامج التدريبية")</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="cta-block" data-aos="fade-up" style="text-align: center; padding: 50px 30px; max-width: 900px; margin: 0 auto; background: var(--white); border-radius: 16px;">
+            <h2 class="section-title">@Lang.T("Not sure which offer is the right starting point?", "لست متأكداً من العرض المناسب للبدء؟")</h2>
+            <p class="lead" style="margin: 18px auto 25px; max-width: 720px;">@Lang.T("The Institutional Readiness Diagnostic provides a clear, structured view of your current operating maturity and identifies which offer is the appropriate next step for your context.", "يقدّم تشخيص الجاهزية المؤسسية رؤية واضحة ومنظّمة لمستوى نضجك التشغيلي الحالي ويحدّد العرض المناسب كخطوة تالية لسياقك.")</p>
+            <a href="/contact" class="btn btn-primary btn-lg">@Lang.T("Request Diagnostic", "اطلب التشخيص")</a>
+            <a href="/contact" class="btn btn-outline-primary btn-lg ms-2">@Lang.T("Book a Discovery Call", "احجز جلسة استكشافية")</a>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .offers-hero {
+        background: linear-gradient(rgba(15, 30, 50, 0.78), rgba(10, 25, 45, 0.85)),
+                    url('/images/consulting-hero.jpg') center/cover no-repeat;
+        padding: 130px 0 56px;
+        text-align: center;
+        color: var(--white);
+    }
+
+    .offers-hero h1 { color: var(--white); margin-bottom: 14px; }
+    .offers-hero h1 .text-secondary { color: var(--secondary); }
+    .offers-hero .lead { color: rgba(255,255,255,0.85); max-width: 760px; margin: 0 auto 18px; }
+</style>
+}

@@ -1,0 +1,272 @@
+@model List<MSSC.Web.Models.Trainer>
+@{
+}
+
+<section class="page-hero trainers-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>@Lang.T("Our Expert Trainers", "مدرّبونا الخبراء")</h1>
+            <p class="lead">@Lang.T("Learn from industry professionals with extensive experience and proven expertise", "تعلّم من مهنيين في الصناعة بخبرة واسعة وكفاءة مُثبتة")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item"><a href="/training">@Lang.T("Training Center", "مركز التدريب")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Trainers", "المدرّبون")</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">تعرّف على <span class="text-primary">فريقنا</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Meet Our <span class="text-primary">Team</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("Dedicated professionals committed to your learning success", "مهنيون متفانون ملتزمون بنجاح تعلّمك")</p>
+        </div>
+
+        <div class="trainers-grid">
+            @foreach (var trainer in Model)
+            {
+                <div class="trainer-card" data-aos="fade-up">
+                    <div class="trainer-image">
+                        <img src="@trainer.ImageUrl" alt="@trainer.NameLocalized" onerror="this.src='/images/trainer-default.jpg'">
+                    </div>
+                    <div class="trainer-content">
+                        <h3>@trainer.NameLocalized</h3>
+                        <p class="trainer-title">@trainer.TitleLocalized</p>
+                        <p class="trainer-specialization">@trainer.SpecializationLocalized</p>
+                        <p class="trainer-bio">@trainer.BioLocalized</p>
+                        <div class="trainer-certifications">
+                            <h4>@Lang.T("Certifications:", "الشهادات:")</h4>
+                            <div class="cert-tags">
+                                @foreach (var cert in trainer.Certifications)
+                                {
+                                    <span class="cert-tag">@cert</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="trainer-stats">
+                            <div class="stat">
+                                <span class="stat-number">@trainer.YearsExperience+</span>
+                                <span class="stat-label">@Lang.T("Years Experience", "عاماً خبرة")</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">لماذا التعلّم <span class="text-primary">معنا</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Why Learn <span class="text-primary">With Us</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("What sets our trainers apart", "ما يُميّز مدرّبينا")</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>@Lang.T("Industry Experience", "خبرة ميدانية")</h3>
+                    <p>@Lang.T("Our trainers bring real-world experience from leading organizations across multiple sectors.", "يجلب مدرّبونا خبرة واقعية من مؤسسات رائدة عبر قطاعات متعددة.")</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>@Lang.T("Certified Professionals", "مهنيون معتمدون")</h3>
+                    <p>@Lang.T("All trainers hold internationally recognized certifications in their areas of expertise.", "يحمل جميع المدرّبين شهادات معترف بها دولياً في مجالات تخصّصهم.")</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>@Lang.T("Engaging Delivery", "تقديم تفاعلي")</h3>
+                    <p>@Lang.T("Interactive teaching methods that ensure knowledge retention and practical application.", "أساليب تدريس تفاعلية تضمن ترسيخ المعرفة والتطبيق العملي.")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .trainers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    .trainer-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .trainer-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .trainer-image {
+        height: 280px;
+        overflow: hidden;
+    }
+
+    .trainer-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .trainer-content {
+        padding: 25px;
+    }
+
+    .trainer-content h3 {
+        margin-bottom: 5px;
+        color: var(--text-dark);
+    }
+
+    .trainer-title {
+        color: var(--primary);
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .trainer-specialization {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+
+    .trainer-bio {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .trainer-certifications h4 {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 10px;
+    }
+
+    .cert-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .cert-tag {
+        display: inline-block;
+        padding: 5px 12px;
+        background: var(--bg-light);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        color: var(--text-dark);
+    }
+
+    .trainer-stats {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .stat {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .stat-label {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .feature-card {
+        text-align: center;
+        padding: 40px 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        height: 100%;
+    }
+
+    .feature-icon {
+        width: 70px;
+        height: 70px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 1.8rem;
+        color: white;
+    }
+
+    .feature-card h3 {
+        margin-bottom: 15px;
+    }
+
+    .feature-card p {
+        color: var(--text-muted);
+        margin: 0;
+    }
+
+    .cta-section {
+        background: var(--primary);
+        color: white;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    @@media (max-width: 768px) {
+        .trainers-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+}

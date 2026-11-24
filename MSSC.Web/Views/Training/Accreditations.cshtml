@@ -1,0 +1,292 @@
+@model List<MSSC.Web.Models.Accreditation>
+@{
+}
+
+<section class="page-hero accreditations-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>@Lang.T("Programs recognized by leading international and national bodies.", "برامج معترف بها من جهات دولية ووطنية رائدة.")</h1>
+            <p class="lead">@Lang.T("Accreditation anchors learning to a standard that employers, procurement teams, and senior leadership already recognize. Every MSSC program is either accredited by or developed in alignment with a recognized international or national body.", "يربط الاعتماد التعلّم بمعيار تعترف به جهات التوظيف وفرق المشتريات والقيادة العليا. وجميع برامج MSSC معتمدة من جهات دولية أو وطنية معترف بها، أو مطوّرة بما يتوافق مع معاييرها.")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item"><a href="/training">@Lang.T("Training", "التدريب")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Accreditations", "الاعتمادات")</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">أربع جهات. <span class="text-primary">معيار واحد متّسق.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Four bodies. <span class="text-primary">One consistent standard.</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("IOSH, ACMP, CPD, and TVTC — accreditations that connect learning to credentials employers and procurement teams already rely on.", "IOSH وACMP وCPD وTVTC — اعتمادات تربط التعلّم بشهادات تعتمد عليها جهات التوظيف وفرق المشتريات.")</p>
+        </div>
+
+        <div class="accreditations-list">
+            @foreach (var accreditation in Model)
+            {
+                <div class="accreditation-card" data-aos="fade-up">
+                    <div class="accreditation-logo">
+                        <img src="@accreditation.LogoUrl" alt="@accreditation.Name" onerror="this.src='/images/accreditation-default.png'">
+                    </div>
+                    <div class="accreditation-content">
+                        <h3>@accreditation.NameLocalized</h3>
+                        <p>@accreditation.DescriptionLocalized</p>
+                        @if (!string.IsNullOrEmpty(accreditation.Website))
+                        {
+                            <a href="@accreditation.Website" target="_blank" class="btn btn-outline-primary btn-sm">
+                                @Lang.T("Visit Website", "زيارة الموقع") <i class="fas fa-external-link-alt ms-2"></i>
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">اعتماد TVTC يدعم <span class="text-primary">المشتريات الحكومية.</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">TVTC accreditation supports <span class="text-primary">government procurement.</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("Facilitating the inclusion of MSSC programs in approved vendor lists and institutional training budgets.", "ييسّر إدراج برامج MSSC في قوائم المورّدين المعتمدين وميزانيات التدريب المؤسسية.")</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>@Lang.T("International Recognition", "اعتراف دولي")</h3>
+                    <p>@Lang.T("IOSH, ACMP, and CPD credentials are accepted across government and private sector organizations worldwide.", "شهادات IOSH وACMP وCPD مقبولة لدى مؤسسات القطاعين الحكومي والخاص حول العالم.")</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h3>@Lang.T("Procurement-Ready", "جاهز للمشتريات")</h3>
+                    <p>@Lang.T("TVTC registration is a requirement for inclusion in approved vendor lists for Saudi government and semi-government procurement.", "تسجيل TVTC شرط للإدراج في قوائم المورّدين المعتمدين للمشتريات الحكومية وشبه الحكومية السعودية.")</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>@Lang.T("Career Credibility", "مصداقية مهنية")</h3>
+                    <p>@Lang.T("Recognized credentials demonstrate practical capability, not just attendance — valued by employers across the Kingdom.", "الشهادات المعترف بها تُثبت قدرة عملية لا مجرد حضور — وتقدّرها جهات التوظيف في أنحاء المملكة.")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="cta-block" data-aos="fade-up" style="text-align: center; padding: 50px 30px; max-width: 900px; margin: 0 auto; background: var(--bg-light); border-radius: 16px;">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">تحتاج وثائق الاعتماد <span class="text-primary">للمشتريات؟</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Need accreditation documentation <span class="text-primary">for procurement?</span></h2>
+            }
+            <p class="lead" style="margin: 18px auto 25px; max-width: 720px;">
+                @Lang.T("All MSSC programs are TVTC-registered. Government and semi-government organizations can include these programs in approved vendor lists and institutional training budgets without requiring additional accreditation approval. For procurement documentation, contact the training team.", "جميع برامج MSSC مُسجَّلة لدى TVTC. ويمكن للجهات الحكومية وشبه الحكومية إدراج هذه البرامج في قوائم المورّدين المعتمدين وميزانيات التدريب المؤسسية دون الحاجة لموافقة اعتماد إضافية. وللحصول على وثائق المشتريات، تواصل مع فريق التدريب.")
+            </p>
+            <a href="/training/contact" class="btn btn-primary btn-lg">@Lang.T("Request Accreditation Documentation", "اطلب وثائق الاعتماد")</a>
+            <a href="/training/contact" class="btn btn-outline-primary btn-lg ms-2">@Lang.T("Contact Training Team", "تواصل مع فريق التدريب")</a>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .accreditations-list {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .accreditation-card {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .accreditation-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .accreditation-logo {
+        flex-shrink: 0;
+        width: 150px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .accreditation-logo img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .accreditation-content h3 {
+        margin-bottom: 10px;
+        color: var(--text-dark);
+    }
+
+    .accreditation-content p {
+        color: var(--text-muted);
+        margin-bottom: 20px;
+    }
+
+    .value-card {
+        text-align: center;
+        padding: 40px 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        height: 100%;
+    }
+
+    .value-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 2rem;
+        color: white;
+    }
+
+    .value-card h3 {
+        margin-bottom: 15px;
+    }
+
+    .value-card p {
+        color: var(--text-muted);
+        margin: 0;
+    }
+
+    .process-steps {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    .process-steps::before {
+        content: '';
+        position: absolute;
+        top: 50px;
+        left: 15%;
+        right: 15%;
+        height: 3px;
+        background: var(--primary);
+        opacity: 0.3;
+    }
+
+    .process-step {
+        flex: 1;
+        min-width: 200px;
+        text-align: center;
+        padding: 0 20px;
+        position: relative;
+    }
+
+    .step-icon {
+        width: 100px;
+        height: 100px;
+        background: white;
+        border: 3px solid var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--primary);
+        margin: 0 auto 25px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .process-step h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .process-step p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+    }
+
+    .cta-section {
+        background: var(--primary);
+        color: white;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    @@media (max-width: 768px) {
+        .accreditation-card {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .accreditation-logo {
+            width: 120px;
+        }
+
+        .process-steps::before {
+            display: none;
+        }
+
+        .process-step {
+            flex: 0 0 100%;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+}

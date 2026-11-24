@@ -1,0 +1,558 @@
+@{
+}
+
+<section class="page-hero delivery-hero">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>@Lang.T("Training Delivery Methods", "أساليب تقديم التدريب")</h1>
+            <p class="lead">@Lang.T("Flexible learning options designed to fit your schedule, location, and learning preferences", "خيارات تعلّم مرنة مُصمَّمة لتناسب جدولك وموقعك وتفضيلاتك في التعلّم")</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">@Lang.T("Home", "الرئيسية")</a></li>
+                    <li class="breadcrumb-item"><a href="/training">@Lang.T("Training Center", "مركز التدريب")</a></li>
+                    <li class="breadcrumb-item active">@Lang.T("Training Delivery", "أساليب التقديم")</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                @if (Lang.IsArabic)
+                {
+                    <h2 class="section-title">التعلّم <span class="text-primary">بطريقتك</span></h2>
+                }
+                else
+                {
+                    <h2 class="section-title">Learning <span class="text-primary">Your Way</span></h2>
+                }
+                <p class="lead">@Lang.T("At Horizon Solutions Training Center, we understand that every learner and organization has unique needs. That's why we offer multiple training delivery methods to ensure maximum accessibility and effectiveness.", "في مركز آفاق الحلول للتدريب، ندرك أن لكل متعلّم ومؤسسة احتياجات فريدة. لذلك نقدّم أساليب تقديم تدريب متعددة لضمان أقصى قدر من الوصول والفعالية.")</p>
+                <p>@Lang.T("Whether you prefer the immersive experience of classroom training, the flexibility of virtual learning, or a customized blend of both, we have the right solution for you.", "سواء كنت تفضّل تجربة التدريب الحضوري الغامرة، أو مرونة التعلّم الافتراضي، أو مزيجاً مخصّصاً منهما، لدينا الحل المناسب لك.")</p>
+                <div class="delivery-features mt-4">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle text-primary"></i>
+                        <span>@Lang.T("Same quality content across all formats", "محتوى بالجودة نفسها عبر جميع الصيغ")</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle text-primary"></i>
+                        <span>@Lang.T("Expert instructors for every session", "مدرّبون خبراء لكل جلسة")</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle text-primary"></i>
+                        <span>@Lang.T("Interactive and engaging experiences", "تجارب تفاعلية وجاذبة")</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle text-primary"></i>
+                        <span>@Lang.T("Comprehensive learning materials", "مواد تعليمية شاملة")</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <img src="/images/training-delivery.jpg" alt="@Lang.T("Training Delivery Methods", "أساليب تقديم التدريب")" class="img-fluid rounded shadow" onerror="this.src='/images/training-default.jpg'">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">أساليب <span class="text-primary">التقديم</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Our Delivery <span class="text-primary">Methods</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("Choose the format that works best for you", "اختر الصيغة الأنسب لك")</p>
+        </div>
+
+        <div class="delivery-methods-grid">
+            <div class="delivery-method-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="method-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3>@Lang.T("Classroom Training", "التدريب الحضوري")</h3>
+                <p class="method-description">@Lang.T("Traditional face-to-face learning at our modern training facilities in Riyadh, offering hands-on experience and direct interaction with instructors.", "تعلّم حضوري تقليدي في مرافق التدريب الحديثة لدينا في الرياض، يوفّر خبرة عملية وتفاعلاً مباشراً مع المدرّبين.")</p>
+                <div class="method-features">
+                    <h4>@Lang.T("Key Benefits:", "أبرز المزايا:")</h4>
+                    <ul>
+                        <li><i class="fas fa-users"></i> @Lang.T("Direct interaction with instructors and peers", "تفاعل مباشر مع المدرّبين والزملاء")</li>
+                        <li><i class="fas fa-hands-helping"></i> @Lang.T("Hands-on exercises and group activities", "تمارين عملية وأنشطة جماعية")</li>
+                        <li><i class="fas fa-comments"></i> @Lang.T("Immediate feedback and Q&A", "ملاحظات فورية وأسئلة وأجوبة")</li>
+                        <li><i class="fas fa-network-wired"></i> @Lang.T("Networking opportunities", "فرص للتواصل المهني")</li>
+                        <li><i class="fas fa-coffee"></i> @Lang.T("Refreshments and learning materials included", "تشمل المرطبات والمواد التعليمية")</li>
+                    </ul>
+                </div>
+                <div class="method-details">
+                    <div class="detail-item">
+                        <span class="label">@Lang.T("Class Size:", "حجم المجموعة:")</span>
+                        <span class="value">@Lang.T("10-20 participants", "10-20 مشاركاً")</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">@Lang.T("Location:", "الموقع:")</span>
+                        <span class="value">@Lang.T("Riyadh Training Center", "مركز الرياض للتدريب")</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="delivery-method-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="method-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>@Lang.T("Virtual Training", "التدريب الافتراضي")</h3>
+                <p class="method-description">@Lang.T("Live, instructor-led online sessions that bring the classroom experience to your location, with full interactivity and engagement.", "جلسات مباشرة عبر الإنترنت بقيادة مدرّب تنقل تجربة القاعة إلى موقعك، بتفاعل ومشاركة كاملين.")</p>
+                <div class="method-features">
+                    <h4>@Lang.T("Key Benefits:", "أبرز المزايا:")</h4>
+                    <ul>
+                        <li><i class="fas fa-globe"></i> @Lang.T("Learn from anywhere in the world", "تعلّم من أي مكان في العالم")</li>
+                        <li><i class="fas fa-video"></i> @Lang.T("Live video conferencing with HD quality", "اجتماعات فيديو مباشرة بجودة عالية")</li>
+                        <li><i class="fas fa-poll"></i> @Lang.T("Interactive polls, quizzes, and breakout rooms", "استطلاعات واختبارات تفاعلية وغرف فرعية")</li>
+                        <li><i class="fas fa-file-video"></i> @Lang.T("Session recordings for review", "تسجيلات الجلسات للمراجعة")</li>
+                        <li><i class="fas fa-money-bill-wave"></i> @Lang.T("No travel costs or time", "بلا تكاليف أو وقت سفر")</li>
+                    </ul>
+                </div>
+                <div class="method-details">
+                    <div class="detail-item">
+                        <span class="label">@Lang.T("Platform:", "المنصة:")</span>
+                        <span class="value">Zoom / Microsoft Teams</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">@Lang.T("Requirements:", "المتطلبات:")</span>
+                        <span class="value">@Lang.T("Stable internet connection", "اتصال إنترنت مستقر")</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="delivery-method-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="method-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <h3>@Lang.T("Hybrid / Blended Learning", "التعلّم المدمج")</h3>
+                <p class="method-description">@Lang.T("The best of both worlds - combining self-paced online modules with live instructor-led sessions for optimal learning outcomes.", "الأفضل من العالمين — يجمع وحدات ذاتية عبر الإنترنت مع جلسات مباشرة بقيادة مدرّب لتحقيق أفضل نتائج تعلّم.")</p>
+                <div class="method-features">
+                    <h4>@Lang.T("Key Benefits:", "أبرز المزايا:")</h4>
+                    <ul>
+                        <li><i class="fas fa-clock"></i> @Lang.T("Flexible self-paced learning modules", "وحدات تعلّم ذاتية مرنة")</li>
+                        <li><i class="fas fa-user-tie"></i> @Lang.T("Live sessions for complex topics", "جلسات مباشرة للمواضيع المعقّدة")</li>
+                        <li><i class="fas fa-tasks"></i> @Lang.T("Pre and post-session assignments", "مهام قبل الجلسات وبعدها")</li>
+                        <li><i class="fas fa-chart-line"></i> @Lang.T("Progress tracking dashboard", "لوحة لتتبّع التقدّم")</li>
+                        <li><i class="fas fa-headset"></i> @Lang.T("Extended instructor support", "دعم موسّع من المدرّب")</li>
+                    </ul>
+                </div>
+                <div class="method-details">
+                    <div class="detail-item">
+                        <span class="label">@Lang.T("Duration:", "المدة:")</span>
+                        <span class="value">@Lang.T("Flexible schedule", "جدول مرن")</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">@Lang.T("Support:", "الدعم:")</span>
+                        <span class="value">@Lang.T("Email + live office hours", "بريد إلكتروني + ساعات مكتبية مباشرة")</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="delivery-method-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="method-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>@Lang.T("On-Site / In-House Training", "التدريب في موقعك")</h3>
+                <p class="method-description">@Lang.T("We bring our expert trainers to your location, delivering customized training programs tailored to your organization's specific needs.", "نُحضر مدرّبينا الخبراء إلى موقعك، ونقدّم برامج تدريب مخصّصة وفق احتياجات مؤسستك المحددة.")</p>
+                <div class="method-features">
+                    <h4>@Lang.T("Key Benefits:", "أبرز المزايا:")</h4>
+                    <ul>
+                        <li><i class="fas fa-bullseye"></i> @Lang.T("Content customized to your context", "محتوى مخصّص لسياقك")</li>
+                        <li><i class="fas fa-users-cog"></i> @Lang.T("Train your entire team together", "درّب فريقك بالكامل معاً")</li>
+                        <li><i class="fas fa-map-marker-alt"></i> @Lang.T("Convenient - no team travel required", "مريح — دون حاجة لسفر الفريق")</li>
+                        <li><i class="fas fa-calendar-check"></i> @Lang.T("Flexible scheduling", "جدولة مرنة")</li>
+                        <li><i class="fas fa-handshake"></i> @Lang.T("Builds team cohesion", "يبني تماسك الفريق")</li>
+                    </ul>
+                </div>
+                <div class="method-details">
+                    <div class="detail-item">
+                        <span class="label">@Lang.T("Min Participants:", "أدنى عدد للمشاركين:")</span>
+                        <span class="value">@Lang.T("8 participants", "8 مشاركين")</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">@Lang.T("Coverage:", "النطاق:")</span>
+                        <span class="value">@Lang.T("Saudi Arabia & GCC", "المملكة العربية السعودية ودول الخليج")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">تجربة التعلّم <span class="text-primary">في MSSC</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">The MSSC Learning <span class="text-primary">Experience</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("What you can expect from every training session", "ما يمكنك توقّعه من كل جلسة تدريبية")</p>
+        </div>
+
+        <div class="experience-grid">
+            <div class="experience-card" data-aos="fade-up">
+                <div class="experience-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h4>@Lang.T("Comprehensive Materials", "مواد شاملة")</h4>
+                <p>@Lang.T("Receive detailed course materials, handouts, and reference guides to support your learning journey.", "تحصل على مواد دورة مفصّلة، ونشرات، وأدلة مرجعية لدعم رحلة تعلّمك.")</p>
+            </div>
+            <div class="experience-card" data-aos="fade-up">
+                <div class="experience-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <h4>@Lang.T("Expert Instructors", "مدرّبون خبراء")</h4>
+                <p>@Lang.T("Learn from industry professionals with extensive real-world experience and teaching expertise.", "تعلّم من مهنيين بخبرة واقعية واسعة وخبرة في التدريس.")</p>
+            </div>
+            <div class="experience-card" data-aos="fade-up">
+                <div class="experience-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h4>@Lang.T("Practical Exercises", "تمارين عملية")</h4>
+                <p>@Lang.T("Apply concepts through hands-on exercises, case studies, and real-world scenarios.", "طبّق المفاهيم عبر تمارين عملية ودراسات حالة وسيناريوهات واقعية.")</p>
+            </div>
+            <div class="experience-card" data-aos="fade-up">
+                <div class="experience-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h4>@Lang.T("Certification", "الشهادات")</h4>
+                <p>@Lang.T("Earn recognized certificates upon successful completion of training programs.", "احصل على شهادات معترف بها عند إتمام البرامج التدريبية بنجاح.")</p>
+            </div>
+            <div class="experience-card" data-aos="fade-up">
+                <div class="experience-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h4>@Lang.T("Post-Training Support", "دعم بعد التدريب")</h4>
+                <p>@Lang.T("Access to instructors for questions and guidance after the training concludes.", "وصول إلى المدرّبين للأسئلة والإرشاد بعد انتهاء التدريب.")</p>
+            </div>
+            <div class="experience-card" data-aos="fade-up">
+                <div class="experience-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h4>@Lang.T("Alumni Network", "شبكة الخريجين")</h4>
+                <p>@Lang.T("Join our community of professionals for continued learning and networking.", "انضمّ إلى مجتمعنا من المهنيين للتعلّم المستمر والتواصل.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            @if (Lang.IsArabic)
+            {
+                <h2 class="section-title">قارن <span class="text-primary">خيارات التقديم</span></h2>
+            }
+            else
+            {
+                <h2 class="section-title">Compare Delivery <span class="text-primary">Options</span></h2>
+            }
+            <p class="section-subtitle">@Lang.T("Find the right fit for your learning needs", "اعثر على ما يناسب احتياجاتك التعليمية")</p>
+        </div>
+
+        <div class="table-responsive" data-aos="fade-up">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>@Lang.T("Feature", "الميزة")</th>
+                        <th><i class="fas fa-chalkboard-teacher"></i> @Lang.T("Classroom", "حضوري")</th>
+                        <th><i class="fas fa-laptop"></i> @Lang.T("Virtual", "افتراضي")</th>
+                        <th><i class="fas fa-layer-group"></i> @Lang.T("Hybrid", "مدمج")</th>
+                        <th><i class="fas fa-building"></i> @Lang.T("On-Site", "في الموقع")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Lang.T("Live Instructor", "مدرّب مباشر")</td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.T("Interactive Sessions", "جلسات تفاعلية")</td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.T("Self-Paced Modules", "وحدات ذاتية")</td>
+                        <td><i class="fas fa-times text-muted"></i></td>
+                        <td><i class="fas fa-times text-muted"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-times text-muted"></i></td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.T("Recording Available", "تسجيل متاح")</td>
+                        <td><i class="fas fa-times text-muted"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-times text-muted"></i></td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.T("No Travel Required", "بلا سفر")</td>
+                        <td><i class="fas fa-times text-muted"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.T("Custom Content", "محتوى مخصّص")</td>
+                        <td><i class="fas fa-times text-muted"></i></td>
+                        <td><i class="fas fa-times text-muted"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.T("Networking", "تواصل مهني")</td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                        <td>@Lang.T("Limited", "محدود")</td>
+                        <td>@Lang.T("Limited", "محدود")</td>
+                        <td><i class="fas fa-check text-success"></i></td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.T("Best For", "الأنسب لـ")</td>
+                        <td>@Lang.T("Immersive learning", "تعلّم غامر")</td>
+                        <td>@Lang.T("Remote teams", "الفرق عن بُعد")</td>
+                        <td>@Lang.T("Busy schedules", "الجداول المزدحمة")</td>
+                        <td>@Lang.T("Organizations", "المؤسسات")</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+<style>
+    .delivery-features {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1rem;
+    }
+
+    .feature-item i {
+        font-size: 1.2rem;
+    }
+
+    .delivery-methods-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .delivery-method-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .delivery-method-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .method-icon {
+        width: 70px;
+        height: 70px;
+        background: var(--primary);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    .delivery-method-card h3 {
+        margin-bottom: 15px;
+        color: var(--text-dark);
+    }
+
+    .method-description {
+        color: var(--text-muted);
+        margin-bottom: 20px;
+    }
+
+    .method-features h4 {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--primary);
+        margin-bottom: 15px;
+    }
+
+    .method-features ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px 0;
+    }
+
+    .method-features li {
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.95rem;
+        color: var(--text-dark);
+    }
+
+    .method-features li i {
+        color: var(--primary);
+        width: 20px;
+    }
+
+    .method-details {
+        border-top: 1px solid var(--border-color);
+        padding-top: 15px;
+    }
+
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        font-size: 0.9rem;
+    }
+
+    .detail-item .label {
+        color: var(--text-muted);
+    }
+
+    .detail-item .value {
+        font-weight: 600;
+        color: var(--text-dark);
+    }
+
+    .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .experience-card {
+        text-align: center;
+        padding: 30px;
+        background: var(--bg-light);
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+
+    .experience-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .experience-icon {
+        width: 70px;
+        height: 70px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        margin: 0 auto 20px;
+    }
+
+    .experience-card h4 {
+        margin-bottom: 10px;
+    }
+
+    .experience-card p {
+        color: var(--text-muted);
+        margin: 0;
+    }
+
+    .comparison-table {
+        width: 100%;
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: 15px 20px;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .comparison-table th {
+        background: var(--primary);
+        color: white;
+        font-weight: 600;
+    }
+
+    .comparison-table th:first-child {
+        text-align: left;
+    }
+
+    .comparison-table td:first-child {
+        text-align: left;
+        font-weight: 500;
+    }
+
+    .comparison-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .comparison-table tbody tr:hover {
+        background: var(--bg-light);
+    }
+
+    .cta-section {
+        background: var(--primary);
+        color: white;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    @@media (max-width: 768px) {
+        .delivery-methods-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .comparison-table {
+            font-size: 0.85rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 10px;
+        }
+    }
+</style>
+}
